@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  background-color: #003333;
+  margin: 0;
+  padding: 0;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 1020px;
+  width: 100%;
+  font-family: verdana;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  font-family: verdana;
+  background-image: linear-gradient(-45deg, #c2d6d6, #f0f5f5, #c2d6d6);
+  margin: 50px;
+  box-shadow: 2px 2px 20px;
+  max-width: 860px;
+}
+.graph {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+.visHolder {
+  padding: 0px;
+  position: relative;
+}
+.graph-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 40px
+}
+.axis-label {
+  font-size: 0.8em;
+  margin: 20px;
+}
+.y-axis-label {
+  margin-left: 40px;
+  margin-right: 0px;
+  text-align: center;
+}
+.x-axis-label {
+  margin-top: -40px;
+}
+.bar2:hover, .bar2:active {
+  opacity: 0.5;
+}
+#tooltip {
+  position: absolute;
+  color: #003333;
+  font-size: 0.8em;
+  text-align: left;
+  background-image: linear-gradient(-45deg, #d1e0e0, #e1eaea, #d1e0e0);
+  z-index: 2;
+  border-radius: 5px;
+  padding: 10px;
+  width: 220px;
+  visibility: hidden;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px; 
+}
+.info-row {
+  margin: 0px;
+}
+.overpay {
+  width: 100%;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  position: relative;
+}
+input {
+  height: 30px;
+  text-align: center;
+  font-size: 0.8em;
+  width: auto;
+  margin: 5px;
+  border: 1px solid #003333;
+}
+label {
+  font-size: 0.8em;
+}
+button {
+  background-color: #b8d0d4;
+  font-family: verdana;
+  padding: 7px;
+  margin: 5px;
+  width: 150px;
+  border: 1px solid #003333;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+}
+button:hover {
+  background-color: #003333;
+  color: #fafafa;
+}
+h1 {
+  font-size: 1.9em;
+  margin-bottom: 20px;
+}
+h2 {
+  font-size: 1.2em;
+  margin: 20px;
+}
+h3 {
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.description {
+  font-size: 0.8em;
+  margin-right: 20px;
+}
+.info {
+  margin-left: -380px;
+  margin-top: -200px;
+  margin-right:  100px;
+  font-size: 0.8em;
+  width: 280px;
+  position: relative;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main {
+    align-items: flex-start;
+    padding-left: 80px;
+  }
+  .container {
+    margin-left: 80px;
+  }
+  @media screen and (max-width: 800px) {
+    .main{
+      padding-left: 50px;
+    }
+    .container {
+      margin-left: 50px;
+    }
+    @media screen and (max-width: 600px) {
+      .main{
+        padding-left: 20px;
+      }
+      .container {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js">
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+const today = new Date();
+const thisMonth = today.getMonth() + 1;
+const thisYear = today.getFullYear();
+const thisMonthStr = thisYear + "-" + (thisMonth < 10 ? "0" : "") + thisMonth + "-01";
+
+function formatNum(num) {
+  return num.toLocaleString("en-GB", {style: "currency", currency: "GBP", currencyDisplay: "symbol", useGrouping: true});
+}
+
+function formatDate(mNum, yNum) {
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  return months[mNum - 1] + " " + yNum.toString();
+}
+
+function isLeap(yNum) {
+  return yNum % 4 == 0;
+} 
+
+function getDaysInMonth(mNum, yNum) {
+  const array = [4, 6, 9, 11];
+  let days = 31;
+  if (array.indexOf(mNum) != -1) {
+    days = 30;
+  } else if (mNum == 2) {
+    days = isLeap(yNum) ? 29 : 28;         
+  }
+  return days;
+}
+
+function round(num, dp) {
+  let scalar = Math.pow(10, dp);
+  return Math.round(num * scalar) / scalar;
+}
+
+class App extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state =  {
+      startDate: thisMonthStr,
+      openingBalance: 100000,
+      interestRate: 2.19,
+      term: "",
+      standardPayment: 0,
+      overpayments: [],
+      calculation: [],
+      totalInterest: [],
+      endDate: [],
+      status: "uncalculated",
+      message: ""
+    }
+    this.handleAddPayment = this.handleAddPayment.bind(this);
+    this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
+    this.handleChangeOB = this.handleChangeOB.bind(this);
+    this.handleChangeRate = this.handleChangeRate.bind(this);
+    this.handleChangeTerm = this.handleChangeTerm.bind(this);
+    this.handleChangeStandard = this.handleChangeStandard.bind(this);
+    this.handleCalculate = this.handleCalculate.bind(this);
+    this.handleChangePayment = this.handleChangePayment.bind(this);
+    this.handleDeletePayment = this.handleDeletePayment.bind(this);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState != this.state) {
+      let term = this.state.term;
+      if (term != "") {
+        let termUpdate = prevState.term != term;
+        let ob = this.state.openingBalance;
+        let obUpdate = prevState.openingBalance != ob;
+        let rate = this.state.interestRate;
+        let rateUpdate = prevState.interestRate != rate;
+        if (termUpdate || obUpdate || rateUpdate) {
+          let n = term * 12;
+          let c = Math.round(rate / 12 * 100000) / 10000000;
+          let k = Math.pow(1 + c, n);
+          let p = Math.round(ob * c * k / (k - 1) * 100) / 100;
+          console.log("p: " + p);
+          this.setState({
+            standardPayment: p,
+            status: "uncalculated",
+            message: "",
+            calculation: [],
+            totalInterest: [],
+            endDate: []
+          });
+          console.log("standardPayment updated to " + this.state.standardPayment);
+        }
+      }
+    }
+  }
+  handleAddPayment(event) {
+    let newPayment = {start: this.state.startDate,
+                      end: "",
+                      value: 0};
+    let newPaymentsArray = [...this.state.overpayments, newPayment];
+    console.log(newPaymentsArray);
+    this.setState({
+      overpayments: newPaymentsArray,
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("overpayments updated to " + this.state.overpayments);
+  }
+  handleChangeStartDate(event) {
+    this.setState({
+      startDate: event.target.value + "-01",
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("startDate updated to " + this.state.startDate);
+  }
+  handleChangeOB(event) {
+    this.setState({
+      openingBalance: Number(event.target.value),
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("openingBalance updated to " + this.state.openingBalance);
+  }
+  handleChangeRate(event) {
+    this.setState({
+      interestRate: Number(event.target.value),
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("interestRate updated to " + this.state.interestRate);
+  }
+  handleChangeTerm(event) {
+    this.setState({
+      term: Number(event.target.value),
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("term updated to " + this.state.term);
+  }
+  handleChangeStandard(event) {
+    this.setState({
+      standardPayment: Number(event.target.value),
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("standardPayment updated to " + this.state.standardPayment);
+  }
+  handleChangePayment(index, object) {
+    let payments = this.state.overpayments;
+    let pre = payments.slice(0, index);
+    let post = payments.slice(index + 1);
+    this.setState({
+      overpayments: [...pre, object, ...post],
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("overpayments updated to " + this.state.overpayments);
+  }
+  handleDeletePayment(event, index) {
+    let payments = this.state.overpayments;
+    let pre = payments.slice(0, index);
+    let post = payments.slice(index + 1);
+    let newOverPayments = [...pre, ...post];
+    console.log(newOverPayments);
+    this.setState({
+      overpayments: newOverPayments,
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []     
+    });
+    console.log("overpayments updated to " + this.state.overpayments);
+  }
+  handleCalculate(event) {
+    this.setState({
+      status: "uncalculated",
+      message: "",
+      calculation: [],
+      totalInterest: [],
+      endDate: []
+    });
+    console.log("status updated to " + this.state.status);
+    let error = false;
+    let date = this.state.startDate;
+    if (date == "") {
+      this.setState({
+        status: "error",
+        message: "Start date must be defined"
+      });
+      console.log("status updated to " + this.state.status + ": " + this.state.message);
+      error = true;
+    } else {
+      let balance = this.state.openingBalance;
+      if (balance <= 0 || balance == "") {
+        this.setState({
+          status: "error",
+          message: "Opening balance must be greater than 0"
+        });
+        console.log("status updated to " + this.state.status + ": " + this.state.message);
+        error = true;
+      } else {
+        let rate = this.state.interestRate / 100;
+        if (rate <= 0 || rate == "") {
+          this.setState({
+            status: "error",
+            message: "Interest rate must be greater than 0"
+          });
+          console.log("status updated to " + this.state.status + ": " + this.state.message);
+          error = true;
+        } else {
+          let sp = this.state.standardPayment;
+          let initialInt = round(rate / 12 * balance, 5);
+          console.log("sp: " + sp + ", initialInt: " + initialInt);
+          if (sp < initialInt || sp == "") {
+            this.setState({
+              status: "error",
+              message: "Standard payment must cover the first month's interest"
+            });
+            console.log("status updated to " + this.state.status + ": " + this.state.message);
+            error = true;
+          } else {
+            let overpayments = this.state.overpayments;
+            if (overpayments.filter(x => x.value < 0).length > 0) {
+              this.setState({
+               status: "error",
+               message: "Overpayments mustn't be negative"
+              });
+              console.log("status updated to " + this.state.status + ": " + this.state.message);
+              error = true;
+            } else {
+              let data = [];
+              let shadowBalance = balance;
+              let totalInt = 0;
+              let shadowTotalInt = 0
+              let endDate = {};
+              let shadowEndDate = {};
+              let loop = true;
+              let ended = false;
+              while (loop) {
+                let dateVal = Date.parse(date);
+                let year = parseInt(date.slice(0, 4));
+                let month = parseInt(date.slice(5, 7));
+                let days = getDaysInMonth(month, year);
+                let dailyRate = rate / (isLeap(year) ? 366 : 365);
+                let interest = round(balance * dailyRate * days, 2);
+                totalInt += interest;
+                let shadowInterest = round(shadowBalance * dailyRate * days, 2);
+                shadowTotalInt += shadowInterest;
+                let payment = sp;
+                if (payment > balance + interest) {      
+                  payment = round(balance + interest, 2);
+                } else {
+                  if (overpayments.length > 0) {
+                    function filterPay (obj) {
+                      let from = Date.parse(obj.start);
+                      let to = obj.end == "" ? "" : Date.parse(obj.end);
+                      return from <= dateVal && (to >= dateVal || to == "");
+                    }
+                    let op = overpayments.filter(filterPay).map(x => x.value).reduce((x, y) => x + y, 0);
+                    payment = round(sp + op, 2);
+                    if (payment > balance + interest) {      
+                      payment = round(balance + interest, 2);
+                    }
+                  }
+                }
+                let shadowPayment = sp;
+                if (sp > shadowBalance + shadowInterest) {
+                  shadowPayment = round(shadowBalance + shadowInterest, 2);
+                } 
+                let newBalance = round(balance + interest - payment, 2);
+                let newShadowBalance = round(shadowBalance + shadowInterest - shadowPayment, 2);
+                data.push({
+                  month: month,
+                  year: year,
+                  ob: balance,
+                  interest: interest,
+                  paid: payment,
+                  cb: newBalance,
+                  shadowOb: shadowBalance,
+                  shadowPaid: shadowPayment,
+                  shadowCb: newShadowBalance
+                });
+                if (!ended && newBalance <= 0) {
+                  endDate = {
+                    month: month,
+                    year: year
+                  };
+                  ended = true;
+                }
+                if (newShadowBalance <= 0) {
+                  shadowEndDate = {
+                    month: month,
+                    year: year
+                  };
+                  loop = false;
+                } else {
+                  balance = newBalance;
+                  shadowBalance = newShadowBalance;
+                  let newMonth = month == 12 ? 1 : month + 1;
+                  date = newMonth == 1 ? (year + 1) + "-01-01" : year + "-" + (newMonth < 10 ? "0" : "") + newMonth + "-01";
+                }
+              }
+              this.setState({
+                status: "calculated",
+                message: "",
+                calculation: data,
+                totalInterest: [totalInt, shadowTotalInt],
+                endDate: [endDate, shadowEndDate]
+              });
+              console.log("state updated to " + this.state.status + ": " + this.state.calculation + "; ", + this.state.totalInterest.join(", ") + "; ", + this.state.endDate);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  render() {
+    const hasOverpay = this.state.overpayments.length > 0;
+    const subHeading = hasOverpay ? (<div className="row overpay"><h2>Overpayments</h2></div>) : null;
+    const overpayments = this.state.overpayments.map((x, i) => (
+      <Overpayment index={i}
+        start={x.start.slice(0, 7)}
+        end={x.end.slice(0, 7)}
+        value={x.value}
+        onChange={this.handleChangePayment}
+        onDelete={this.handleDeletePayment}/> 
+    ));
+    let result = null;
+    if (this.state.status == "error") {
+      result = (<div className="description"><br/>{this.state.message}</div>);
+    } else if (this.state.status == "calculated") {
+      let fpDate = formatDate(this.state.endDate[0].month, this.state.endDate[0].year);
+      let totalInt = formatNum(this.state.totalInterest[0]);
+      let info = (
+        <div className="info">
+          <div className="row">
+            <div>Final payment date: </div>
+            <div>{fpDate}</div>
+          </div>
+          <div className="row">
+            <div>Total interest paid: </div>
+            <div>{totalInt}</div>
+          </div>
+        </div>
+      );
+      if (hasOverpay) {
+        let shadowFpDate = formatDate(this.state.endDate[1].month, this.state.endDate[1].year);
+        let shadowTotalInt = formatNum(this.state.totalInterest[1]);
+        info = (
+          <div className="info">
+            <h3>Final payment date</h3>
+            <div className="info-row row">
+              <div>With overpayments: </div>
+              <div>{fpDate}</div>
+            </div>
+            <div className="info-row row">
+              <div>Without overpayments: </div>
+              <div>{shadowFpDate}</div>
+            </div>
+            <h3>Total interest paid</h3>
+            <div className="info-row row">
+              <div>With overpayments: </div>
+              <div>{totalInt}</div>
+            </div>
+            <div className="info-row row">
+              <div>Without overpayments: </div>
+              <div>{shadowTotalInt}</div>
+            </div>
+          </div>
+        );
+      }
+      result = (
+        <div className="column">
+          <div className="graph-title">Mortgage Balance Over Time</div>
+          <div className="graph">
+            <div className="axis-label y-axis-label">Balance<br/>(£)</div>
+            <BarChart data={this.state.calculation}/>
+            {info}
+          </div>
+          <div className="axis-label x-axis-label">Year</div>
+        </div>
+      );
+    }
+    return (
+      <div className="main">
+        <div className="container">
+          <h1>Mortgage Calculator</h1>
+          <div className="row">
+            <Field id="start-date"
+              value={this.state.startDate.slice(0, 7)} 
+              onChange={this.handleChangeStartDate}
+              label="Start date"
+              type="month"/>
+            <Field id="ob"
+              value={this.state.openingBalance} 
+              onChange={this.handleChangeOB}
+              label="Opening balance (£)"
+              type="number"/>
+            <Field id="rate"
+              value={this.state.interestRate} 
+              onChange={this.handleChangeRate}
+              label="Interest rate (%)"
+              type="number"/>
+          </div>
+          <div className="row">
+            <Field id="term"
+              value={this.state.term} 
+              onChange={this.handleChangeTerm}
+              label="Mortgage term (years)"
+              type="number"/>
+              <p className="description">OR</p>
+            <Field id="standard-payment"
+              value={this.state.standardPayment} 
+              onChange={this.handleChangeStandard}
+              label="Standard monthly payment (£)"
+              type="number"/>
+          </div>
+          {subHeading}
+          {overpayments}
+          <button type="button" onClick={this.handleAddPayment}>Add Overpayment</button>
+          <button type="button" onClick={this.handleCalculate}>Calculate</button>
+          {result}
+        </div>
+      </div>
+    );
+  }
+};
+
+const Field = (props) => {
+  return (
+    <div className="row">
+      <label for={props.id}>{props.label}: </label>
+      <input id={props.id}
+        value={props.value}
+        onChange={props.onChange}
+        type={props.type}/>
+    </div>
+  );
+}
+
+class Overpayment extends React.Component {
+   constructor(props){
+      super(props);
+      this.state = {
+        from: this.props.start,
+        to: this.props.end,
+        value: Number(this.props.value),
+      };
+      this.handleChangeValue = this.handleChangeValue.bind(this);
+      this.handleChangeFrom = this.handleChangeFrom.bind(this);
+      this.handleChangeTo = this.handleChangeTo.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);
+   }
+   componentDidUpdate(prevProps, prevState) {
+     if (prevProps != this.props) {
+       this.setState({
+         from: this.props.start,
+         to: this.props.end,
+         value: Number(this.props.value),
+       })
+       console.log("state updated to " + this.state);
+     } else if (prevState != this.state ) {
+       let fromUpdate = this.state.from != this.props.start;
+       let toUpdate = this.state.to != this.props.end;
+       let valueUpdate = this.state.value != Number(this.props.value);
+       if (fromUpdate || toUpdate || valueUpdate) {
+         let payment = {
+           start: this.state.from + "-01",
+           end: this.state.to == "" ? "" : this.state.to + "-01",
+           value: this.state.value
+         };
+         console.log(payment);
+         this.props.onChange(this.props.index, payment);
+       }
+     }
+   }
+   handleChangeFrom(event) {
+     this.setState({
+       from: event.target.value
+     });
+     console.log("from updated to " + this.state.from);
+   }
+   handleChangeTo(event) {
+     this.setState({
+       to: event.target.value
+     });
+     console.log("to updated to " + this.state.to);
+   }
+   handleChangeValue(event) {
+     this.setState({
+       value: Number(event.target.value)
+     });
+     console.log("value updated to " + this.state.value);
+   }
+  handleDelete(event) {
+    this.props.onDelete(event, this.props.index);
+  }
+   render() {
+     let index = this.props.index;
+     return (
+      <div id={"payment-" + index} className="row"> 
+        <Field id={"from-" + index}
+          value={this.state.from} 
+          onChange={this.handleChangeFrom}
+          label="From"
+          type="month"/>
+        <Field id={"to-" + index}
+          value={this.state.to} 
+          onChange={this.handleChangeTo}
+          label="To"
+          type="month"/>
+        <Field id={"value-" + index}
+          value={this.state.value} 
+          onChange={this.handleChangeValue}
+          label="Amount (£)"
+          type="number"/>
+        <button type="button" onClick={this.handleDelete}>Delete</button>
+      </div>
+     );
+   }
+}
+
+class BarChart extends React.Component {
+  constructor(props){
+    super(props);
+    this.createBarChart = this.createBarChart.bind(this);
+  }
+  componentDidMount() {
+    this.createBarChart();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps != this.props) {
+      this.createBarChart();
+    }
+  }
+  createBarChart() {
+    
+    d3.selectAll("svg")
+      .remove();
+    
+    const node = this.node;
+    const dataset = this.props.data;
+    const balanceData = dataset.map(d => d.ob);
+    const shadowBalData = dataset.map(d => d.shadowOb);
+    const yearData = dataset.map(d => round(d.year + (d.month - 1) / 12, 3));
+    const max = d3.max(balanceData);
+
+    const w = 820;
+    const h = 400;
+    const p = 60;
+    const pl = formatNum(max).length * 6.4;
+    
+    const svg = d3.select(node)
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+    const tooltip = d3.select(".main")
+      .append("div")
+      .attr("id", "tooltip");
+
+    const size = dataset.length;
+    const barWidth = (w - p - pl) / size;
+    
+    const tooltipHtml = dataset.map(d => {
+      return "<h3>" + formatDate(d.month, d.year) + "</h3><div class=\"row\"><div>Opening balace: </div><div>" + formatNum(d.ob) + "</div></div><div class=\"row\"><div>Interest added: </div><div>" + formatNum(d.interest) + "</div></div><div class=\"row\"><div><em>Less</em> Paid: </div><div>(" + formatNum(d.paid) + ")</div></div><div class=\"row\"><div>Closing balance: </div><div>" + formatNum(d.cb) + "</div></div>"; 
+    });
+ 
+    const scaleX = d3.scaleLinear()
+                   .range([pl, w - p])
+                   .domain([d3.min(yearData), d3.max(yearData)]);
+  
+    const scaleY = d3.scaleLinear()
+                 .range([h - p, p])
+                 .domain([0, max]);
+  
+    const scaleBarHeight = d3.scaleLinear()
+                 .range([0, h - 2 * p])
+                 .domain([0, max]);
+ 
+    svg.selectAll(".bar1")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => barWidth * i + pl)
+      .attr("y", (d, i) => scaleY(d.shadowOb))
+      .attr("width", barWidth)
+      .attr("height", (d, i) => scaleBarHeight(d.shadowOb))
+      .attr("class", "bar1")
+      .attr("fill","#b8d0d4")
+      .attr("opacity", 0.5);
+    
+    svg.selectAll(".bar2")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => barWidth * i + pl)
+      .attr("y", (d, i) => scaleY(d.ob))
+      .attr("width", barWidth)
+      .attr("height", (d, i) => scaleBarHeight(d.ob))
+      .attr("class", "bar2")
+      .attr("fill","#003333")
+      .on("mouseover", (d, i) => {
+        tooltip.transition()
+          .duration(200)
+          .style("opacity", .9);
+        tooltip.html(tooltipHtml[i])
+          .style("left", function() {
+            let pos = d3.event.pageX;
+            let offset = pos > 700 ? -270 : 30;
+            return pos + offset + "px";
+          })
+          .style("top", (d3.event.pageY) - 30 + "px")
+          .style("visibility", "visible");
+      })
+      .on("mouseout", (d, i) => {
+        tooltip.transition()
+          .duration(200)
+          .style("visibility", "hidden");
+      });
+    
+    const xAxis = d3.axisBottom(scaleX).tickFormat(d3.format("d"));
+    const yAxis = d3.axisLeft(scaleY);
+    
+    svg.append("g")
+      .attr("id", "x-axis")
+      .attr("transform", "translate(0," + (h - p) + ")")
+      .call(xAxis);
+    
+    svg.append("g")
+      .attr("id", "y-axis")
+      .attr("transform", "translate(" + pl + ", 0)")
+      .call(yAxis);
+  }
+
+  render() {
+    return (
+      <div className='visHolder' ref={node => this.node = node}></div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+
+    </script>
+  </body>
+</html>

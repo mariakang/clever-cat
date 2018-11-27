@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Saira" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"/>
+    <style >
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: verdana;
+}
+h1 {
+  font-family: Pacifico;
+  color: #5f8e00;
+  text-shadow: 1px 1px black;
+}
+.digital-display {
+  font-family: Orbitron;
+  font-size: 2.2em;
+  padding: 5px;
+}
+.control-display {
+  padding: 10px;
+  color: #283d00;
+  font-family: Orbitron, cursive;
+  font-size: 1.1em;
+}
+.controls {
+  display: flex;
+  flex-direction: row;
+  width: 350px;
+  justify-content: space-between;
+}
+.control-unit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.control-label {
+  padding: 5px;
+  color: #283d00;
+  font-weight: bold;
+}
+.control {
+  display: flex;
+  flex-direction: row;
+}
+#timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 410px;
+  background-image: url("https://labs.jensimmons.com/2016/examples/images/tomato.jpg");
+  background-position: center;
+  background-size: 100% 100%;
+  color: black;
+  font-size: 1.2em;
+}
+button {
+  background-color: #88cc00;
+  color: #283d00;
+  margin: 5px;
+  cursor: pointer;
+  font-family: verdana;
+}
+button:hover {
+  background-color: #446600;
+  color: #95e000;
+}
+button:disabled {
+  opacity: 0.5;
+}
+.timer-buttons {
+  margin-top: 15px;
+}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js">
+    </script>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+    <script type="text/babel">
+function clockDisplay(seconds) {
+  let mins = Math.floor(seconds / 60);
+  let secs = seconds - mins * 60;
+  mins = mins < 10 ? "0" + mins : mins;
+  secs = secs < 10 ? "0" + secs : secs;
+  return mins + ":" + secs;
+}
+class ControlUnit extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const display = this.props.current// < 10 ? "0" + this.props.current : this.props.current
+    ;
+    const createId = (str) => this.props.controlType + "-" + str;
+    return (
+      <div id={createId("control")} className="control-unit">
+        <div className="control-label" id={createId("label")}>
+          {this.props.title}
+        </div>
+        <div className="control">
+          <ControlButton current={this.props.current}
+            id={createId("decrement")}
+            icon="fa fa-minus fa-2x"
+            limit={this.props.lowerBound}
+            function={this.props.function}
+            diff={-1}
+            value="-" />
+          <div className="control-display" id={createId("length")}>
+            {display}
+          </div>
+          <ControlButton current={this.props.current}
+            id={createId("increment")}
+            icon="fa fa-plus fa-2x"
+            limit={this.props.upperBound}
+            function={this.props.function}
+            diff={1}
+            value="+" />
+        </div>
+      </div>
+    );
+  }
+}
+  
+class ControlButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: false
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      disabled: nextProps.current == this.props.limit
+    });
+  }
+  handleClick(event) {
+    this.props.function(this.props.diff);
+  }
+  render() {
+    return (
+      <button id={this.props.id} value={this.props.value} onClick={this.handleClick} disabled={this.state.disabled}>
+        <i className={this.props.icon} />
+      </button>
+    )
+  }
+}
+
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      countdown: "",
+      breakLen: 5,
+      sessionLen: 25,
+      timerRunning: false,
+      timerMode: "Session",
+      timeLeft: 1500
+    }
+    this.changeBreakLen = this.changeBreakLen.bind(this);
+    this.changeSessionLen = this.changeSessionLen.bind(this);
+    this.handleStartStop = this.handleStartStop.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.countdownStep = this.countdownStep.bind(this);
+    this.runCountdown = this.runCountdown.bind(this);
+    this.changeMode = this.changeMode.bind(this);
+    this.beep = this.beep.bind(this);
+  }
+  beep() {
+    return document.getElementById("beep");
+  }
+  handleStartStop(event) {
+    let newState = ! this.state.timerRunning;
+    this.setState({
+      timerRunning: newState
+    });
+    if (newState) {
+      this.runCountdown();
+    } else {
+      clearInterval(this.state.countdownId);
+      this.beep().pause();     
+    }
+  }
+  handleReset(event) {
+    clearInterval(this.state.countdownId);
+    this.setState({
+      countdownId: "",
+      breakLen: 5,
+      sessionLen: 25,
+      timerRunning: false,
+      timerMode: "Session",
+      timeLeft: 1500     
+    });
+    this.beep().pause();
+    this.beep().currentTime = 0;
+  }
+  changeBreakLen(diff) {
+    const newLen = this.state.breakLen + diff;
+    this.setState({
+      breakLen: newLen
+    });
+    if (this.state.timerMode == "Break") {
+      this.setState({
+        timeLeft: newLen * 60
+      });
+    }
+  }
+  changeSessionLen(diff) {
+    const newLen = this.state.sessionLen + diff;
+    this.setState({
+      sessionLen: newLen
+    });
+    if (this.state.timerMode == "Session") {
+      this.setState({
+        timeLeft: newLen * 60
+      });
+    }
+  }
+  changeMode() {
+    const mode = this.state.timerMode;
+    const newMode = mode == "Session" ? "Break" : "Session";
+    const newTime = newMode == "Session" ? this.state.sessionLen * 60  : this.state.breakLen * 60 ;
+    this.setState({
+      timerMode: newMode,
+      timeLeft: newTime
+    });
+  }
+  countdownStep() {
+    if (this.state.timeLeft <= 0) {
+      this.changeMode();
+    } else {
+      const newTime = this.state.timeLeft - 1;
+      this.setState({
+        timeLeft: newTime
+      });
+      if (newTime <= 0) {
+        this.beep().currentTime = 0;
+        this.beep().play();
+      }
+    }
+  }
+  runCountdown() {
+    this.setState({
+      countdownId:  setInterval(this.countdownStep, 1000)
+    });
+  }
+  render() {
+    const display = clockDisplay(this.state.timeLeft);
+    const startStop = this.state.timerRunning ? ["fa fa-pause fa-2x", "Stop"] : ["fa fa-play fa-2x", "Start"];
+    return (
+      <div id="container">
+        <h1>Pomodoro Clock</h1>
+        <div className="controls">
+          <ControlUnit controlType="break"
+            title="Break Length"
+            function={this.changeBreakLen}
+            current={this.state.breakLen}
+            lowerBound={1}
+            upperBound={60} />
+          <ControlUnit
+            controlType="session"
+            title="Session Length"
+            function={this.changeSessionLen}
+            current={this.state.sessionLen}
+            lowerBound={1}
+            upperBound={60} />
+        </div>
+        <div id="timer">
+          <div id="timer-label">
+          {this.state.timerMode}
+          </div>
+          <div className="digital-display" id="time-left">
+            {display}
+          </div>
+          <div className="timer-buttons">
+            <button id="start_stop" onClick={this.handleStartStop}>
+            {startStop[1]}<br/>
+              <i className={startStop[0]} />
+            </button>
+            <button id="reset" onClick={this.handleReset}>
+            Reset<br/>
+              <i className="fa fa-refresh fa-2x" />
+            </button>
+          </div>
+        </div>
+        <audio id="beep" src="https://cl.ly/4d2bef482778/Cat-1.mp3" preload="auto" />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Timer />, document.getElementById('app'));
+
+    </script>
+  </body>
+</html>
