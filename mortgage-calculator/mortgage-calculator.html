@@ -594,7 +594,7 @@ class App extends React.Component{
         <div className="column">
           <div className="graph-title">Mortgage Balance Over Time</div>
           <div className="graph">
-            <div className="axis-label y-axis-label">Balance<br/>(£)</div>
+            <div className="axis-label y-axis-label">Balance<br/>(&pound;)</div>
             <BarChart data={this.state.calculation}/>
             {info}
           </div>
@@ -615,7 +615,7 @@ class App extends React.Component{
             <Field id="ob"
               value={this.state.openingBalance} 
               onChange={this.handleChangeOB}
-              label="Opening balance (£)"
+              label="Opening balance (&pound;)"
               type="number"/>
             <Field id="rate"
               value={this.state.interestRate} 
@@ -633,7 +633,7 @@ class App extends React.Component{
             <Field id="standard-payment"
               value={this.state.standardPayment} 
               onChange={this.handleChangeStandard}
-              label="Standard monthly payment (£)"
+              label="Standard monthly payment (&pound;)"
               type="number"/>
           </div>
           {subHeading}
@@ -733,7 +733,7 @@ class Overpayment extends React.Component {
         <Field id={"value-" + index}
           value={this.state.value} 
           onChange={this.handleChangeValue}
-          label="Amount (£)"
+          label="Amount (Â£)"
           type="number"/>
         <button type="button" onClick={this.handleDelete}>Delete</button>
       </div>
