@@ -206,6 +206,7 @@ const today = new Date();
 const thisMonth = today.getMonth() + 1;
 const thisYear = today.getFullYear();
 const thisMonthStr = thisYear + "-" + (thisMonth < 10 ? "0" : "") + thisMonth + "-01";
+const gbp = String.fromCharCode(163);
 
 function formatNum(num) {
   return num.toLocaleString("en-GB", {style: "currency", currency: "GBP", currencyDisplay: "symbol", useGrouping: true});
@@ -594,7 +595,7 @@ class App extends React.Component{
         <div className="column">
           <div className="graph-title">Mortgage Balance Over Time</div>
           <div className="graph">
-            <div className="axis-label y-axis-label">Balance<br/>(&pound;)</div>
+            <div className="axis-label y-axis-label">Balance<br/>{"(" + gbp + ")"}</div>
             <BarChart data={this.state.calculation}/>
             {info}
           </div>
@@ -615,7 +616,7 @@ class App extends React.Component{
             <Field id="ob"
               value={this.state.openingBalance} 
               onChange={this.handleChangeOB}
-              label="Opening balance (&pound;)"
+              label={"Opening balance (" + gbp + ")"}
               type="number"/>
             <Field id="rate"
               value={this.state.interestRate} 
@@ -633,7 +634,7 @@ class App extends React.Component{
             <Field id="standard-payment"
               value={this.state.standardPayment} 
               onChange={this.handleChangeStandard}
-              label="Standard monthly payment (&pound;)"
+              label={"Standard monthly payment (" + gbp + ")"}
               type="number"/>
           </div>
           {subHeading}
@@ -733,7 +734,7 @@ class Overpayment extends React.Component {
         <Field id={"value-" + index}
           value={this.state.value} 
           onChange={this.handleChangeValue}
-          label="Amount (£)"
+          label={"Amount (" + gbp + ")"}
           type="number"/>
         <button type="button" onClick={this.handleDelete}>Delete</button>
       </div>
