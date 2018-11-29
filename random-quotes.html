@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+body {
+  background-color: black;
+}
+#wrapper {
+  position: relative;
+  font-family: Tahoma, Geneva, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  min-height: 560px;
+  background-color: black;
+  color: #ddd;
+  padding: 10vh;
+}
+#header {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  height: 150px;
+  justify-content: left;
+  align-items: center;
+}
+img {
+  width: 250px;
+  margin-right: 10px;
+}
+h1 {
+  font-size: 1.8em;
+}
+
+#quote-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto 30px auto;
+  width: 60%;
+  max-width: 600px;
+}
+#image {
+  height: 300px;
+  width: auto;
+  border: 1px solid #444;
+  border-radius: 3px;
+}
+#flex-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  min-width: 300px;
+}
+#text {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+#author {
+  text-align: right;
+}
+
+.button {
+  height: 38px;
+  width: 200px;
+  border: none;
+  border-radius: 3px;
+  color: #111;
+  background-color: #ddd;
+  outline: none;
+  font-size: 0.85em;
+  padding: 8px 18px 6px 18px;
+  margin-top: 30px;
+  opacity: 1;
+  cursor: pointer;
+  font-weight: bold;
+}
+.button:hover {
+  opacity: 0.8;
+  border: 2px solid red;
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+   </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js">
+   </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <img src="https://i.ytimg.com/vi/RzNKZdzMEWA/maxresdefault.jpg" alt=""></img>
+      <h1>Random Quote Generator</h1>
+      </div>
+      <div id="quote-box">
+        <div class="quote-image">
+          <img id="image" alt="Red Dwarf"></img>
+        </div>
+        <div id="flex-right">
+          <div class="quote-text">
+            <span id="text"></span>
+          </div>
+          <div class="quote-author">
+            <span id="author"></span>
+          </div>
+        </div>
+      </div>
+      <button class="button" id="new-quote">New quote</button>
+    </div>
+    <script>
+
+const quotesData = [
+
+["<p>Now kindly cluck off, before I extract your giblets, and shove a large seasoned onion between the lips you never kiss with.</p>",
+"<p>- Rimmer, Stasis Leak.</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170941/50-best-red-dwarf-quotes.jpg"],
+["<p>Call it extreme if you like, but I propose we hit it hard and hit it fast with a major - and I mean major - leaflet campaign.</p>",
+"<p>- Rimmer, Polymorph.</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170943/50-best-red-dwarf-quotes-2.jpg"],
+["<p>I've been so worried I haven't buffed my shoes in my two days.</p>",
+"<p>- Cat, Marooned.</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170945/50-best-red-dwarf-quotes-3.jpg"],
+["<p>Rimmer: I've seen Westerns, I know how to speak cowboy.</p><p>[Steps up to the bar]</p><p>Rimmer: Dry white wine and Perrier, please.</p>",
+"<p>- Rimmer, Gunmen of the Apocalypse</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170947/50-best-red-dwarf-quotes-4.jpg"],
+["<p>I tell you one thing. I've been to a parallel universe, I've seen time running backwards, I've played pool with planets, and I've given birth to twins, but I never thought in my entire life I'd taste an edible Pot Noodle.</p>",
+"<p>- Lister, Demons and Angels</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170950/50-best-red-dwarf-quotes-5.jpg"],
+["<p>It's better to have loved and lost than to listen to an album by Olivia Newton-John.</p>",
+"<p>- Holly, Stasis Leak</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170953/50-best-red-dwarf-quotes-6.jpg"],
+["<p>[Reading Hitler's Diary] Things to do: Stop milk, pay papers, invade Czechoslovakia!</p>",
+"<p>- Kryten, Timeslides</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170957/50-best-red-dwarf-quotes-7.jpg"],
+["<p>I knew I was lying. No silicon heaven? Preposterous! Where would all the calculators go?</p>",
+"<p>- Kryten, The Last Day</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24170959/50-best-red-dwarf-quotes-8.jpg"],
+["<p>Has anyone ever told you that the configuration and juxtaposition of your features is extraordinarily apposite?</p>",
+"<p>- Kryten, Camille</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171002/50-best-red-dwarf-quotes-9.jpg"],
+["<p>Of course, lager! The only thing that can kill a vindaloo!</p>",
+"<p>- Lister, D.N.A.</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171004/50-best-red-dwarf-quotes-10.jpg"],
+["<p>How come you need more memory? Over the years you've had more RAM than a field of sheep!</p>",
+"<p>- Cat, Tikka to Ride</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171007/50-best-red-dwarf-quotes-11.jpg"],
+["<p>Lister: You absorb knowledge from every person you kill?</p><p>Epideme: So you can appreciate killing you ain't exactly a career highlight. No offence, but when you're a virus, there ain't much call for knowing how to open a lager bottle with your anus.</p>",
+"<p>- Lister and Epideme, Epideme</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171010/50-best-red-dwarf-quotes-12.jpg"],
+["<p>There's only three alternatives: it thinks we're either a threat, food or a mate.... It's either gonna kill us, eat us or hump us. Either we persuade him we're not that kinda oceanic salvage vessel, or we scarper pronto.</p>",
+"<p>- Lister, Back to Reality</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171012/50-best-red-dwarf-quotes-13.jpg"],
+["<p>Lister: Hey guys, look at me body.</p><p>Cat: Now there is an invitation that will NOT cause a stampede.</p>",
+"<p>- Lister and Cat, Back in the Red part 1</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171015/50-best-red-dwarf-quotes-14.jpg"],
+["<p>Let's at least ask someone who's at least going to give us a slightly more intelligent opinion. Hello, wall! What do you think? </p>",
+"<p>- Kochanski, Beyond a Joke</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171019/50-best-red-dwarf-quotes-15.jpg"],
+["<p>I'm so gorgeous, there's a six month waiting list for birds to suddenly appear, every time I am near!</p>",
+"<p>- Cat, Back in the Red</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171022/50-best-red-dwarf-quotes-16.jpg"],
+["<p>Last time we met I was wearing a cute little black number with peach trim and gold spangles, and although it looks like I'm wearing the same outfit today, it is in fact an entirely different cute little black number, with completely different gold spangles!</p>",
+"<p>- Cat, Rimmerworld</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171025/50-best-red-dwarf-quotes-17.jpg"],
+["<p>(to Rimmer) Your nickname was never Ace. Maybe Ace Hole. </p>",
+"<p>- Lister, Kryten</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171028/50-best-red-dwarf-quotes-18.jpg"],
+["<p>Rimmer: Lister, if you must know, I submitted a discourse on porous circuitry that was too... radical, too unconventional, too mould-breaking for the examiners to accept.</p><p>Lister: Yeah. You said you were a fish!</p>",
+"<p>- Rimmer and Lister, The End</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171032/50-best-red-dwarf-quotes-19.jpg"],
+["<p>I am Holly, the ship's computer, with an IQ of 6000; the same IQ as 6000 PE teachers.</p>",
+"<p>- Holly, Future Echoes</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171035/50-best-red-dwarf-quotes-20.jpg"],
+["<p>David Lister, Technician, 3rd class. Captain's remarks: Has requested sick leave due to diarrhea on no less than 500 occasions. Left his previous job as a supermarket trolley attendant after ten years because he didn't want to get tied down to a career. Promotion prospects: zero.</p>",
+"<p>- Holly, Waiting for God</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171039/50-best-red-dwarf-quotes-21.jpg"],
+["<p>Arnold Rimmer, Technician, 2nd Class. Captain's remarks: There's a saying amongst the officers: If a job's worth doing, it's worth doing well. If it's not worth doing, give it to Rimmer. Promotion prospects: comical.</p>",
+"<p>- Holly, Waiting for God</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171043/50-best-red-dwarf-quotes-22.jpg"],
+["<p>[Cat sings] S-E-X, you know I want it! S-E-X, I'm gonna get it! Yeah! [Cat finds Lister unconscious on the floor.] S-E-X, I think I found it!</p>",
+"<p>- Cat, Confidence and Paranoia</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171047/50-best-red-dwarf-quotes-23.jpg"],
+["<p>Rimmer: Swapping my toothpaste for a tube of contraceptive jelly.</p><p>Lister: C'mon, that was a joke!</p><p>Rimmer: Yes Lister, the same kind of joke as putting my name on the waiting list for experimental pile surgery.</p>",
+"<p>- Rimmer and Lister, Me2</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171052/50-best-red-dwarf-quotes-24.jpg"],
+["<p>Rimmer [on owing 8500 in tax]: What? This is wrong! This is dead wrong!</p><p>Lister: It doesn't matter now. Not gonna catch you now, are they?</p><p>Rimmer: Just because we're three million years into deep space and the human species is extinct? That means nothing to these people. They'll find us.</p>",
+"<p>- Rimmer and Lister, Better Than Life</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171058/50-best-red-dwarf-quotes-25.jpg"],
+["<p>The aforementioned Rimmer, to whit, me, attended inspection parade. He was totally naked except for a pair of mock-leather driving gloves and some blue swimming goggles. Under the influence of this psychedelic breakfast he went on to attack two senior officers, believing them to be giraffes who were armed and dangerous</p>",
+"<p>- Rimmer, Stasis Leak</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171101/50-best-red-dwarf-quotes-26.jpg"],
+["<p>I was in love once. A Sinclair ZX81. People said, no, Holly, she's not for you. She's cheap, she's stupid and she wouldn't load, well, not for me anyway.</p>",
+"<p>- Holly, Stasis Leak</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171105/50-best-red-dwarf-quotes-27.jpg"],
+["<p>That's a load of Tottenham, that is. Yeah, a steaming pile of Hotspur.</p>",
+"<p>- Holly, Queeg</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171109/50-best-red-dwarf-quotes-28.jpg"],
+["<p>And the moral of the story; appreciate what you've got, because basically, I'm fantastic!</p>",
+"<p>- Holly, Queeg</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171113/50-best-red-dwarf-quotes-29.jpg"],
+["<p>Cat: An orange whirly thing in space!</p><p>Lister: It's a time hole. That's where they are. We're going in.</p><p>Cat: Are you crazy We can't go in there!</p><p>Lister: Why not?</p><p>Cat: Orange, with this suit?</p>",
+"<p>- Cat and Lister, Backwards</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171117/50-best-red-dwarf-quotes-30.jpg"],
+["<p>Well, the thing about a black hole - its main distinguishing feature - is it's black. And the thing about space, the colour of space, your basic space colour, is black. So how are you supposed to see them?</p>",
+"<p>- Holly, Marooned</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171121/50-best-red-dwarf-quotes-31.jpg"],
+["<p>Rimmer: [While Lister is examining his 19th century toy soldiers] Please be careful with those, they're antiques! How's General Dumuoriez going to look with goat vindaloo all over his tunic?</p><p>Lister: It'll make him look more realistic, it'll look like he's got dysentery.</p>",
+"<p>- Rimmer and Lister, Marooned</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171125/50-best-red-dwarf-quotes-32.jpg"],
+["<p>Pub. Ah, yes: a meeting place where people attempt to achieve advanced states of mental incompetence by the repeated consumption of fermented vegetable drinks.</p>",
+"<p>- Kryten, Timeslides</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171131/50-best-red-dwarf-quotes-33.jpg"],
+["<p>Lister: Barbara Bellini, what a beautiful name. There's no justice, how can this happen to me? Maybe I can wear a turban and pretend I'm from India.</p><p>Cat: Maybe you can stick a spike in your head and pretend you're the Taj Mahal!</p>",
+"<p>- Lister and Cat, Justice</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171136/50-best-red-dwarf-quotes-34.jpg"],
+["<p>Kryten [on Rimmer]: A man so petty and small-minded he would while away his evenings sewing name labels on to his ship-issue condoms?</p>",
+"<p>- Kryten, Justice</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171140/50-best-red-dwarf-quotes-35.jpg"],
+["<p>Who allowed this man, this pathetic man, this man who could not outwit a used teabag, to be in a position where he might endanger the entire crew? Who? Only a yogurt!</p>",
+"<p>- Kryten, Justice</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171145/50-best-red-dwarf-quotes-36.jpg"],
+["<p>Lister: Caligula's a famous Roman Emperor. He slept with his mother, both his sisters and ended up eating his son.</p><p>Cat: Hey, a little advice, bud. We all feel a little peckish after making love, but most of us settle for pizza.</p>",
+"<p>- Lister and Cat, Meltdown</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171151/50-best-red-dwarf-quotes-37.jpg"],
+["<p>Lister to Red Dwarf. We have in our midst a complete smeg pot. Brains in the anal region. Chin absent, presumed missing. Genitalia small and inoffensive. Of no value or interest.</p>",
+"<p>- Lister, Holoship</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171156/50-best-red-dwarf-quotes-38.jpg"],
+["<p>The Inquisitor: Justify your existence. What contribution have you made?</p><p>Cat: I have given pleasure to the world because I have such a beautiful ass!</p>",
+"<p>- The Inquisitor and Cat, The Inquisitor</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171201/50-best-red-dwarf-quotes-39.jpg"],
+["<p>Lister: Kryten! Are you okay, man?</p><p>Kryten: I have a medium-sized fire axe buried in my spinal column. That sort of thing can really put a crimp on your day.</p>",
+"<p>- Lister and Kryten, Quarantine</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171207/50-best-red-dwarf-quotes-40.jpg"],
+["<p>Kryten: With respect sir, you think Jesus was a hippie.</p><p>Rimmer: Well, he was. He had long hair and he didn't have a job. What more do you want?</p>",
+"<p>- Kryten and Rimmer, Demons & Angels</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171213/50-best-red-dwarf-quotes-41.jpg"],
+["<p>I haven't been this embarrassed since I was loosening my adjustment screws, and my entire groinal box dropped into Mr Rimmer's soup.</p>",
+"<p>- Kryten, Stoke Me a Clipper</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171220/50-best-red-dwarf-quotes-42.jpg"],
+["<p>How did I end up like this, on a ship where the fourth most popular pastime is going down to the laundry room and watching my knickers spin dry?</p>",
+"<p>- Kochanski, Duct Soup</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171227/50-best-red-dwarf-quotes-43.jpg"],
+["<p>Christian rock music. If that doesn't scare her off, nothing will.</p>",
+"<p>- Kryten, Krytie TV</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171234/50-best-red-dwarf-quotes-44.jpg"],
+["<p>You once spent an afternoon on the Samaritans switchboard and four people committed suicide. Your middle name is Judas but you tell everyone that it's Jonathan. You sign all your official letters Arnold Rimmer BSc and the BSc stands for Bronze Swimming Certificate. You're a cheating, weasley, low-life scumbucket with all the charm and social grace of a pubic louse.</p>",
+"<p>- Lister, The Inquisitor</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171240/50-best-red-dwarf-quotes-45.jpg"],
+["<p>Just let me check: thermos, sandwiches, corn plasters, telephone money, dandruff brush, animal footprint chart, and one triple thick condom... you never know!</p>",
+"<p>- Duane Dibbley, Emohawk</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171247/50-best-red-dwarf-quotes-46.jpg"],
+["<p>Kryten, kindly get to the point before I jam your nose between your cheeks and make it the filling of a buttock sandwich.</p>",
+"<p>- Rimmer, Rimmerworld</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171253/50-best-red-dwarf-quotes-47.jpg"],
+["<p>We'd better get a job. But what jobs are there in a backwards reality for a dead hologram and an android with a head shaped like a novelty condom?</p>",
+"<p>- Rimmer, Backwards</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171300/50-best-red-dwarf-quotes-48.jpg"],
+["<p>Get real man. Most eunuchs have got more balls than you.</p>",
+"<p>- Lister, Stoke Me a Clipper</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171306/50-best-red-dwarf-quotes-49.jpg"],
+["<p>Rimmer, real dumplings, proper dumplings when they are properly cooked to perfection, proper dumplings should not bounce!</p>",
+"<p>- Lister, Better than Life</p>",
+"https://shortlist.imgix.net/app/uploads/2015/05/24171313/50-best-red-dwarf-quotes-50.jpg"]
+
+
+];
+
+let quoteIndex = Math.floor(Math.random() * 50);
+
+function displayQuote(index) {
+
+  $("#image").attr("src", quotesData[index][2]);
+     $("#text").html(quotesData[index][0]);
+     $("#author").html(quotesData[index][1]); 
+      
+}
+
+function displayFirstQuote() {
+  displayQuote(quoteIndex);
+}
+
+$(document).ready(displayFirstQuote);
+
+function newQuoteIndex() {
+   let newIndex = Math.floor(Math.random() * 50);
+    while (quoteIndex == newIndex) {
+        newIndex = Math.floor(Math.random() * 50);
+    }
+    quoteIndex = newIndex;
+}
+
+function displayNewQuote() {
+   newQuoteIndex();
+   displayQuote(quoteIndex);
+}
+
+$("#new-quote").click(displayNewQuote);
+    </script>
+  </body>
+</html>
