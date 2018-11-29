@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Saira" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"/>
+    <style >
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4e1d2;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  width: 30%;
+  min-width: 200px;
+  max-width: 500px;
+  margin: 50px auto 50px auto;
+  border: 15px outset #bfbfbf;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+#display {
+  height: auto;
+  padding: 15px;
+  background-color: #50394c;
+  color: white;
+  font-family: Orbitron;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+.keypad {
+  min-height: 250px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "clear clear clear divide" "seven eight nine multiply" "four five six subtract" "one two three add" "zero decimal equals equals";
+  grid-gap: 5px;
+  padding: 5px;
+  background-color: #50394c;
+}
+button {
+  font-family: verdana;
+  font-weight: bold;
+  color: #4d4d4d;
+  border: none;
+  text-align: center;
+  font-size: 23px;
+  border-radius: 5%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+}
+button:hover {
+  background: linear-gradient(45deg, #ffdd1a, #fff099);
+//  color: #b2b2b2;
+}
+.digit, .point {
+  background: linear-gradient(45deg, #ffec80, #fff7cc);
+}
+.operator {
+  background: linear-gradient(45deg, #a6a6a6, #e6e6e6);
+}
+.operator:hover {
+  background: linear-gradient(45deg, #737373, #bfbfbf);
+}
+.equals, .clear {
+  background: linear-gradient(45deg, #ffe44d, #fff099);
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js">
+    </script>
+    <script src="https://codepen.io/no_stack_dub_sack/pen/bwJxAw">
+    </script>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+    <script type="text/babel">
+
+const keyArray = [
+  {
+    id: "zero",
+    value: "0",
+    type: "digit"
+  }, {
+    id: "one",
+    value: "1",
+    type: "digit"
+  }, {
+    id: "two",
+    value: "2",
+    type: "digit"
+  }, {
+    id: "three",
+    value: "3",
+    type: "digit"
+  }, {
+    id: "four",
+    value: "4",
+    type: "digit"
+  }, {
+    id: "five",
+    value: "5",
+    type: "digit"
+  }, {
+    id: "six",
+    value: "6",
+    type: "digit"
+  }, {
+    id: "seven",
+    value: "7",
+    type: "digit"
+  }, {
+    id: "eight",
+    value: "8",
+    type: "digit"
+  }, {
+    id: "nine",
+    value: "9",
+    type: "digit"
+  }, {
+    id: "add",
+    value: "+",
+    type: "operator"
+  }, {
+    id: "subtract",
+    value: "-",
+    type: "operator"
+  }, {
+    id: "multiply",
+    value: "x",
+    type: "operator"
+  }, {
+    id: "divide",
+    value: "/",
+    type: "operator"
+  }, {
+    id: "equals",
+    value: "=",
+    type: "equals"
+  }, {
+    id: "clear",
+    value: "Clear",
+    type: "clear"
+  }, {
+    id: "decimal",
+    value: ".",
+    type: "point"
+  }
+];
+
+const isOpChar = (str) => /[x+/-]/.test(str);
+const endsWithSpace = (str) => /\s$/.test(str);
+const endsWithPoint = (str) => /\.$/.test(str);
+const pointDisallowed = (str) => /\.\d*$/.test(str);
+const zeroDisallowed = (str) => /^0$|\s0$/.test(str);
+
+const stringToFormula = (str) => str.replace(/\s[x+/-]\s$/, "").replace(/\.$/, "").replace(/x/g, "*");
+
+class Key extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleKeyClick = this.handleKeyClick.bind(this);
+  }
+  handleKeyClick(event) {
+    let value = event.target.value;
+    this.props.updateCalcDisplay(value);
+    this.props.updateCalcEvaluated(value);
+  }
+  render() {
+    const style = {gridArea: this.props.id};
+    return (
+      <button id={this.props.id} onClick={this.handleKeyClick} className={this.props.type} style={style} value={this.props.value}>{this.props.value}</button>
+    );
+  }
+}
+
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: "0",
+      evaluated: true
+    };
+    this.updateEvaluated = this.updateEvaluated.bind(this);
+    this.updateDisplay = this.updateDisplay.bind(this);      
+  }
+  updateEvaluated(value) {
+    this.setState({
+      evaluated: value == "=" || value == "AC"
+    });
+  }
+  updateDisplay(value) {
+    let oldStr = this.state.display.slice();
+    let index = oldStr.length;
+    let newChar = value;
+    let newStr = "";
+    if (newChar == "Clear") {
+      newStr = "0";
+    } else if (newChar == "=") {
+      let formula = stringToFormula(oldStr);
+      let answer = Math.round(1000000000000 * eval(formula)) / 1000000000000;
+      newStr = answer.toString();
+    } else if (newChar == ".") {
+      if (pointDisallowed(oldStr)) {
+        newStr = oldStr;
+      } else if (endsWithSpace(oldStr)) {
+        newStr = oldStr + "0.";
+      } else {
+        newStr = oldStr + ".";
+      }
+    } else if (isOpChar(newChar)) {
+      newChar = " " + newChar + " ";
+      if (endsWithPoint(oldStr)) {
+        index -= 1;
+      } else if (endsWithSpace(oldStr)) {
+        index -= 3;
+      }
+      newStr = oldStr.slice(0, index) + newChar;
+    } else {
+      if (this.state.evaluated) {
+        newStr = newChar;
+      } else {
+        if (zeroDisallowed(oldStr)) {
+         newStr = oldStr.slice(0, -1) + newChar; 
+        } else {
+         newStr = oldStr + newChar;    
+        }
+      }
+    }
+    this.setState({
+      display: newStr
+    });
+  }
+  render() {
+    const keys = keyArray.map(obj => (
+      <Key id={obj.id}
+        value={obj.value}
+        type={obj.type}
+        updateCalcDisplay={this.updateDisplay}
+        updateCalcEvaluated={this.updateEvaluated} />
+    ));
+    return (
+      <div className="container">
+        <div id="display">{this.state.display}</div>
+        <div className="keypad">
+        {keys}
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Calculator />, document.getElementById('app'));
+
+    </script>
+  </body>
+</html>
