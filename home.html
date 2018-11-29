@@ -17,8 +17,8 @@ body {
 .intro {
   top: 0;
   background: #e0ebe8;
-  min-height: 55vh;
-  padding-top: 45vh;
+  min-height: 85vh;
+  padding-top: 15vh;
   width: 100%;
 }
 
@@ -232,6 +232,66 @@ footer a {
   position: relative;
   
 }
+#slideshow-div {
+  position: relative;
+  background: #e0ebe8;
+}
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin:-5px;
+  margin-top:20px;
+  width:100%;
+  background: #e0ebe8;
+  animation-name: sands;
+  animation-duration: 35s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 3;
+}
+#img-div2 {
+   animation-delay: 5s;
+   z-index: 6
+}
+#img-div3 {
+   animation-delay: 10s;
+   z-index: 5
+}
+#img-div4 {
+   animation-delay: 15s;
+   z-index: 4
+}
+#img-div5 {
+   animation-delay: 20s;
+   z-index: 3
+}
+#img-div6 {
+   animation-delay: 25s;
+   z-index: 2
+}
+#img-div7 {
+   animation-delay: 30s;
+   z-index: 1
+}
+@keyframes sands {
+  0%   { opacity: 0; }
+  4.76%   { opacity: 1; }
+  14.29%  { opacity: 1; }
+  19.05%  { opacity:0; }
+  100% { opacity: 0; }
+  }
+
+.slidecaption {
+    margin:15px;
+    width: 95%;
+    text-align: center;
+    font-size: 0.7em;
+  }
+.slidephoto{
+  height: 65vh;
+}
+
     </style>
   </head>
   <body>
@@ -244,9 +304,39 @@ footer a {
 </nav-->
 
 <div id="welcome-section" class="intro">
-
   <h1>Hello!</h1>
   <p>You've reached the homepage of Maria Kang</p>
+
+  <div id="slideshow-div">
+    <div id="img-div1" class="slide">
+      <img id="image1" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181119_064746.jpg" alt "Photo">
+      <!--div id="img-caption1" class="slidecaption">Caption</div-->
+    </div>
+    <div id="img-div2" class="slide">
+      <img id="image2" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181005_122445.jpg" alt "Photo">
+      <!--div id="img-caption2" class="slidecaption">Caption</div-->
+    </div>
+    <div id="img-div3" class="slide">
+      <img id="image3" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181007_112934.jpg" alt "Photo">
+      <!--div id="img-caption2" class="slidecaption">Caption</div-->
+    </div>
+    <div id="img-div4" class="slide">
+      <img id="image4" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181010_122039.jpg" alt "Photo">
+      <!--div id="img-caption2" class="slidecaption">Caption</div-->
+    </div>
+    <div id="img-div5" class="slide">
+      <img id="image5" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181012_112750.jpg" alt "Photo">
+      <!--div id="img-caption2" class="slidecaption">Caption</div-->
+    </div>
+    <div id="img-div6" class="slide">
+      <img id="image6" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181012_120127.jpg" alt "Photo">
+      <!--div id="img-caption2" class="slidecaption">Caption</div-->
+    </div>
+    <div id="img-div7" class="slide">
+      <img id="image7" class="slidephoto" src="https://www.maria-kang.com/photos/IMG_20181112_233548.jpg" alt="Photo">
+      <!--div id="img-caption3" class="slidecaption">Caption</div-->
+    </div>
+  </div>
 
 </div>
 <div id="projects" class="work">
