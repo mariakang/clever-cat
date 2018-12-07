@@ -1,7 +1,3 @@
-//import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
-//import Func from './../public/functions.js';
-//import Field from './Field.js';
-
 class Overpayment extends React.Component {
    constructor(props){
       super(props);
