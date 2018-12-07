@@ -117,4 +117,4 @@ class BarChart extends React.Component {
   }
 }
 
-module.exports = BarChart;
+//module.exports = BarChart;
