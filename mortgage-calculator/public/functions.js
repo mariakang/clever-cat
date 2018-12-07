@@ -38,4 +38,4 @@ const Func = {
 
 }
 
-module.exports = Func;
+//module.exports = Func;
