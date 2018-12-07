@@ -1,4 +1,4 @@
-import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
+//import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
 import Func from './../public/functions.js';
 import BarChart from './BarChart.js';
 import Field from './Field.js';
