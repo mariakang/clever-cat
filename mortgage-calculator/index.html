@@ -27,7 +27,7 @@
     const today = new Date();
     const thisMonth = today.getMonth() + 1;
     const thisYear = today.getFullYear();
-    ReactDOM.render(<App date={formatDate(thisYear, thisMonth)} />, document.getElementById('app'));
+    ReactDOM.render(<App date={formatDate(thisMonth, thisYear)} />, document.getElementById('app'));
     </script>
   </body>
 </html>
