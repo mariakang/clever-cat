@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
 import Func from './../public/functions.js';
 import Field from './Field.js';
 
@@ -76,7 +76,7 @@ class Overpayment extends React.Component {
         <Field id={"value-" + index}
           value={this.state.value} 
           onChange={this.handleChangeValue}
-          label="Amount (£)"
+          label="Amount (Â£)"
           type="number"/>
         <button type="button" onClick={this.handleDelete}>Delete</button>
       </div>
