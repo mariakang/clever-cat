@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
 import Func from './../public/functions.js';
 import BarChart from './BarChart.js';
 import Field from './Field.js';
@@ -362,7 +362,7 @@ class App extends React.Component{
         <div className="column">
           <div className="graph-title">Mortgage Balance Over Time</div>
           <div className="graph">
-            <div className="axis-label y-axis-label">Balance<br/>(£)</div>
+            <div className="axis-label y-axis-label">Balance<br/>(Â£)</div>
             <BarChart data={this.state.calculation}/>
             {info}
           </div>
@@ -383,7 +383,7 @@ class App extends React.Component{
             <Field id="ob"
               value={this.state.openingBalance} 
               onChange={this.handleChangeOB}
-              label="Opening balance (£)"
+              label="Opening balance (Â£)"
               type="number"/>
             <Field id="rate"
               value={this.state.interestRate} 
@@ -401,7 +401,7 @@ class App extends React.Component{
             <Field id="standard-payment"
               value={this.state.standardPayment} 
               onChange={this.handleChangeStandard}
-              label="Standard monthly payment (£)"
+              label="Standard monthly payment (Â£)"
               type="number"/>
           </div>
           {subHeading}
