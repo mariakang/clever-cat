@@ -1,6 +1,3 @@
-//import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
-//import Func from './../public/functions.js';
-
 const Field = (props) => {
   return (
     <div className="row">
