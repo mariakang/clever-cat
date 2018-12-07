@@ -367,7 +367,7 @@ class App extends React.Component{
     return (
       <div className="main">
         <div className="container">
-          <h1>{'Mortgage Calculator for ' + this.props.name}</h1>
+          <h1>{'Mortgage Calculator for ' + this.props.date}</h1>
           <div className="row">
             <Field id="start-date"
               value={this.state.startDate.slice(0, 7)} 
