@@ -1,5 +1,5 @@
 //import React from 'https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js';
-import Func from './../public/functions.js';
+//import Func from './../public/functions.js';
 //import d3 from 'https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js';
 
 class BarChart extends React.Component {
