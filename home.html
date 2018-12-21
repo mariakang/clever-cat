@@ -36,6 +36,9 @@ body {
   font-weight: bold;
   font-size: 2em;
 }
+.contact h1 {
+  margin: 40px;
+}
 nav ul {
   text-align: right;
   position: fixed;
@@ -87,6 +90,9 @@ nav ul li a:hover {
   width: calc(1100px * 0.33);
   margin: 20px;
 }
+.lightblue-text {
+  color: lightblue;
+}
 .project-title {
   font-weight: bold;
 }
@@ -130,7 +136,7 @@ nav ul li a:hover {
   background: #008080;
   color: #e0ebe8;
   height: 80vh;
-  min-height: 800px;
+  min-height: 880px;
   width: 100%;
   padding: 50px;
 }
@@ -373,23 +379,23 @@ footer a {
 <div id="contact" class="contact">
   <!--div class="header"-->
     <h1>Also...</h1>
-    <p>There's some more stuff on Codepen</p>
-    <a href="https://codepen.io/mariakang/" target="_blank" class="project" id="codepen">
+    <p id="codepen">There's some more stuff on Codepen</p>
+    <a href="https://codepen.io/mariakang/" target="_blank" class="project">
       <div class="project-tile">
         <div class="thumbnail">
           <iframe src="https://codepen.io/mariakang/" frameborder="0"></iframe>
         </div>
       </div>
-      <div class="project-title">Codepen Profile</div>
+      <div class="project-title lightblue">Codepen Profile</div>
     </a>
-    <p>and Glitch</p>
+    <p id="glitch">and Glitch</p>
     <a href="https://determined-krill.glitch.me" target="_blank" class="project">
       <div class="project-tile">
         <div class="thumbnail">
           <iframe src="https://determined-krill.glitch.me" frameborder="0"></iframe>
         </div>
       </div>
-      <div class="project-title">Memorise</div>
+      <div class="project-title lightblue">Memorise</div>
     </a>
 
   <!--/div-->
