@@ -10,8 +10,7 @@
        * element that contains the map. */
 
     #map {
-      height: 100%;
-      visibility: hidden;
+      width: 90%;
     }
 
     /* Optional: Makes the sample page fill the window. */
@@ -21,6 +20,20 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      width: 100%;
+    }
+
+    #container {
+      height: 96%;
+      width: 96%;
+      padding: 10px 10px 20px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      background-image: URL('https://www.intofilm.org/intofilm-production/scaledcropped/970x546https%3A/s3-eu-west-1.amazonaws.com/images.cdn.filmclub.org/film__4129-shaun-of-the-dead--hi_res-7e73b626.jpg/film__4129-shaun-of-the-dead--hi_res-7e73b626.jpg');
+      background-position: center;
+      background-size: cover;
     }
 
     #floating-panel {
@@ -32,7 +45,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: white;
       padding: 20px 10px 10px 10px;
       text-align: center;
       font-family: 'verdana';
@@ -43,7 +55,13 @@
     #message {
       text-align: center;
       line-height: 30px;
-      padding-left: 10px;
+      color: white;
+      font-weight: bold;
+      text-shadow: -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+      font-size: 25px;
     }
 
     #button-container {
@@ -55,7 +73,8 @@
       width: 60%;
       min-width: 100px;
       max-width: 200px;
-      margin: 15px;
+      margin: 10px;
+      background: none;
     }
 
     button {
@@ -65,6 +84,25 @@
       left: 0;
       width: 100%;
       font-family: 'verdana';
+      font-size: 18px;
+      background: none;
+      border: none;
+      color: white;
+      text-shadow: -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+      font-size: 20px;
+    }
+
+    button:hover {
+      background: grey;
+      color: black;
+      opacity: 0.8;
+      text-shadow: -1px -1px 0 white,
+      1px -1px 0 white,
+      -1px 1px 0 white,
+      1px 1px 0 white;
     }
 
     #get-directions {
@@ -74,77 +112,80 @@
 </head>
 
 <body>
-  <div id="floating-panel">
-    <div id='message'>You must make your way to The Winchester!</div>
-    <div id='button-container'>
-      <button id='view-on-map' type='button' onclick='initMap()'>View on map</button>
-      <button id='get-directions' type='button' disabled>Get directions</button>
+  <div id='container'>
+    <div id="map"></div>
+    <div id="floating-panel">
+      <div id='message'>You must make your way to The Winchester!</div>
+      <div id='button-container'>
+        <button id='view-on-map' type='button' onclick='initMap()'>View on map</button>
+        <button id='get-directions' type='button' disabled>Get directions</button>
+      </div>
     </div>
-  </div>
-  <div id="map"></div>
-  <script>
-    let end = {
-      lat: 51.478840,
-      lng: -0.047460
-    };
-    let start = {
-      lat: 0,
-      lng: 0
-    };
-    getLocation();
-
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          start.lat = position.coords.latitude;
-          start.lng = position.coords.longitude;
-          console.log(start);
-          document.getElementById('get-directions').disabled = false;
-        });
-      } else {
-        document.getElementById('message').innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
-
-    function initMap() {
-      let directionsService = new google.maps.DirectionsService;
-      let directionsDisplay = new google.maps.DirectionsRenderer;
-      let map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: end
-      });
-      let marker = new google.maps.Marker({
-        position: end,
-        map: map,
-        title: 'The Winchester'
-      });
-      document.getElementById('map').style.visibility = 'visible';
-      document.getElementById('view-on-map').style.visibility = 'hidden';
-      document.getElementById('get-directions').style.visibility = 'visible';
-      document.getElementById('message').innerHTML = 'Quick! Time is running out!';
-      directionsDisplay.setMap(map);
-      let onClickHandler = function() {
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    </container>
+    <script>
+      let end = {
+        lat: 51.478840,
+        lng: -0.047460
       };
-      document.getElementById('get-directions').addEventListener('click', onClickHandler);
-    }
+      let start = {
+        lat: 0,
+        lng: 0
+      };
+      getLocation();
 
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-      directionsService.route({
-        origin: start,
-        destination: end,
-        travelMode: 'DRIVING'
-      }, function(response, status) {
-        if (status === 'OK') {
-          directionsDisplay.setDirections(response);
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            start.lat = position.coords.latitude;
+            start.lng = position.coords.longitude;
+            console.log(start);
+            document.getElementById('get-directions').disabled = false;
+          });
         } else {
-          window.alert('Directions request failed due to ' + status);
+          document.getElementById('message').innerHTML = "Geolocation is not supported by this browser.";
         }
-      });
-    }
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaszYcYrS5WPIgLiA5DpY4CEnMWOWvJtk">
-  </script>
+      }
+
+      function initMap() {
+        let directionsService = new google.maps.DirectionsService;
+        let directionsDisplay = new google.maps.DirectionsRenderer;
+        let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: end
+        });
+        let marker = new google.maps.Marker({
+          position: end,
+          map: map,
+          title: 'The Winchester'
+        });
+        document.getElementById('map').style.height = '80%';
+        document.getElementById('view-on-map').style.visibility = 'hidden';
+        document.getElementById('get-directions').style.visibility = 'visible';
+        document.getElementById('message').innerHTML = 'Quick! Time is running out!';
+        document.getElementById('container').style.background = "URL(https://m.media-amazon.com/images/M/MV5BMzAwNjg5MTYyOF5BMl5BanBnXkFtZTcwMDcwMzIyMw@@._V1_SY1000_CR0,0,1521,1000_AL_.jpg)"
+        directionsDisplay.setMap(map);
+        let onClickHandler = function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        document.getElementById('get-directions').addEventListener('click', onClickHandler);
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaszYcYrS5WPIgLiA5DpY4CEnMWOWvJtk">
+    </script>
 </body>
 
 </html>
