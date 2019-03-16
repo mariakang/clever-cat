@@ -6,14 +6,9 @@
   <meta charset="utf-8">
   <title>Directions Service</title>
   <style>
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
     #map {
       width: 90%;
     }
-
-    /* Optional: Makes the sample page fill the window. */
 
     html,
     body {
@@ -77,7 +72,8 @@
       background: none;
     }
 
-    button {
+    button,
+    select {
       height: 100%;
       position: absolute;
       top: 0;
@@ -85,24 +81,31 @@
       width: 100%;
       font-family: 'verdana';
       font-size: 18px;
-      background: grey;
+      background: #bfbfbf;
       color: black;
       opacity: 0.8;
       font-size: 20px;
       border-radius: 5px;
     }
 
-    button:hover {
+    button:hover,
+    select:hover {
       background: black;
       color: white;
       opacity: 0.8;
     }
+
     button:disabled {
       opacity: 0.3;
     }
 
     #get-directions {
       visibility: hidden;
+    }
+
+    select {
+      visibility: hidden;
+      opacity: 1;
     }
   </style>
 </head>
@@ -115,6 +118,13 @@
       <div id='button-container'>
         <button id='view-on-map' type='button' onclick='initMap()'>View on map</button>
         <button id='get-directions' type='button' disabled>Get directions</button>
+        <select id="mode" value='DRIVING'>
+      <option value='DRIVING'>Driving</option>
+      <option value='WALKING'>Walking</option>
+      <option value='BICYCLING'>Cycling</option>
+      <option value='TRANSIT'>Public transport</option>
+    </select>
+
       </div>
     </div>
     </container>
@@ -161,11 +171,15 @@
         document.getElementById('message').innerHTML = 'Quick! Time is running out!';
         document.getElementById('container').style.background = "URL(https://m.media-amazon.com/images/M/MV5BMzAwNjg5MTYyOF5BMl5BanBnXkFtZTcwMDcwMzIyMw@@._V1_SY1000_CR0,0,1521,1000_AL_.jpg)"
         directionsDisplay.setMap(map);
-        let onClickHandler = function() {
+        let onChangeHandler = function() {
           document.getElementById('get-directions').style.visibility = 'hidden';
+          let mode = document.getElementById('mode')
+          mode.style.visibility = 'visible';
+          transport = mode.value;
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
-        document.getElementById('get-directions').addEventListener('click', onClickHandler);
+        document.getElementById('get-directions').addEventListener('click', onChangeHandler);
+        document.getElementById('mode').addEventListener('change', onChangeHandler);
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
