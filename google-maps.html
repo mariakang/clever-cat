@@ -35,15 +35,16 @@
       background: white;
       padding: 10px;
       text-align: center;
-      font-family: 'Roboto', 'sans-serif';
+      font-family: 'verdana';
       line-height: 30px;
     }
+
     #message {
       text-align: center;
-      font-family: 'Roboto', 'sans-serif';
       line-height: 30px;
       padding-left: 10px;
     }
+
     #button-container {
       position: relative;
       background-color: #fff;
@@ -53,15 +54,15 @@
       width: 60%;
       min-width: 100px;
     }
-   
+
     button {
       height: 100%;
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      font-family: 'Roboto', 'sans-serif';
-   }
+      font-family: 'verdana';
+    }
 
     #get-directions {
       visibility: hidden;
@@ -73,8 +74,8 @@
   <div id="floating-panel">
     <div id='message'>You must make your way to The Winchester.</div>
     <div id='button-container'>
-    <button id='view-on-map' type='button' onclick='initMap()'>View on map</button>
-    <button id='get-directions' type='button'>Get directions</button>
+      <button id='view-on-map' type='button' onclick='initMap()'>View on map</button>
+      <button id='get-directions' type='button' disabled>Get directions</button>
     </div>
   </div>
   <div id="map"></div>
@@ -87,6 +88,7 @@
       lat: 0,
       lng: 0
     };
+    getLocation();
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -94,6 +96,7 @@
           start.lat = position.coords.latitude;
           start.lng = position.coords.longitude;
           console.log(start);
+          document.getElementById('get-directions').disabled = false;
         });
       } else {
         document.getElementById('message').innerHTML = "Geolocation is not supported by this browser.";
@@ -101,7 +104,6 @@
     }
 
     function initMap() {
-      getLocation();
       let directionsService = new google.maps.DirectionsService;
       let directionsDisplay = new google.maps.DirectionsRenderer;
       let map = new google.maps.Map(document.getElementById('map'), {
