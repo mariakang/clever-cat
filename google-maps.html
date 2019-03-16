@@ -24,19 +24,20 @@
     }
 
     #floating-panel {
-      position: absolute;
-      top: 50px;
-      left: 25%;
+      position: relative;
+      top: 0;
+      left: 0;
       z-index: 5;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       background: white;
-      padding: 10px;
+      padding: 20px 10px 10px 10px;
       text-align: center;
       font-family: 'verdana';
       line-height: 30px;
+      width: 100%;
     }
 
     #message {
@@ -53,6 +54,8 @@
       height: 30px;
       width: 60%;
       min-width: 100px;
+      max-width: 200px;
+      margin: 15px;
     }
 
     button {
@@ -72,7 +75,7 @@
 
 <body>
   <div id="floating-panel">
-    <div id='message'>You must make your way to The Winchester.</div>
+    <div id='message'>You must make your way to The Winchester!</div>
     <div id='button-container'>
       <button id='view-on-map' type='button' onclick='initMap()'>View on map</button>
       <button id='get-directions' type='button' disabled>Get directions</button>
@@ -118,6 +121,7 @@
       document.getElementById('map').style.visibility = 'visible';
       document.getElementById('view-on-map').style.visibility = 'hidden';
       document.getElementById('get-directions').style.visibility = 'visible';
+      document.getElementById('message').innerHTML = 'Quick! Time is running out!';
       directionsDisplay.setMap(map);
       let onClickHandler = function() {
         calculateAndDisplayRoute(directionsService, directionsDisplay);
