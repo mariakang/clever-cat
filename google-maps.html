@@ -97,6 +97,9 @@
       color: white;
       opacity: 0.8;
     }
+    button:disabled {
+      opacity: 0.3;
+    }
 
     #get-directions {
       visibility: hidden;
@@ -125,6 +128,7 @@
         lng: 0
       };
       getLocation();
+      let transport = 'DRIVING';
 
       function getLocation() {
         if (navigator.geolocation) {
@@ -135,7 +139,7 @@
             document.getElementById('get-directions').disabled = false;
           });
         } else {
-          document.getElementById('message').innerHTML = "Geolocation is not supported by this browser.";
+          document.getElementById('message').innerHTML = "Your geolocation can't be found... please check you aren't already a zombie";
         }
       }
 
@@ -158,6 +162,7 @@
         document.getElementById('container').style.background = "URL(https://m.media-amazon.com/images/M/MV5BMzAwNjg5MTYyOF5BMl5BanBnXkFtZTcwMDcwMzIyMw@@._V1_SY1000_CR0,0,1521,1000_AL_.jpg)"
         directionsDisplay.setMap(map);
         let onClickHandler = function() {
+          document.getElementById('get-directions').style.visibility = 'hidden';
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
         document.getElementById('get-directions').addEventListener('click', onClickHandler);
@@ -167,7 +172,7 @@
         directionsService.route({
           origin: start,
           destination: end,
-          travelMode: 'DRIVING'
+          travelMode: transport
         }, function(response, status) {
           if (status === 'OK') {
             directionsDisplay.setDirections(response);
