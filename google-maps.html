@@ -118,13 +118,21 @@
     .show-hide {
       position: absolute;
       top: 0;
+      left: 17%;
+      width: 30%;
+      font-size: 15px;
+      z-index: 8;
+    }
+    .exit {
+      position: absolute;
+      top: 0;
       left: 0;
-      width: 35%;
+      width: 15%;
       font-size: 15px;
       z-index: 8;
     }
     
-    #get-directions, #show-details, #hide-details, #mode {
+    #get-directions, #show-details, #hide-details, #mode, #exit-directions {
       visibility: hidden;
     }
 
@@ -133,7 +141,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 60%;
+      width: 50%;
       font-family: 'verdana';
       font-size: 18px;
       background: #bfbfbf;
@@ -162,6 +170,7 @@
         </select>
         <button id='show-details' class='button show-hide' type='button' onclick='showDetails()'>Show details</button>
         <button id='hide-details' class='button show-hide' type='button' onclick='hideDetails()'>Hide details</button>
+        <button id='exit-directions' class='button exit' type='button' onclick='initMap()'>Exit</button>
       </div>
     </div>
     </container>
@@ -217,6 +226,9 @@
         }); */
         document.getElementById('map').style.height = '76%';
         document.getElementById('view-on-map').style.visibility = 'hidden';
+        document.getElementById('show-details').style.visibility = 'hidden';
+        document.getElementById('exit-directions').style.visibility = 'hidden';
+        document.getElementById('mode').style.visibility = 'hidden';
         document.getElementById('get-directions').style.visibility = 'visible';
         document.getElementById('message').innerHTML = 'Quick! Time is running out!';
         document.getElementById('container').style.background = 'URL(https://www.maria-kang.com/photos/shaun_of_the_dead_zombies.jpg)'
@@ -233,26 +245,28 @@
           mode.style.visibility = 'visible';
           transport = mode.value;
           document.getElementById('show-details').style.visibility = 'visible';
+          document.getElementById('exit-directions').style.visibility = 'visible';
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
         
         document.getElementById('get-directions').addEventListener('click', onChangeHandler);
         document.getElementById('mode').addEventListener('change', onChangeHandler);
-      }
-
-      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        directionsService.route({
-          origin: start,
-          destination: end,
-          travelMode: transport
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-            directionsDisplay.getPanel();
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
+        
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+          directionsService.route({
+            origin: start,
+            destination: end,
+            travelMode: transport
+          }, function(response, status) {
+            if (status === 'OK') {
+              directionsDisplay.setDirections(response);
+              directionsDisplay.getPanel();
+            //  directionsDisplay.setOptions({suppressInfoWindows: true});
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
       }
  
       function showDetails() {
