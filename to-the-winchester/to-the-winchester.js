@@ -8,7 +8,7 @@
       };
       getLocation();
       let transport = 'DRIVING';
-
+      let detailsVisible = false;
       function getLocation() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -52,34 +52,32 @@
           infowindow.close();
         }); 
         document.getElementById('map').style.height = '76%';
-        let intro = document.getElementById('intro');
-        intro.style.visibility = 'hidden';
-        intro.style.lineHeight = '0px';
-        document.getElementById('view-on-map').style.visibility = 'hidden';
-        document.getElementById('show-details').style.visibility = 'hidden';
-        document.getElementById('hide-details').style.visibility = 'hidden';
-        document.getElementById('right-panel').style.visibility = 'hidden';
-        document.getElementById('exit-directions').style.visibility = 'hidden';
-        document.getElementById('mode').style.visibility = 'hidden';
-        document.getElementById('get-directions').style.visibility = 'visible';
-        let message = document.getElementById('geo-message');
-        message.style.visibility = 'visible';
-        message.style.lineHeight = '30px';
-        document.getElementById('container').style.background = 'URL(https://www.maria-kang.com/photos/shaun_of_the_dead_zombies.jpg)'
+        hideElement('intro');
+        document.getElementById('intro').style.lineHeight = '0px';
+        hideElement('view-on-map');
+        hideElement('show-hide-details');
+        document.getElementById('show-hide-details').innerHTML = 'Show details';
+        hideElement('right-panel');
+        detailsVisible = false;
+        hideElement('exit-directions');
+        hideElement('mode');
+        showElement('get-directions');
+        showElement('geo-message');
+        document.getElementById('geo-message').style.lineHeight = '30px';
+        document.getElementById('container').style.background = 'URL(https://www.maria-kang.com/photos/shaun_of_the_dead_zombies.jpg)';
+
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('right-panel'));
         
         let onChangeHandler = function() {
-          document.getElementById('get-directions').style.visibility = 'hidden';
-          let message = document.getElementById('geo-message')
-          message.style.visibility = 'hidden';
-          message.style.lineHeight = '0px';
+          hideElement('get-directions');
+          hideElement('geo-message');
+          document.getElementById('geo-message').style.lineHeight = '0px';
           document.getElementById('map').style.height = '85%';
-          let mode = document.getElementById('mode')
-          mode.style.visibility = 'visible';
-          transport = mode.value;
-          document.getElementById('show-details').style.visibility = 'visible';
-          document.getElementById('exit-directions').style.visibility = 'visible';
+          showElement('mode');
+          transport = document.getElementById('mode').value;
+          showElement('show-hide-details');
+          showElement('exit-directions');
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
         
@@ -103,14 +101,19 @@
         }
       }
  
-      function showDetails() {
-        document.getElementById('show-details').style.visibility = 'hidden';
-        document.getElementById('hide-details').style.visibility = 'visible';
-        document.getElementById('right-panel').style.visibility = 'visible';
+      function hideElement(idStr) {
+        document.getElementById(idStr).style.visibility = 'hidden';
       }
-      function hideDetails() {
-        document.getElementById('hide-details').style.visibility = 'hidden';
-        document.getElementById('show-details').style.visibility = 'visible';
-        document.getElementById('right-panel').style.visibility = 'hidden';
+      function showElement(idStr) {
+        document.getElementById(idStr).style.visibility = 'visible';
       }
- 
+      function toggleDetails() {
+        if(detailsVisible) {
+          hideElement('right-panel');
+          document.getElementById('show-hide-details').innerHTML = 'Show details';
+        } else {
+          showElement('right-panel');
+          document.getElementById('show-hide-details').innerHTML = 'Hide details';
+        }
+        detailsVisible = !detailsVisible;
+      }
