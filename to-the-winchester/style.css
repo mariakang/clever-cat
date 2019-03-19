@@ -133,3 +133,23 @@
       font-size: 15px;
       border-radius: 5px;
     }
+    @media screen and (max-height: 500px) {
+      .message {
+        font-size: 15px;
+        line-height: 18px;
+        margin-bottom: -5px;
+      }
+      .button {
+        font-size: 15px;
+      }
+      .button-container {
+        height: 20px;
+        padding: 2px;
+      }
+      #view-on-map {
+        margin-top: 5px;
+      }
+      .show-hide, select, #exit-directions {
+        font-size: 12px;
+      }
+    }
