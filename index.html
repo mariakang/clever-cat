@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<title>Sorting Algorithms</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="sorting-algorithms.js"></script>
+	</head>
+  <body>
+    <div class="flexColumn">
+      <div class="flexRow">
+        <div class="inputElement">
+          <label>Starting test size</label>
+          <input id="minInput" type="number" value="1000" onchange="updateMinTestSize(this.value)" />
+        </div>
+        <div class="inputElement">
+          <label>Maximum test size</label>
+          <input id="maxInput" type="number" value="10000" onchange="updateMaxTestSize(this.value)" />
+        </div>
+      </div>
+      <div class="flexRow">
+        <div class="inputElement">
+          <label>Number of tests of each size</label>
+          <input id="numEach" type="number" value="5" onchange="updateNumTests(this.value)" />
+        </div>
+        <div class="inputElement">
+          <label>Average runtimes only</label>
+          <select id="avgsOnly" onchange="updateAvgsOnly(this.value)">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="results" class="flexColumn">
+      <button class="button" onclick="runTests()">Run tests</button>
+    </div>
+    <div class="flexColumn">
+      <div id="chart0" class="chart"></div>
+      <div id="chart1" class="chart"></div>
+      <div id="chart2" class="chart"></div>
+      <div id="chart3" class="chart"></div>
+      <div id="chart4" class="chart"></div>
+      <div id="chart5" class="chart"></div>
+    </div>
+  </body>
+</html>
