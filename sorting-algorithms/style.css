@@ -1,6 +1,10 @@
 body {
   font-family: verdana;
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
 }
 
 .chartContainer {
@@ -73,3 +77,9 @@ input, select {
 .canvasjs-chart-credit {
   visibility: hidden;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+
