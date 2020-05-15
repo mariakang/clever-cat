@@ -210,7 +210,17 @@ function runTests() {
   document.getElementById("chart3").innerHTML = "";
   document.getElementById("chart4").innerHTML = "";
   document.getElementById("chart5").innerHTML = "";
+  document.getElementById("csvLink").innerHTML = "";
 
+  document.getElementById("chart0").setAttribute("class", "hidden");
+  document.getElementById("chart1").setAttribute("class", "hidden");
+  document.getElementById("chart2").setAttribute("class", "hidden");
+  document.getElementById("chart3").setAttribute("class", "hidden");
+  document.getElementById("chart4").setAttribute("class", "hidden");
+  document.getElementById("chart5").setAttribute("class", "hidden");
+  document.getElementById("csvLink").setAttribute("class", "hidden");
+
+  
   let rows = [["Test", "Array size", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
   
   let testSizes = [];
@@ -318,10 +328,9 @@ function runTests() {
   }
   
   let encodedUri = encodeURI(csvContent);
-  let link = document.createElement("a");
+  let link = document.getElementById("csvLink");
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", "test_data.csv");
   link.setAttribute("class", "button");
-  link.innerHTML = "Download results as CSV"
-  document.getElementById("results").appendChild(link);
+  link.innerHTML = "Download results as CSV";
 }
