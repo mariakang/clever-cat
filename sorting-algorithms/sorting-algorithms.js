@@ -173,6 +173,7 @@ function round(n) {
 }
 
 function drawChart(id, title, dataArray) {
+  document.getElementById(id).setAttribute("class", "chart");
   let chart = new CanvasJS.Chart(id, {
       title: {
         text: title
