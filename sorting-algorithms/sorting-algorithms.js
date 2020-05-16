@@ -128,11 +128,6 @@ let maxSize = 10000;
 let numEachSize = 5;
 let avgsOnly = true;
 
-/*
-document.getElementById("minInput").value = minSize;
-document.getElementById("maxInput").value = maxSize;
-document.getElementById("numEach").value = numEachSize;
-*/
 
 function updateMinTestSize(min) {
   reset();
@@ -211,6 +206,20 @@ function reset() {
   }
   document.getElementById("runTests").innerHTML = "Run tests";
   document.getElementById("runTests").setAttribute("onclick", "runTests()");
+  document.getElementById("top").setAttribute("class", "flexColumn");
+  document.getElementById("bottom").setAttribute("class", "flexColumn");
+}
+
+function resetAll() {
+  reset();
+
+  minSize = 1000;
+  maxSize = 10000;
+  numEachSize = 5;
+
+  document.getElementById("minInput").value = minSize;
+  document.getElementById("maxInput").value = maxSize;
+  document.getElementById("numEach").value = numEachSize;
 }
 
 
@@ -220,7 +229,10 @@ function runTests() {
   console.log("num: " + numEachSize);
 
   document.getElementById("runTests").innerHTML = "Reset";
-  document.getElementById("runTests").setAttribute("onclick", "reset()");
+  document.getElementById("runTests").setAttribute("onclick", "resetAll()");
+
+  document.getElementById("top").setAttribute("class", "flexRow");
+  document.getElementById("bottom").setAttribute("class", "flexRow");
   
   let rows = [["Test", "Array size", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
   
