@@ -135,6 +135,7 @@ document.getElementById("numEach").value = numEachSize;
 */
 
 function updateMinTestSize(min) {
+  reset();
   if (min < 0 || min > 1000000) {
     alert("Minimum test size must be between 0 and 1,000,000");
     document.getElementById("minInput").value = minSize;
@@ -144,6 +145,7 @@ function updateMinTestSize(min) {
 }
 
 function updateMaxTestSize(max) {
+  reset();
   if (max < 0 || max > 1000000) {
     alert("Maximum test size must be between 0 and 1,000,000");
     document.getElementById("maxInput").value = maxSize;
@@ -156,6 +158,7 @@ function updateMaxTestSize(max) {
 }
 
 function updateNumTests(num) {
+  reset();
   if (num < 1 || num > 100) {
     alert("Number of tests must be between 1 and 100");
     document.getElementById("numEach").value = numEachSize;
@@ -165,6 +168,7 @@ function updateNumTests(num) {
 }
 
 function updateAvgsOnly(str) {
+  reset();
   avgsOnly = str == "Yes";
 }
 
@@ -222,7 +226,7 @@ function runTests() {
   
   let testSizes = [];
   let increment = Math.pow(10, Math.floor(Math.log10(minSize)));
-  for (let x = minSize; x <= maxSize; x += increment) {
+  for (let x = parseInt(minSize, 10); x <= maxSize; x += increment) {
     testSizes.push(x);
     increment = Math.pow(10, Math.floor(Math.log10(x)));
   }
