@@ -8,7 +8,7 @@
 	</head>
   <body>
     <div class="flexColumn">
-      <div class="flexRow">
+      <div id="top" class="flexColumn">
         <div class="inputElement">
           <label>Starting test size</label>
           <input id="minInput" type="number" value="1000" onchange="updateMinTestSize(this.value)" />
@@ -18,7 +18,7 @@
           <input id="maxInput" type="number" value="10000" onchange="updateMaxTestSize(this.value)" />
         </div>
       </div>
-      <div class="flexRow">
+      <div id="bottom" class="flexColumn">
         <div class="inputElement">
           <label>Number of tests of each size</label>
           <input id="numEach" type="number" value="5" onchange="updateNumTests(this.value)" />
