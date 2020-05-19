@@ -114,7 +114,7 @@ function shellSort(arr, gapsArr) {
   return a;
 }
 
-function generateTestData(len) {
+function generateRandomTestData(len) {
   let a = [];
   for (let i = 0; i < len; i++) {
     a.push(Math.round(Math.random() * len * 10));
@@ -123,11 +123,48 @@ function generateTestData(len) {
   return a;
 }
 
+function generateSortedTestData(len) {
+  let a = [];
+  for (let i = 0; i < len; i++) {
+    a.push(i);
+  }
+  console.log(a);
+  return a;
+}
+
+function generateMostlySortedTestData(len) {
+  let a = generateSortedTestData(len);
+  let numChanges = Math.floor(len * 7 / 100);
+  let indices = a.slice();
+  let changes = [];
+  for (let i = 0; i < numChanges; i++) {
+    let rand = Math.round(Math.random() * indices.length);
+    // removes element at index rand from indices array 
+    // and adds it to changes array
+    changes = changes.concat(indices.splice(rand, 1));
+  }
+  let temp = a[changes[0]];
+  for (let i = 0; i < numChanges - 1; i++) {
+    a[changes[i]] = a[changes[i + 1]];
+  }
+  a[changes[numChanges - 1]] = temp;
+  console.log(a);
+  return a;
+}
+
 let minSize = 1000;
 let maxSize = 10000;
 let numEachSize = 5;
 let avgsOnly = true;
-
+let mostlySorted = false;
+        
+function generateTestData(len) {
+  if (mostlySorted) {
+    return generateMostlySortedTestData(len);
+  } else {
+    return generateRandomTestData(len);
+  }
+}
 
 function updateMinTestSize(min) {
   reset();
@@ -169,6 +206,11 @@ function updateAvgsOnly(str) {
 
 function round(n) {
   return Math.round(n * 10000) / 10000;
+}
+
+function updateMostlySorted(str) {
+  reset();
+  mostlySorted = str == "Mostly sorted";
 }
 
 function drawChart(id, title, dataArray) {
