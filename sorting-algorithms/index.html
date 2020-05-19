@@ -18,17 +18,24 @@
           <label>Maximum test size</label>
           <input id="maxInput" type="number" value="10000" onchange="updateMaxTestSize(this.value)" />
         </div>
-      </div>
-      <div id="bottom" class="flexColumn">
         <div class="inputElement">
           <label>Number of tests of each size</label>
           <input id="numEach" type="number" value="5" onchange="updateNumTests(this.value)" />
         </div>
+      </div>
+      <div id="bottom" class="flexColumn">
         <div class="inputElement">
           <label>Average runtimes only</label>
           <select id="avgsOnly" onchange="updateAvgsOnly(this.value)">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
+          </select>
+        </div>
+        <div class="inputElement">
+          <label>Test data type</label>
+          <select id="mostlySorted" onchange="updateMostlySorted(this.value)">
+            <option value="Random">Random</option>
+            <option value="Mostly sorted">Mostly sorted</option>
           </select>
         </div>
       </div>
