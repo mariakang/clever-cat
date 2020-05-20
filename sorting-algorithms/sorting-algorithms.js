@@ -238,16 +238,24 @@ function drawChart(id, title, dataArray) {
       data: dataArray
   });
   chart.render();
+  document.getElementById(id+"Export").setAttribute("class", "exportButton");
+  document.getElementById(id+"Export").addEventListener("click", function() {
+    chart.exportChart({format: "jpg"});
+  });
 }
 
 function reset() {
-  let ids = ["chart0", "chart1", "chart2", "chart3", "chart4", "chart5", "csvLink"];
-  for (let i = 0; i < ids.length; i++) {
-    document.getElementById(ids[i]).innerHTML = "";
-    document.getElementById(ids[i]).setAttribute("class", "hidden");
+  for (let i = 0; i <= 5; i++) {
+    document.getElementById("chart" + i).innerHTML = "";
+    document.getElementById("chart" + i).setAttribute("class", "hidden");
+    document.getElementById("chart" + i + "Export").setAttribute("class", "hidden");
   }
+  document.getElementById("csvLink").innerHTML = "";
+  document.getElementById("csvLink").setAttribute("class", "hidden");
+
   document.getElementById("runTests").innerHTML = "Run tests";
   document.getElementById("runTests").setAttribute("onclick", "runTests()");
+  
   document.getElementById("top").setAttribute("class", "flexColumn");
   document.getElementById("bottom").setAttribute("class", "flexColumn");
 }
