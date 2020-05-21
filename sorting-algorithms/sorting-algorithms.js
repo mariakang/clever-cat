@@ -128,7 +128,7 @@ function generateSortedTestData(len) {
   for (let i = 0; i < len; i++) {
     a.push(i);
   }
-  console.log(a);
+//  console.log(a);
   return a;
 }
 
@@ -277,12 +277,6 @@ function runTests() {
   console.log("min: " + minSize);
   console.log("max: " + maxSize);
   console.log("num: " + numEachSize);
-
-  document.getElementById("runTests").innerHTML = "Reset";
-  document.getElementById("runTests").setAttribute("onclick", "resetAll()");
-
-  document.getElementById("top").setAttribute("class", "flexRow");
-  document.getElementById("bottom").setAttribute("class", "flexRow");
   
   let rows = [["Test", "Array size", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
   
@@ -295,6 +289,9 @@ function runTests() {
   console.log(testSizes);
   let totalNumTests = testSizes.length * numEachSize;
   console.log(totalNumTests);
+  
+  alert(totalNumTests + " tests are about to be run for datasets containing up to " + maxSize 
+        + " elements.\n\nThis may take some time, so please check the console for progress updates.");
   
   let currentTest = 1;
     
@@ -339,6 +336,12 @@ function runTests() {
     }
   }
   
+  document.getElementById("runTests").innerHTML = "Reset";
+  document.getElementById("runTests").setAttribute("onclick", "resetAll()");
+
+  document.getElementById("top").setAttribute("class", "flexRow");
+  document.getElementById("bottom").setAttribute("class", "flexRow");
+
   let csvContent = "data:text/csv;charset=utf-8,";
 
   if (avgsOnly) {
