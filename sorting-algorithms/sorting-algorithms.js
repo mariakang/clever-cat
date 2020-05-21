@@ -290,7 +290,7 @@ function runTests() {
   let totalNumTests = testSizes.length * numEachSize;
   console.log(totalNumTests);
   
-  alert(totalNumTests + " tests are about to be run for datasets containing up to " + maxSize 
+  alert(totalNumTests + " tests are about to be run on arrays containing up to " + maxSize 
         + " elements.\n\nThis may take some time, so please check the console for progress updates.");
   
   let currentTest = 1;
