@@ -139,7 +139,7 @@ function generateMostlySortedTestData(len) {
   let changes = [];
   for (let i = 0; i < numChanges; i++) {
     let rand = Math.round(Math.random() * indices.length);
-    // removes element at index rand from indices array 
+    // removes element at index rand from indices array
     // and adds it to changes array
     changes = changes.concat(indices.splice(rand, 1));
   }
@@ -157,6 +157,8 @@ let maxSize = 10000;
 let numEachSize = 5;
 let avgsOnly = true;
 let mostlySorted = false;
+
+let charts = [];
         
 function generateTestData(len) {
   if (mostlySorted) {
@@ -213,8 +215,7 @@ function updateMostlySorted(str) {
   mostlySorted = str == "Mostly sorted";
 }
 
-function drawChart(id, title, dataArray) {
-  document.getElementById(id).setAttribute("class", "chart");
+function createChart(id, title, dataArray) {
   let chart = new CanvasJS.Chart(id, {
       title: {
         text: title
@@ -237,11 +238,18 @@ function drawChart(id, title, dataArray) {
       },
       data: dataArray
   });
+  return chart;
+}
+
+function drawChart(id, chart) {
+  document.getElementById(id).setAttribute("class", "chart");
   chart.render();
   document.getElementById(id+"Export").setAttribute("class", "exportButton");
-  document.getElementById(id+"Export").addEventListener("click", function() {
-    chart.exportChart({format: "jpg"});
-  });
+  document.getElementById(id+"Export").setAttribute("onclick", "exportChart(charts[" + id.replace("chart", "") + "])");
+}
+
+function exportChart(chart) {
+  chart.exportChart({format: "jpg"});
 }
 
 function reset() {
@@ -249,6 +257,7 @@ function reset() {
     document.getElementById("chart" + i).innerHTML = "";
     document.getElementById("chart" + i).setAttribute("class", "hidden");
     document.getElementById("chart" + i + "Export").setAttribute("class", "hidden");
+    document.getElementById("chart" + i + "Export").removeAttribute("onclick");
   }
   document.getElementById("csvLink").innerHTML = "";
   document.getElementById("csvLink").setAttribute("class", "hidden");
@@ -291,7 +300,7 @@ function runTests() {
   console.log(totalNumTests);
   
   document.getElementById("runTests").innerHTML = "Running tests";
-  alert(totalNumTests + " tests are about to be run on arrays containing up to " + maxSize 
+  alert(totalNumTests + " tests are about to be run on arrays containing up to " + maxSize
         + " elements.\n\nThis may take some time, so please check the console for progress updates.");
   
   let currentTest = 1;
@@ -383,10 +392,14 @@ function runTests() {
         })
       };
       chartData.push(dataSet);
-      drawChart("chart" + s, name.replace("sort", "Sort") + " Average Runtimes", [dataSet]);
+      let chart = createChart("chart" + s, name.replace("sort", "Sort") + " Average Runtimes", [dataSet]);
+      charts.push(chart);
+      drawChart("chart" + s, chart);
     }
     console.log(JSON.stringify(chartData));
-    drawChart("chart0", "Sort Algorithm Average Runtimes", chartData);
+    let chart0 = createChart("chart0", "Sort Algorithm Average Runtimes", chartData);
+    charts.unshift(chart0);
+    drawChart("chart0", chart0);
   }
 
   for(let i = 0; i < rows.length; i++) {
