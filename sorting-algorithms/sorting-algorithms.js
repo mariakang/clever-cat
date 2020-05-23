@@ -393,7 +393,7 @@ function runTests() {
       };
       chartData.push(dataSet);
       let chart = createChart("chart" + s, name.replace("sort", "Sort") + " Average Runtimes", [dataSet]);
-      charts[i] = chart;
+      charts[s] = chart;
       drawChart("chart" + s, chart);
     }
     console.log(JSON.stringify(chartData));
