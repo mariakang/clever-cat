@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<title>Search Algorithms</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="search-algorithms.js"></script>
+	</head>
+  <body>
+    <div class="flexColumn">
+      <h1>Search Algorithms</h1>
+      <p>How many guesses does it take to find x in a range from 1 to N?</p>
+      <div id="top" class="flexColumn">
+        <div class="inputElement">
+          <label>Starting value of N</label>
+          <input id="minInput" type="number" value="1000" onchange="updateMinN(this.value)" />
+        </div>
+        <div class="inputElement">
+          <label>Maximum value of N</label>
+          <input id="maxInput" type="number" value="100000" onchange="updateMaxN(this.value)" />
+        </div>
+      </div>
+      <div id="bottom" class="flexColumn">
+        <div class="inputElement">
+          <label>Number of tests for each value of N</label>
+          <input id="numEach" type="number" value="100" onchange="updateNumEachN(this.value)" />
+        </div>
+        <div class="inputElement">
+          <label>Average number of guesses only</label>
+          <select id="avgsOnly" onchange="updateAvgsOnly(this.value)">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="results" class="flexColumn">
+      <button id="runTests" class="button" onclick="runTests()">Run tests</button>
+      <a id="csvLink" class="hidden"></a>
+    </div>
+    <div class="flexColumn">
+      <div class="flexRow">
+        <div id="chart0" class="hidden"></div>
+        <button id="chart0Export" class="hidden">Export</button>
+      </div>
+      <div class="flexRow">
+        <div id="chart1" class="hidden"></div>
+        <button id="chart1Export" class="hidden">Export</button>
+      </div>
+      <div class="flexRow">
+        <div id="chart2" class="hidden"></div>
+        <button id="chart2Export" class="hidden">Export</button>
+      </div>
+    </div>
+  </body>
+</html>
