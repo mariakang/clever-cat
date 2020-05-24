@@ -119,7 +119,7 @@ function generateRandomTestData(len) {
   for (let i = 0; i < len; i++) {
     a.push(Math.round(Math.random() * len * 10));
   }
-  console.log(a);
+//  console.log(a);
   return a;
 }
 
@@ -148,7 +148,7 @@ function generateMostlySortedTestData(len) {
     a[changes[i]] = a[changes[i + 1]];
   }
   a[changes[numChanges - 1]] = temp;
-  console.log(a);
+//  console.log(a);
   return a;
 }
 
@@ -295,9 +295,9 @@ function runTests() {
     testSizes.push(x);
     increment = Math.pow(10, Math.floor(Math.log10(x)));
   }
-  console.log(testSizes);
+  console.log("test sizes: " + testSizes);
   let totalNumTests = testSizes.length * numEachSize;
-  console.log(totalNumTests);
+  console.log("total num tests: " + totalNumTests);
   
   document.getElementById("runTests").innerHTML = "Running tests";
   alert(totalNumTests + " tests are about to be run on arrays containing up to " + maxSize
@@ -311,31 +311,45 @@ function runTests() {
         
     for (let j = 0; j < numEachSize; j++) {
       let testArray = generateTestData(testSize);
+      console.log("test data: " + testArray);
+      
+      console.log("Bubble sort...");
 
       let t1s = performance.now();
       bubbleSort(testArray);
       let t1e = performance.now();
       let t1 = round(t1e - t1s);
+      
+      console.log("Bubble sort completed in " + t1 + "ms.\nInsertion sort...");
 
       let t2s = performance.now();
       insertionSort(testArray);
       let t2e = performance.now();
       let t2 = round(t2e - t2s);
 
+      console.log("Insertion sort completed in " + t2 + "ms.\nSelection sort...");
+
       let t3s = performance.now();
       selectionSort(testArray);
       let t3e = performance.now();
       let t3 = round(t3e - t3s);
+
+      console.log("Selection sort completed in " + t3 + "ms.\nMerge sort...");
 
       let t4s = performance.now();
       mergeSort(testArray);
       let t4e = performance.now();
       let t4 = round(t4e - t4s);
 
+      console.log("Merge sort completed in " + t4 + "ms.\nShell sort...");
+      console.log("gapsArr: " + gapsArr);
+
       let t5s = performance.now();
       shellSort(testArray, gapsArr);
       let t5e = performance.now();
       let t5 = round(t5e - t5s);
+
+      console.log("Shell sort completed in " + t5 + "ms.");
       
       rows.push([currentTest, testSize, t1, t2, t3, t4, t5]);
       
