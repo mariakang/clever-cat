@@ -307,6 +307,7 @@ function runTests() {
     
   for (let i = 0; i < testSizes.length; i++) {
     let testSize = testSizes[i];
+    let gapsArr = getGaps(testSize);
         
     for (let j = 0; j < numEachSize; j++) {
       let testArray = generateTestData(testSize);
@@ -331,7 +332,6 @@ function runTests() {
       let t4e = performance.now();
       let t4 = round(t4e - t4s);
 
-      let gapsArr = getGaps(testSize);
       let t5s = performance.now();
       shellSort(testArray, gapsArr);
       let t5e = performance.now();
