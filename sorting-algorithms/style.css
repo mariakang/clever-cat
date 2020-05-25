@@ -101,3 +101,8 @@ input, select {
   border-style: outset;
   text-align: center;  
 }
+
+p {
+  width: 520px;
+  color: grey;
+}
