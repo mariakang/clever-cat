@@ -256,7 +256,23 @@ function runTests() {
     charts[1] = chart1;
     drawChart("chart1", chart1);
     
-    let chart2Data = [chartData[1]];
+    let log2DataSet = {
+      type: "line",
+      name: "log2(N)",
+      showInLegend: true,
+      color: lineColors[2],
+      lineColor: lineColors[2],
+      markerSize: 0,
+      yValueFormatString: "#,###",
+      dataPoints: testSizes.map(function getlog2(N) {
+        return {
+          x: N,
+          y: Math.log2(N)
+        };
+      })
+    };
+    
+    let chart2Data = [chartData[1], log2DataSet];
     let chart2 = createChart("chart2", "Binary Search", chart2Data);
     charts[2] = chart2;
     drawChart("chart2", chart2);
