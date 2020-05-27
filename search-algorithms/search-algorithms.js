@@ -252,10 +252,28 @@ function runTests() {
     charts[0] = chart0;
     drawChart("chart0", chart0);
 
-    let chart1 = createChart("chart1", "Linear Search", [chartData[0]]);
+    let linearDataSet = {
+      type: "line",
+      name: "N / 2",
+      showInLegend: true,
+      color: lineColors[2],
+      lineColor: lineColors[2],
+      markerSize: 0,
+      yValueFormatString: "#,###",
+      dataPoints: testSizes.map(function getHalf(N) {
+        return {
+          x: N,
+          y: N / 2
+        };
+      })
+    };
+
+    let chart1Data = [chartData[0], linearDataSet];
+
+    let chart1 = createChart("chart1", "Linear Search", chart1Data);
     charts[1] = chart1;
     drawChart("chart1", chart1);
-    
+
     let log2DataSet = {
       type: "line",
       name: "log2(N)",
@@ -271,7 +289,7 @@ function runTests() {
         };
       })
     };
-    
+
     let chart2Data = [chartData[1], log2DataSet];
     let chart2 = createChart("chart2", "Binary Search", chart2Data);
     charts[2] = chart2;
