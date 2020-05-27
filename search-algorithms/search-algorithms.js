@@ -215,7 +215,7 @@ function runTests() {
 
   if (avgsOnly) {
     let avgRows = [["N", "Number of tests", "Linear search", "Binary search"]];
-    let lineColors = ["DarkBlue", "DarkRed"];
+    let lineColors = ["DarkBlue", "DarkRed", "DarkOliveGreen"];
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachN * i, numEachN * (i + 1));
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachN, x[2] + y[2], x[3] + y[3]]);
@@ -246,15 +246,21 @@ function runTests() {
         })
       };
       chartData.push(dataSet);
-      let chart = createChart("chart" + s, name.replace("search", "Search"), [dataSet]);
-      charts[s] = chart;
-      drawChart("chart" + s, chart);
     }
     console.log(JSON.stringify(chartData));
     let chart0 = createChart("chart0", "Linear and Binary Search Algorithms", chartData);
     charts[0] = chart0;
     drawChart("chart0", chart0);
 
+    let chart1 = createChart("chart1", "Linear Search", chartData[0]);
+    charts[1] = chart1;
+    drawChart("chart1", chart1);
+    
+    let chart2Data = chartData[1];
+    let chart2 = createChart("chart1", "Linear Search", chart2Data);
+    charts[2] = chart2;
+    drawChart("chart2", chart2);
+    
     document.getElementById("top").setAttribute("class", "flexRow");
     document.getElementById("bottom").setAttribute("class", "flexRow");
   }
