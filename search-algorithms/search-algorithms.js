@@ -252,12 +252,12 @@ function runTests() {
     charts[0] = chart0;
     drawChart("chart0", chart0);
 
-    let chart1 = createChart("chart1", "Linear Search", chartData[0]);
+    let chart1 = createChart("chart1", "Linear Search", [chartData[0]]);
     charts[1] = chart1;
     drawChart("chart1", chart1);
     
-    let chart2Data = chartData[1];
-    let chart2 = createChart("chart1", "Linear Search", chart2Data);
+    let chart2Data = [chartData[1]];
+    let chart2 = createChart("chart2", "Binary Search", chart2Data);
     charts[2] = chart2;
     drawChart("chart2", chart2);
     
