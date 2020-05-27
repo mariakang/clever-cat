@@ -211,9 +211,6 @@ function runTests() {
   document.getElementById("runTests").innerHTML = "Reset";
   document.getElementById("runTests").setAttribute("onclick", "resetAll()");
 
-  document.getElementById("top").setAttribute("class", "flexRow");
-  document.getElementById("bottom").setAttribute("class", "flexRow");
-
   let csvContent = "data:text/csv;charset=utf-8,";
 
   if (avgsOnly) {
@@ -257,6 +254,9 @@ function runTests() {
     let chart0 = createChart("chart0", "Linear and Binary Search Algorithms", chartData);
     charts[0] = chart0;
     drawChart("chart0", chart0);
+
+    document.getElementById("top").setAttribute("class", "flexRow");
+    document.getElementById("bottom").setAttribute("class", "flexRow");
   }
 
   for(let i = 0; i < rows.length; i++) {
