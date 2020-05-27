@@ -206,13 +206,13 @@ function updateAvgsOnly(str) {
   avgsOnly = str == "Yes";
 }
 
-function round(n) {
-  return Math.round(n * 10000) / 10000;
-}
-
 function updateMostlySorted(str) {
   reset();
   mostlySorted = str == "Mostly sorted";
+}
+
+function round(n) {
+  return Math.round(n * 10000) / 10000;
 }
 
 function createChart(id, title, dataArray) {
@@ -363,12 +363,10 @@ function runTests() {
   document.getElementById("runTests").innerHTML = "Reset";
   document.getElementById("runTests").setAttribute("onclick", "resetAll()");
 
-  document.getElementById("top").setAttribute("class", "flexRow");
-  document.getElementById("bottom").setAttribute("class", "flexRow");
-
   let csvContent = "data:text/csv;charset=utf-8,";
 
   if (avgsOnly) {
+ 
     let avgRows = [["Array size", "Number of tests", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
     let lineColors = ["DarkBlue", "DarkRed", "DarkOliveGreen", "DarkCyan", "DarkOrchid"];
     for (let i = 0; i < testSizes.length; i++) {
@@ -414,6 +412,10 @@ function runTests() {
     let chart0 = createChart("chart0", "Sort Algorithm Average Runtimes", chartData);
     charts[0] = chart0;
     drawChart("chart0", chart0);
+
+    document.getElementById("top").setAttribute("class", "flexRow");
+    document.getElementById("bottom").setAttribute("class", "flexRow");
+
   }
 
   for(let i = 0; i < rows.length; i++) {
