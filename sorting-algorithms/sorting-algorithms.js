@@ -368,7 +368,7 @@ function runTests() {
   if (avgsOnly) {
  
     let avgRows = [["Array size", "Number of tests", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
-    let lineColors = ["DarkBlue", "DarkRed", "DarkOliveGreen", "DarkCyan", "DarkOrchid"];
+    let lineColors = ["hsl(0, 100%, 50%)", "hsl(240, 50%, 50%)", "hsl(150, 50%, 50%)", "hsl(320, 50%, 50%)", "hsl(40, 100%, 50%)"];
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachSize * i, numEachSize * (i + 1));
       console.log(subArr[0] + "\n"
