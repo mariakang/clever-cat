@@ -215,7 +215,7 @@ function runTests() {
 
   if (avgsOnly) {
     let avgRows = [["N", "Number of tests", "Linear search", "Binary search"]];
-    let lineColors = ["Blue", "Green"];
+    let lineColors = ["SteelBlue", "SeaGreen"];
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachN * i, numEachN * (i + 1));
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachN, x[2] + y[2], x[3] + y[3]]);
