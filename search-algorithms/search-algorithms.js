@@ -215,7 +215,7 @@ function runTests() {
 
   if (avgsOnly) {
     let avgRows = [["N", "Number of tests", "Linear search", "Binary search"]];
-    let lineColors = ["DarkBlue", "DarkRed", "DarkOliveGreen"];
+    let lineColors = ["Blue", "Cyan"];
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachN * i, numEachN * (i + 1));
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachN, x[2] + y[2], x[3] + y[3]]);
@@ -256,8 +256,8 @@ function runTests() {
       type: "line",
       name: "N / 2",
       showInLegend: true,
-      color: lineColors[2],
-      lineColor: lineColors[2],
+      color: "Light" + lineColors[0],
+      lineColor: "Light" + lineColors[0],
       markerSize: 0,
       yValueFormatString: "#,###",
       dataPoints: testSizes.map(function getHalf(N) {
@@ -278,8 +278,8 @@ function runTests() {
       type: "line",
       name: "log2(N)",
       showInLegend: true,
-      color: lineColors[2],
-      lineColor: lineColors[2],
+      color: "Light" + lineColors[1],
+      lineColor: "Light" + lineColors[1],
       markerSize: 0,
       yValueFormatString: "#,###",
       dataPoints: testSizes.map(function getlog2(N) {
