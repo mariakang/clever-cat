@@ -307,12 +307,13 @@ function runTests() {
     
   for (let i = 0; i < testSizes.length; i++) {
     let testSize = testSizes[i];
+    console.log("test size: " + testSize);
     let gapsArr = getGaps(testSize);
         
     for (let j = 0; j < numEachSize; j++) {
       let testArray = generateTestData(testSize);
-      console.log("test data: " + testArray);
-      
+//      console.log("test data: " + testArray);
+     
       console.log("Bubble sort...");
 
       let t1s = performance.now();
