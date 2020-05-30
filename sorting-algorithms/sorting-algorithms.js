@@ -143,11 +143,24 @@ function generateMostlySortedTestData(len) {
     // and adds it to changes array
     changes = changes.concat(indices.splice(rand, 1));
   }
+/*
   let temp = a[changes[0]];
   for (let i = 0; i < numChanges - 1; i++) {
     a[changes[i]] = a[changes[i + 1]];
   }
   a[changes[numChanges - 1]] = temp;
+*/
+  for (let i = 0; i < numChanges; i++) {
+    let index = changes[i];
+    let temp = a[index];
+    if (index < len - 1) {
+      a[index] = a[index + 1];
+      a[index + 1] = temp;
+    }  else {
+      a[index] = a[0];
+      a[0] = temp;
+    }  
+  }
 //  console.log(a);
   return a;
 }
@@ -312,7 +325,7 @@ function runTests() {
         
     for (let j = 0; j < numEachSize; j++) {
       let testArray = generateTestData(testSize);
-//      console.log("test data: " + testArray);
+      console.log("test data: " + testArray);
      
       console.log("Bubble sort...");
 
