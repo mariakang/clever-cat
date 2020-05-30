@@ -133,14 +133,23 @@ function generateSortedTestData(len) {
 }
 
 function generateMostlySortedTestData(len) {
+  // start off with a sorted array of integers from 0 (inclusive) to len (exclusive)
   let a = generateSortedTestData(len);
+  // set the number of elements to be misplaced to be 7% of len, rounded down
   let numChanges = Math.floor(len * 7 / 100);
-  let indices = a.slice();
-  let changes = [];
+
+  // choose indices of elements to be misplaced, ensuring:
+  // - no repetitions; and
+  // - not to include the last element of the sorted array (to simplify algorithm)
+  let indices = a.slice(0, -1); // available indices for selection
+  let changes = []; // indices chosen for misplacement
+  
+  // populate changes array with required number of indices
   for (let i = 0; i < numChanges; i++) {
+    // get random element from available indices
     let rand = Math.round(Math.random() * indices.length);
-    // removes element at index rand from indices array
-    // and adds it to changes array
+    // remove element at index 'rand' from available indices
+    // and add it to changes array
     changes = changes.concat(indices.splice(rand, 1));
   }
 /*
@@ -153,13 +162,8 @@ function generateMostlySortedTestData(len) {
   for (let i = 0; i < numChanges; i++) {
     let index = changes[i];
     let temp = a[index];
-    if (index < len - 1) {
-      a[index] = a[index + 1];
-      a[index + 1] = temp;
-    }  else {
-      a[index] = a[0];
-      a[0] = temp;
-    }  
+    a[index] = a[index + 1];
+    a[index + 1] = temp;
   }
 //  console.log(a);
   return a;
