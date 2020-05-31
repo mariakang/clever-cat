@@ -266,6 +266,20 @@ function createChart(id, title, dataArray) {
   return chart;
 }
 
+function createChartDataObject(name, color, dataPointsArr) {
+  let dataObject = {
+    type: "line",
+    name: name,
+    showInLegend: true,
+    color: color,
+    lineColor: color,
+    markerSize: 0,
+    yValueFormatString: "#,###.00",
+    dataPoints: dataPointsArr 
+  }
+  return dataObject;
+}
+
 function drawChart(id, chart) {
   document.getElementById(id).setAttribute("class", "chart");
   chart.render();
@@ -414,23 +428,16 @@ function runTests() {
     
     for (let s = 1; s <= 5; s++) {
       let name = avgRows[0][s + 1].slice(0, -5);
-      let dataSet = {
-        type: "line",
-        name: name,
-        showInLegend: true,
-        color: lineColors[s - 1],
-        lineColor: lineColors[s - 1],
-        markerSize: 0,
-        yValueFormatString: "#,###.00",
-        dataPoints: avgRows.slice(1).map(function getData(row) {
-          return {
-            x: row[0],
-            y: row[s + 1]
-          };
-        })
-      };
-      chartData.push(dataSet);
-      let chart = createChart("chart" + s, name.replace("sort", "Sort") + " Average Runtimes", [dataSet]);
+      let color = lineColors[s - 1];
+      let dataPointsArr = avgRows.slice(1).map(function getData(row) {
+        return {
+          x: row[0],
+          y: row[s + 1]
+        };
+      });
+      let dataObject = createChartDataObject(name, color, dataPointsArr);
+      chartData.push(dataObject);
+      let chart = createChart("chart" + s, name.replace("sort", "Sort"), [dataObject]);
       charts[s] = chart;
       drawChart("chart" + s, chart);
     }
