@@ -1,44 +1,38 @@
 function linearSearch(x, N) {
   console.log("x: " + x + ", N: " + N);
-  if (x < 1 || x > N) {
-    console.log("invalid inputs");
-    return -1;
-  }
-  let count = 1;
-  let guess = 1;
-  while (guess != x) {
+  let count = 0;
+  let guess = 0;
+  while (guess <= N) {
     count++;
     guess++;
 //    console.log("count: " + count + ", guess: " + guess);
+    if (guess == x) {
+//      console.log("total guesses: " + count);
+      return count;
+    }
   }
-//  console.log("total guesses: " + count);
-  return count;
+  return false;
 }
 
 function binarySearch(x, N) {
   console.log("x: " + x + ", N: " + N);
-  if (x < 1 || x > N) {
-    console.log("invalid inputs");
-    return -1;
-  }
   let min = 1;
   let max = N;
   let count = 0;
-  let loop = true;
-  while (loop) {
+  while (min <= max) {
     count++;
-    guess = Math.floor((min + max) / 2);
+    let guess = Math.floor((min + max) / 2);
 //    console.log("count: " + count + ", guess: " + guess);
     if (guess == x) {
-      loop = false;
+//      console.log("total guesses: " + count);
+      return count;
     } else if (guess < x) {
       min = guess + 1;
     } else {
       max = guess - 1;
     }
   }
-//  console.log("total guesses: " + count);
-  return count;
+  return false;
 }
 
 function generateRandomX(N) {
@@ -116,6 +110,20 @@ function createChart(id, title, dataArray) {
       data: dataArray
   });
   return chart;
+}
+
+function createChartDataObject(name, color, dataPointsArr) {
+  let dataObject = {
+    type: "line",
+    name: name,
+    showInLegend: true,
+    color: color,
+    lineColor: color,
+    markerSize: 0,
+    yValueFormatString: "#,###",
+    dataPoints: dataPointsArr
+  };
+  return dataObject;  
 }
 
 function drawChart(id, chart) {
@@ -215,7 +223,6 @@ function runTests() {
 
   if (avgsOnly) {
     let avgRows = [["N", "Number of tests", "Linear search", "Binary search"]];
-    let lineColors = ["hsl(240, 50%, 50%)", "hsl(0, 100%, 50%)"];
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachN * i, numEachN * (i + 1));
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachN, x[2] + y[2], x[3] + y[3]]);
@@ -227,32 +234,48 @@ function runTests() {
     rows = avgRows.slice();
     
     let chartData = [];
+    let lineColors = ["hsl(240, 50%, 50%)", "hsl(0, 100%, 50%)"];
+    let compNames = ["N / 2", "log2(N)"];
+    let compDataArrs = [
+      testSizes.map(function getHalf(N) {
+        return {
+          x: N,
+          y: N / 2
+        };
+      }),
+      testSizes.map(function getlog2(N) {
+        return {
+          x: N,
+          y: Math.log2(N)
+        };
+      })
+    ];
     
     for (let s = 1; s <= 2; s++) {
       let name = avgRows[0][s + 1];
-      let dataSet = {
-        type: "line",
-        name: name,
-        showInLegend: true,
-        color: lineColors[s - 1],
-        lineColor: lineColors[s - 1],
-        markerSize: 0,
-        yValueFormatString: "#,###",
-        dataPoints: avgRows.slice(1).map(function getData(row) {
-          return {
-            x: row[0],
-            y: row[s + 1]
-          };
-        })
-      };
-      chartData.push(dataSet);
+      let color = lineColors[s - 1];
+      let dataPointsArr = avgRows.slice(1).map(function getData(row) {
+        return {
+          x: row[0],
+          y: row[s + 1]
+        };
+      });
+      let dataObject = createChartDataObject(name, color, dataPointsArr);
+      chartData.push(dataObject);
+      let compName = compNames[s - 1];
+      let compColor = color.replace("50%)", "85%)");
+      let compDataPointsArr = compDataArrs[s - 1];
+      let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
+      let chart = createChart("chart" + s, name, [dataObject, compDataObject]);
+      charts[s] = chart;
+      drawChart("chart" + s, chart); 
     }
     console.log(JSON.stringify(chartData));
     let chart0 = createChart("chart0", "Linear and Binary Search Algorithms", chartData);
     charts[0] = chart0;
     drawChart("chart0", chart0);
 
-    let linearDataSet = {
+/*    let linearDataSet = {
       type: "line",
       name: "N / 2",
       showInLegend: true,
@@ -294,7 +317,7 @@ function runTests() {
     let chart2 = createChart("chart2", "Binary Search", chart2Data);
     charts[2] = chart2;
     drawChart("chart2", chart2);
-    
+*/    
     document.getElementById("top").setAttribute("class", "flexRow");
     document.getElementById("bottom").setAttribute("class", "flexRow");
   }
