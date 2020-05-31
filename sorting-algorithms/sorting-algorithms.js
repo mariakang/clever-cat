@@ -313,7 +313,9 @@ function mapArrayToDataPoints(arr, formula, divisor) {
 
 function getDivisorFromDataPointsArray(arr, formula) {
   let topEndArr = arr.filter(obj => obj.x >= maxSize / 10);
+  console.log("topEndArray: " + topEndArr);
   let divisors = topEndArr.map(obj => getValueFromFormula(obj.x, formula) / obj.y);
+  console.log("divisors: " + divisors);
   let divisorsTotal = divisors.reduce((x, y) => x + y);
   return Math.round(divisorsTotal / divisors.length / 100) * 100;
 }
