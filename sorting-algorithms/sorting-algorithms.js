@@ -291,6 +291,21 @@ function exportChart(chart) {
   chart.exportChart({format: "jpg"});
 }
 
+function mapArrayToDataPoints(arr, formula, divisor) {
+  return arr.map(function (n) {
+    let value = n;
+    if (formula == "n^2") {
+      value *= n;
+    } else if (formula == "nlog2(n)") {
+      value *= Math.log2(n);
+    }
+    return {
+      x: n,
+      y: round(value / divisor)
+    };
+  });
+}  
+
 function reset() {
   for (let i = 0; i <= 5; i++) {
     document.getElementById("chart" + i).innerHTML = "";
@@ -424,39 +439,7 @@ function runTests() {
     
     let chartData = [];
     let lineColors = ["hsl(0, 100%, 50%)", "hsl(240, 50%, 50%)", "hsl(150, 50%, 50%)", "hsl(300, 50%, 50%)", "hsl(40, 100%, 50%)"];
-    let compNames = ["n^2 / 500,000", "n^2 / 400,000", "n^2 / 1,000,000", "nlog2(n) / 26,000", "nlog2(n) / 115,000"];
-    let compDataArrs = [
-      testSizes.map(function (n) {
-        return {
-          x: n,
-          y: n * n / 500000
-        };
-      }),
-      testSizes.map(function (n) {
-        return {
-          x: n,
-          y: n * n / 400000
-        };
-      }),
-      testSizes.map(function (n) {
-        return {
-          x: n,
-          y: n * n / 1000000
-        };
-      }),
-      testSizes.map(function (n) {
-        return {
-          x: n,
-          y: n * Math.log2(n) / 26000
-        };
-      }),
-      testSizes.map(function (n) {
-        return {
-          x: n,
-          y: n * Math.log2(n) / 115000
-        };
-      })
-    ];
+    let divisors = [500000, 400000, 1000000, 26000, 115000];
     
     for (let s = 1; s <= 5; s++) {
       let name = avgRows[0][s + 1].slice(0, -5);
@@ -469,9 +452,11 @@ function runTests() {
       });
       let dataObject = createChartDataObject(name, color, dataPointsArr);
       chartData.push(dataObject);
-      let compName = compNames[s - 1];
       let compColor = color.replace("50%)", "85%)");
-      let compDataPointsArr = compDataArrs[s - 1];
+      let formula = s <= 3 ? "n^2" : "nlog2(n)";
+      let divisor = divisors[s - 1];
+      let compName = "1/" + divisor + " * " + formula;
+      let compDataPointsArr = mapArrayToDataPoints(testSizes, formula, divisor);
       let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
       let chart = createChart("chart" + s, name.replace("sort", "Sort"), [dataObject, compDataObject]);
       charts[s] = chart;
