@@ -152,13 +152,21 @@ function generateMostlySortedTestData(len) {
     // and add it to changes array
     changes = changes.concat(indices.splice(rand, 1));
   }
-/*
+/* // For each index in the changes array, replace the element at
+  // that index with the one at the next index in the changes array
+  // (the indices in the changes array will be unsorted).
+  // Replace the element at the last index in the changes array
+  // with the one at the first index in the changes array.
   let temp = a[changes[0]];
   for (let i = 0; i < numChanges - 1; i++) {
     a[changes[i]] = a[changes[i + 1]];
   }
   a[changes[numChanges - 1]] = temp;
 */
+  // OR For each index in the changes array, swap the element at
+  // that index with the following element (the last element won't
+  // be chosen for replacement as its index has been excluded).
+  // This method leaves data 'more sorted' than the previous one.
   for (let i = 0; i < numChanges; i++) {
     let index = changes[i];
     let temp = a[index];
