@@ -311,11 +311,11 @@ function mapArrayToDataPoints(arr, formula, divisor) {
   });
 }  
 
-function mapDataPointsArrayToDivisors(arr, formula) {
-  return arr.map(function (obj) {
-    let value = getValueFromFormula(obj.x, formula);
-    return Math.round(value / obj.y / 100) * 100;
-  });
+function getDivisorFromDataPointsArray(arr, formula) {
+  let topEndArr = arr.filter(obj => obj.x >= maxSize / 10);
+  let divisors = topEndArr.map(obj => getValueFromFormula(obj.x, formula) / obj.y);
+  let divisorsTotal = divisors.reduce((x, y) => x + y);
+  return Math.round(divisorsTotal / divisors.length / 100) * 100;
 }
 
 function reset() {
@@ -451,7 +451,6 @@ function runTests() {
     
     let chartData = [];
     let lineColors = ["hsl(0, 100%, 50%)", "hsl(240, 50%, 50%)", "hsl(150, 50%, 50%)", "hsl(300, 50%, 50%)", "hsl(40, 100%, 50%)"];
-//    let divisors = [500000, 400000, 1000000, 26000, 115000];
     
     for (let s = 1; s <= 5; s++) {
       let name = avgRows[0][s + 1].slice(0, -5);
@@ -466,9 +465,10 @@ function runTests() {
       chartData.push(dataObject);
       let compColor = color.replace("50%)", "85%)");
       let formula = s <= 3 ? "n^2" : "nlog2(n)";
-      let divisors = mapDataPointsArrayToDivisors(dataPointsArr, formula);
-      let divisorsTotal = divisors.reduce((x, y) => x + y);
-      let divisor = round(divisorsTotal / dataPointsArr.length);
+      if (s == 2 && mostlySorted) {
+        formula = "n";
+      }
+      let divisor = getDivisorFromDataPointsArray(dataPointsArr, formula);
       let compName = "1/" + divisor + " * " + formula;
       let compDataPointsArr = mapArrayToDataPoints(testSizes, formula, divisor);
       let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
