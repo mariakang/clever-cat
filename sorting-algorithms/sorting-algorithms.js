@@ -408,23 +408,22 @@ function runTests() {
   if (avgsOnly) {
  
     let avgRows = [["Array size", "Number of tests", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
-    let lineColors = ["hsl(0, 100%, 50%)", "hsl(240, 50%, 50%)", "hsl(150, 50%, 50%)", "hsl(300, 50%, 50%)", "hsl(40, 100%, 50%)"];
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachSize * i, numEachSize * (i + 1));
-      console.log(subArr[0] + "\n"
-                 + subArr[1] + "\n"
-                 + subArr[2] + "\n"
-                 + subArr[3] + "\n"
-                 + subArr[4]);
+      console.log("subArrays: ");
+      for (let j = 0; j < numEachSize; j++) {
+        console.log(subArr[j]);
+      }
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachSize, x[2] + y[2], x[3] + y[3], x[4] + y[4], x[5] + y[5], x[6] + y[6]]);
-      console.log(totalsArr);
+      console.log("totals: "+ totalsArr);
       let avgsArr = totalsArr.map((x, i) => i < 2 ? x : round(x / numEachSize));
-      console.log(avgsArr);
+      console.log("avgs: " + avgsArr);
       avgRows.push(avgsArr);
     }
     rows = avgRows.slice();
     
     let chartData = [];
+    let lineColors = ["hsl(0, 100%, 50%)", "hsl(240, 50%, 50%)", "hsl(150, 50%, 50%)", "hsl(300, 50%, 50%)", "hsl(40, 100%, 50%)"];
     
     for (let s = 1; s <= 5; s++) {
       let name = avgRows[0][s + 1].slice(0, -5);
