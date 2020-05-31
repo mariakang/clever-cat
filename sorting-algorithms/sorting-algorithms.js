@@ -314,7 +314,7 @@ function mapArrayToDataPoints(arr, formula, divisor) {
 function mapDataPointsArrayToDivisors(arr, formula) {
   return arr.map(function (obj) {
     let value = getValueFromFormula(obj.x, formula);
-    return round(value / obj.y);
+    return Math.round(value / obj.y / 100) * 100;
   });
 }
 
