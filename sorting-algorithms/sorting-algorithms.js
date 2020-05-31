@@ -337,7 +337,7 @@ function runTests() {
         
     for (let j = 0; j < numEachSize; j++) {
       let testArray = generateTestData(testSize);
-      console.log("test data: " + testArray);
+//      console.log("test data: " + testArray);
      
       console.log("Bubble sort...");
 
