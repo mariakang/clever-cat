@@ -152,7 +152,7 @@ function generateMostlySortedTestData(len) {
     // and add it to changes array
     changes = changes.concat(indices.splice(rand, 1));
   }
-/* // For each index in the changes array, replace the element at
+ // For each index in the changes array, replace the element at
   // that index with the one at the next index in the changes array
   // (the indices in the changes array will be unsorted).
   // Replace the element at the last index in the changes array
@@ -162,7 +162,7 @@ function generateMostlySortedTestData(len) {
     a[changes[i]] = a[changes[i + 1]];
   }
   a[changes[numChanges - 1]] = temp;
-*/
+/*
   // OR For each index in the changes array, swap the element at
   // that index with the following element (the last element won't
   // be chosen for replacement as its index has been excluded).
@@ -173,6 +173,7 @@ function generateMostlySortedTestData(len) {
     a[index] = a[index + 1];
     a[index + 1] = temp;
   }
+*/
 //  console.log(a);
   return a;
 }
