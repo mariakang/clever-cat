@@ -52,7 +52,7 @@ p {
   color: black;
   opacity: 0.8;
   border-radius: 5px;
-text-decoration: none;
+  text-decoration: none;
   border-style: outset;
   text-align: center;
 }
