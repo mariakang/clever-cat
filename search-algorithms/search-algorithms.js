@@ -50,8 +50,8 @@ let charts = [];
         
 function updateMinN(min) {
   reset();
-  if (min < 1 || min > 1000000) {
-    alert("Minimum value of N must be between 1 and 1,000,000");
+  if (min < 1 || min > 1000000 || !Number.isInteger(min)) {
+    alert("Minimum value of N must be an integer between 1 and 1,000,000");
     document.getElementById("minInput").value = minN;
   } else {
     minN = min;
@@ -60,8 +60,8 @@ function updateMinN(min) {
 
 function updateMaxN(max) {
   reset();
-  if (max < 1 || max > 1000000) {
-    alert("Maximum value of N must be between 1 and 1,000,000");
+  if (max < 1 || max > 1000000 || !Number.isInteger(max)) {
+    alert("Maximum value of N must be an integer between 1 and 1,000,000");
     document.getElementById("maxInput").value = maxN;
   } else if (max < minN) {
     alert("Maximum value of N must not be below minimum value of N");
@@ -73,8 +73,8 @@ function updateMaxN(max) {
 
 function updateNumEachN(num) {
   reset();
-  if (num < 1 || num > 10000) {
-    alert("Number of tests for each value of N must be between 1 and 10,000");
+  if (num < 1 || num > 10000 || !Number.isInteger(num)) {
+    alert("Number of tests for each value of N must be an integer between 1 and 10,000");
     document.getElementById("numEach").value = numEachN;
   } else {
     numEachN = num;
