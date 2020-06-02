@@ -196,8 +196,8 @@ function generateTestData(len) {
 
 function updateMinTestSize(min) {
   reset();
-  if (min < 0 || min > 1000000) {
-    alert("Minimum test size must be between 0 and 1,000,000");
+  if (min < 0 || min > 1000000 || !Number.isInteger(min)) {
+    alert("Minimum test size must be an integer between 0 and 1,000,000");
     document.getElementById("minInput").value = minSize;
   } else {
     minSize = min;
@@ -206,8 +206,8 @@ function updateMinTestSize(min) {
 
 function updateMaxTestSize(max) {
   reset();
-  if (max < 0 || max > 1000000) {
-    alert("Maximum test size must be between 0 and 1,000,000");
+  if (max < 0 || max > 1000000 || !Number.isInteger(max)) {
+    alert("Maximum test size must be an integer between 0 and 1,000,000");
     document.getElementById("maxInput").value = maxSize;
   } else if (max < minSize) {
     alert("Maximum test size must not be below minimum test size");
@@ -219,8 +219,8 @@ function updateMaxTestSize(max) {
 
 function updateNumTests(num) {
   reset();
-  if (num < 1 || num > 100) {
-    alert("Number of tests must be between 1 and 100");
+  if (num < 1 || num > 100 || !Number.isInteger(num)) {
+    alert("Number of tests must be an integer between 1 and 100");
     document.getElementById("numEach").value = numEachSize;
   } else {
     numEachSize = num;
