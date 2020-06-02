@@ -318,7 +318,7 @@ function getDivisorFromDataPointsArray(arr, formula) {
   let divisors = topEndArr.map(obj => getValueFromFormula(obj.x, formula) / obj.y);
   console.log("divisors: " + divisors);
   let divisorsTotal = divisors.reduce((x, y) => x + y);
-  return Math.round(divisorsTotal / divisors.length / 100) * 100;
+  return Math.round(divisorsTotal / divisors.length);
 }
 
 function reset() {
