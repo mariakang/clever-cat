@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<title>Recursive Algorithm</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="recursive-algorithm.js"></script>
+	</head>
+  <body>
+    <div class="flexColumn">
+      <h1>Recursive Algorithm</h1>
+      <p>If a motorcycle takes up ONE space, a car takes up TWO spaces, and a van takes up THREE spaces, how many parking arrangements p(n) are there on a street with n spaces?</p>
+      <div id="testCase" class="flexColumn">
+        <div class="inputElement">
+          <label>Value of n</label>
+          <input id="nInput" type="number" value="1" onchange="updateValueN(this.value)" />
+        </div>
+        <button id="runTestCase" class="button" onclick="runTestCase()">Calculate p(n)</button>
+        <div id="answer" class="hidden"></div>
+      </div>
+      <h2>Test runtimes for different values of n</h2>
+      <div id="top" class="flexColumn">
+        <div class="inputElement">
+          <label>Starting value of n</label>
+          <input id="minInput" type="number" value="1" onchange="updateMinN(this.value)" />
+        </div>
+        <div class="inputElement">
+          <label>Maximum value of n</label>
+          <input id="maxInput" type="number" value="30" onchange="updateMaxN(this.value)" />
+        </div>
+      </div>
+      <div id="bottom" class="flexColumn">
+        <div class="inputElement">
+          <label>Number of tests for each value of n</label>
+          <input id="numEach" type="number" value="10" onchange="updateNumEachN(this.value)" />
+        </div>
+        <div class="inputElement">
+          <label>Average runtimes only</label>
+          <select id="avgsOnly" onchange="updateAvgsOnly(this.value)">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="results" class="flexColumn">
+      <button id="runTests" class="button" onclick="runTests()">Run tests</button>
+      <a id="csvLink" class="hidden"></a>
+    </div>
+    <div class="flexColumn">
+      <div class="flexRow">
+        <div id="chart" class="hidden"></div>
+        <button id="chartExport" class="hidden">Export</button>
+      </div>
+    </div>
+  </body>
+</html>

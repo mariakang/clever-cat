@@ -1,0 +1,121 @@
+body {
+  font-family: verdana;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.chartContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flexColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.inputElement {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 20px 5px 20px;
+}
+
+p {
+  color: grey;
+  width: 520px;
+}
+
+.button {
+  font-family: verdana;
+  font-size: 16px;
+  width: 320px;
+  height: 35px;
+  margin: 25px;
+  background: #bfbfbf;
+  color: black;
+  opacity: 0.8;
+  border-radius: 5px;
+  text-decoration: none;
+  border-style: outset;
+  text-align: center;
+}
+
+.button {
+  padding-top: 5px;
+}
+
+.button:hover, button:hover, select:hover, .exportButton:hover {
+  background: black;
+  color: white;
+  opacity: 0.8;
+ }
+
+.chart {
+  height: 400px;
+  width: 80%;
+  margin: 20px;
+}
+
+input, select {
+  width: 80px;
+  height: 20px;
+  padding-left: 3px;
+}
+
+.canvasjs-chart-credit {
+  visibility: hidden;
+}
+
+.hidden {
+  visibility: hidden;
+  height: 0px;
+}
+
+.exportButton {
+  font-family: verdana;
+  font-size: 14px;
+  width: 80px;
+  height: 25px;
+  margin: 5px;
+  background: #bfbfbf;
+  color: black;
+  opacity: 0.8;
+  border-radius: 5px;
+  text-decoration: none;
+  border-style: outset;
+  text-align: center;
+}
+
+.answer {
+  font-family: verdana;
+  font-size: 16px;
+  width: 320px;
+  height: 35px;
+  margin: 25px;
+  background: #84d5d0;
+  color: black;
+  opacity: 0.8;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  border-style: solid;
+  border-color: #bfbfbf;
+}
