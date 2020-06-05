@@ -31,6 +31,15 @@ function p(n) {
 }
 */
 
+function iterativeP(n) {
+  let array = [0, 1, 2, 4];
+  for (let i = 4; i <= n; i++) {
+    let p = array[i - 3] + array[i - 2] + array[i - 1];
+    array.push(p);
+  }
+  return array[n];
+}
+
 let valueN = 1;
 
 function updateValueN(n) {
@@ -44,8 +53,11 @@ function updateValueN(n) {
 }
 
 function runTestCase() {
-  let answer = p(valueN);
-  document.getElementById("answer").innerHTML = "p(" + valueN + ") = " + answer;
+  let recursive = p(valueN);
+  let iterative = iterativeP(valueN);
+  let message = "Recursive method: p(" + valueN + ") = " + recursive + "\n"
+    + "Iterative method: p(" + valueN + ") = " + iterative;
+  document.getElementById("answer").innerHTML = message;
   document.getElementById("answer").setAttribute("class", "answer");
   document.getElementById("runTestCase").innerHTML = "Reset";
   document.getElementById("runTestCase").setAttribute("onclick", "resetAll()");
