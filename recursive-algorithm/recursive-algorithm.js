@@ -258,14 +258,14 @@ function runTests() {
     let name = "p(n) average runtime";
     let color = "hsl(240, 50%, 50%)";
     let dataObject = createChartDataObject(name, color, dataPointsArr);
-    let divisorsArr = dataPointsArr.filter(obj => obj.x >= maxN - 5).map(obj => Math.pow(3, obj.x / 3) / obj.y);
+    let divisorsArr = dataPointsArr.filter(obj => obj.x >= maxN - 5).map(obj => Math.pow(3, obj.x / 2) / obj.y);
     let divisor = Math.round(divisorsArr.reduce((x, y) => x + y) / divisorsArr.length);
-    let compName = "1/" + divisor + " * 3^n/3";
+    let compName = "1/" + divisor + " * 3^n/2";
     let compColor = color.replace("50%)", "85%)");
     let compDataPointsArr = testSizes.map(function (n) {
       return {
         x: n,
-        y: round(Math.pow(3, n / 3) / divisor)
+        y: round(Math.pow(3, n / 2) / divisor)
       };
     });
     let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
