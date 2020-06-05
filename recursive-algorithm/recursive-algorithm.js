@@ -55,7 +55,7 @@ function updateValueN(n) {
 function runTestCase() {
   let recursive = p(valueN);
   let iterative = iterativeP(valueN);
-  let message = "Recursive method: p(" + valueN + ") = " + recursive + "\n"
+  let message = "Recursive method: p(" + valueN + ") = " + recursive + "<br/>"
     + "Iterative method: p(" + valueN + ") = " + iterative;
   document.getElementById("answer").innerHTML = message;
   document.getElementById("answer").setAttribute("class", "answer");
