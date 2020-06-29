@@ -230,6 +230,9 @@ function shellSort(arr, gapsArr) {
   return a;
 }
 
+/*
+ Returns an array of size len, containing random integers between 0 and (10 x len).
+*/
 function generateRandomTestData(len) {
   let a = [];
   for (let i = 0; i < len; i++) {
@@ -239,6 +242,10 @@ function generateRandomTestData(len) {
   return a;
 }
 
+/*
+ Returns an array of size len, containing integers from 0 to (len - 1),
+ sorted in ascending order.
+*/
 function generateSortedTestData(len) {
   let a = [];
   for (let i = 0; i < len; i++) {
@@ -248,6 +255,11 @@ function generateSortedTestData(len) {
   return a;
 }
 
+/*
+ Returns an array of size len, containing integers from 0 to (len - 1),
+ sorted mostly in ascending order, but with approximately 7% of elements
+ in the wrong position.
+*/
 function generateMostlySortedTestData(len) {
   // start off with a sorted array of integers from 0 (inclusive) to len (exclusive)
   let a = generateSortedTestData(len);
@@ -294,14 +306,25 @@ function generateMostlySortedTestData(len) {
   return a;
 }
 
-let minSize = 1000;
-let maxSize = 10000;
-let numEachSize = 5;
-let avgsOnly = true;
-let mostlySorted = false;
+/*
+ Global variables
+*/
 
-let charts = [];
-        
+let minSize = 1000; // minimum test array size
+let maxSize = 10000; // maximum test array size
+let numEachSize = 5; // number of tests to run for each size
+let avgsOnly = true; // if true, only average runtimes will be reported
+let mostlySorted = false; // if true, "mostly sorted" data will be used
+
+let charts = []; // container to hold variables representing charts
+
+/*
+ Returns an array of size len.
+ 
+ If mostlySorted is set to true, then this is the output of the
+ generateMostlySortedTestData function, otherwise it's the output of
+ the generateRandomTestData function.
+*/
 function generateTestData(len) {
   if (mostlySorted) {
     return generateMostlySortedTestData(len);
@@ -309,6 +332,10 @@ function generateTestData(len) {
     return generateRandomTestData(len);
   }
 }
+
+/*
+ Functions to update global variables, called by onChange events
+*/
 
 function updateMinTestSize(min) {
   reset();
@@ -353,10 +380,20 @@ function updateMostlySorted(str) {
   mostlySorted = str == "Mostly sorted";
 }
 
+/*
+ Utility function rounds a number to 4 decimal places
+*/
 function round(n) {
   return Math.round(n * 10000) / 10000;
 }
 
+/*
+ Returns a chart object using the CanvasJS API.
+ 
+ id: id of the HTML element in which to draw the chart
+ title: chart title
+ dataArray: array of chart data objects
+*/
 function createChart(id, title, dataArray) {
   let chart = new CanvasJS.Chart(id, {
       title: {
@@ -383,6 +420,16 @@ function createChart(id, title, dataArray) {
   return chart;
 }
 
+/*
+ Returns a chart data object.
+ 
+ An array of chart data objects is required to create a 
+ chart object using the CanvasJS API.
+ 
+ name: name of line graph, to appear in legend
+ color: color of line and tooltip text
+ dataPointsArray: array of (x, y) value pair objects
+*/
 function createChartDataObject(name, color, dataPointsArr) {
   let dataObject = {
     type: "line",
@@ -397,6 +444,12 @@ function createChartDataObject(name, color, dataPointsArr) {
   return dataObject;
 }
 
+/*
+ Renders a chart object created using the CanvasJS API.
+ 
+ id: id of the HTML element against which to render the chart
+ chart: chart object
+ */
 function drawChart(id, chart) {
   document.getElementById(id).setAttribute("class", "chart");
   chart.render();
@@ -404,10 +457,22 @@ function drawChart(id, chart) {
   document.getElementById(id+"Export").setAttribute("onclick", "exportChart(charts[" + id.replace("chart", "") + "])");
 }
 
+/*
+ Exports a chart object as a jpg.
+ 
+ Function to be called by an onClick button event.
+*/
 function exportChart(chart) {
   chart.exportChart({format: "jpg"});
 }
 
+/*
+ Utility function to covert a "formula" string to a value
+ 
+ If formula = "n^2", returns n * n;
+ if formula = "nlog2(n)", returns n * log2(n);
+ otherwise, returns n.
+*/
 function getValueFromFormula(n, formula) {
   let value = n;
   if (formula == "n^2") {
@@ -418,6 +483,16 @@ function getValueFromFormula(n, formula) {
   return value;
 }
 
+/*
+ Returns an array of (x, y) value pair objects to be used as chart
+ data input.
+ 
+ Each element n in the array is mapped to a pair (x, y), where x is
+ set to n, and y is set to getValueFromFormula(n, formula) / divisor.
+ 
+ formula: string argument to pass to getValueFromFormula function
+ divisor: value to divide result of getValueFromFormula function by
+*/
 function mapArrayToDataPoints(arr, formula, divisor) {
   return arr.map(function (n) {
     let value = getValueFromFormula(n, formula);
@@ -428,6 +503,13 @@ function mapArrayToDataPoints(arr, formula, divisor) {
   });
 }  
 
+/*
+ Utility function calculates an appropriate divisor to use.
+ 
+ Looks at a portion of the array with the highest values,
+ calculates the divisor needed by each value to match the
+ formula, and returns the average of these values.
+*/
 function getDivisorFromDataPointsArray(arr, formula) {
   let topEndArr = arr.filter(obj => obj.x >= maxSize / 10);
   console.log("topEndArray: " + topEndArr);
@@ -440,6 +522,9 @@ function getDivisorFromDataPointsArray(arr, formula) {
   return divisor;
 }
 
+/*
+ Resets the UI
+*/
 function reset() {
   for (let i = 0; i <= 5; i++) {
     document.getElementById("chart" + i).innerHTML = "";
@@ -457,6 +542,9 @@ function reset() {
   document.getElementById("bottom").setAttribute("class", "flexColumn");
 }
 
+/*
+ Resets the UI and all non-select variables
+*/
 function resetAll() {
   reset();
 
@@ -469,7 +557,9 @@ function resetAll() {
   document.getElementById("numEach").value = numEachSize;
 }
 
-
+/*
+ Runs the tests, creates a CSV export of the results, and draws charts to the UI.
+*/
 function runTests() {
   console.log("min: " + minSize);
   console.log("max: " + maxSize);
