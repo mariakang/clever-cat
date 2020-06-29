@@ -1,4 +1,35 @@
+/* Sorting Algorithms
+
+This application defines five sorting functions: bubble sort, insertion
+sort, selection sort, merge sort and shell sort. For a given test size n,
+it generates an array containing n randomly-generated integers and then
+applies each of the sorting functions in turn, measuring their runtimes.
+Since each function returns a copy of the input array, this means that
+each time the test is run, all of the sorting functions are given the same
+test array to sort.
+
+The UI prompts the user to enter the minimum and maximum array input
+sizes, the number of tests to run for each size, whether or not to report
+average runtimes only, and whether or not to use "mostly sorted" test
+arrays. Starting with the minimum, the test sizes will go up in increments
+of powers of ten, up to the maximum test size.
+
+Once all tests have finished running, the UI is updated to provide a link
+to download the results as a CSV. If "Average runtimes only" was selected,
+the results will contain one row per test size, and graphs of the results
+will be drawn to the UI. Otherwise, the results will contain a row for
+each individual test array.
+
+Due to their size, the sorted arrays are not output to the CSV or console.
+Some console logging was used during development to test the algorithms,
+but has since been commented out.
+
+*/
+
+
+// Returns a copy of the input array, sorted in ascending order
 function bubbleSort(arr) {
+  // take a copy of the array
   let a = arr.slice();
   let loop = true;
   while (loop) {
@@ -18,7 +49,9 @@ function bubbleSort(arr) {
   return a;
 }
 
+// Returns a copy of the input array, sorted in ascending order
 function insertionSort(arr) {
+  // take a copy of the array
   let a = arr.slice();
   for (let i = 1; i < a.length; i++) {
     let val = a[i];
@@ -26,7 +59,6 @@ function insertionSort(arr) {
     while (a[j] > val && j >= 0) {
       a[j + 1] = a[j];
       a[j] = val;
- //     console.log(a);
       j--;
     }
 //    console.log(a);
@@ -34,7 +66,9 @@ function insertionSort(arr) {
   return a;
 }
 
+// Returns a copy of the input array, sorted in ascending order
 function selectionSort(arr) {
+  // take a copy of the array
   let a = arr.slice();
   for (let i = 0; i < a.length - 1; i++) {
     let min = a[i];
@@ -52,6 +86,7 @@ function selectionSort(arr) {
   return a;
 }
 
+// Returns a copy of the input array, sorted in ascending order
 function mergeSort(arr) {
   function merge (left, right) {
     let res = [];
@@ -70,6 +105,7 @@ function mergeSort(arr) {
           .concat(left.slice(leftIndex))
           .concat(right.slice(rightIndex));
   }
+  // take a copy of the array
   let a = arr.slice();
   if (a.length <= 1) {
     return a;
@@ -82,18 +118,21 @@ function mergeSort(arr) {
   return a;
 }
 
+// Returns an array of integers to be used as "gaps" when shell sort
+// is used to sort an array of the input size
 function getGaps(arrSize) {
   let gaps = [Math.floor(arrSize / 2)];
   while (gaps.indexOf(1) == -1) {
     let gap = Math.floor(gaps[gaps.length - 1] / 2);
-//    console.log(gap);
     gaps.push(gap);
   }
   return gaps;
 //  console.log(gaps);
 }
 
+// Returns a copy of the input array, sorted in ascending order
 function shellSort(arr, gapsArr) {
+  // take a copy of the array
   let a = arr.slice();
   if (a.length < 2) {
     return a;
