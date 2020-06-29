@@ -75,16 +75,16 @@ function insertionSort(arr) {
   for (let i = 1; i < a.length; i++) {
     // this element's value:
     let val = a[i];
-    // the preceding element's index:
-    let j = i - 1;
-    // starting with the preceding element, work backwards through
-    // the array, moving the current element down a place until it
-    // is in the correct position
-    while (a[j] > val && j >= 0) {
-      a[j + 1] = a[j];
-      a[j] = val;
+
+   let j = i;
+    // work backwards through the array, shifting the elements 
+    // up if higher than this element, and insert this element 
+    // at the correct position
+    while (j >= 1 && a[j - 1] > val) {
+      a[j] = a[j - 1];
       j--;
     }
+    a[j] = val;
 //    console.log(a);
   }
   // return the sorted array
@@ -161,7 +161,7 @@ function mergeSort(arr) {
   // take a copy of the array
   let a = arr.slice();
   // if empty or containing one element, the array is sorted
-  if (a.length <= 1) {
+  if (a.length < 2) {
     return a;
   }
   // otherwise, split the array into two subarrays
@@ -176,8 +176,14 @@ function mergeSort(arr) {
   return a;
 }
 
-// Returns an array of integers to be used as "gaps" when shell sort
-// is used to sort an array of the input size
+/*
+ Returns an array of integers to be used as "gaps" when shell sort
+ is used to sort an array of the input size.
+ 
+ The first gap is half of the array size, and subsequent gaps are
+ obtained by dividing the previous gap by 2, until a final gap of
+ 1 is reached.
+*/
 function getGaps(arrSize) {
   let gaps = [Math.floor(arrSize / 2)];
   while (gaps.indexOf(1) == -1) {
@@ -197,13 +203,20 @@ function getGaps(arrSize) {
 function shellSort(arr, gapsArr) {
   // take a copy of the array
   let a = arr.slice();
+  // if empty or containing one element, the array is sorted
   if (a.length < 2) {
     return a;
   }
+  // for each gap in the gaps array 
   for (let i = 0; i < gapsArr.length; i++) {
     let gap = gapsArr[i];
+    // starting at index "gap", iterate over the array
     for (let j = gap; j < a.length; j++) {
+      // value of this element
       let val = a[j];
+      // move back through the array, in increments of "gap",
+      // shifting the elements up if higher than this element,
+      // and insert this element at the correct position
       let k = j;
       while (k >= gap && a[k - gap] > val) {
         a[k] = a[k - gap];
