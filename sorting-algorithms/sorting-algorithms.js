@@ -133,33 +133,46 @@ function selectionSort(arr) {
  Returns a copy of the input array, sorted in ascending order.
 */
 function mergeSort(arr) {
+ // helper function to merge two sorted arrays into a single sorted
+ // array
   function merge (left, right) {
-    let res = [];
+    let ret = []; // initialise the array to be returned
+    // create two pointers to move over the two arrays
     let leftIndex = 0;
     let rightIndex = 0;
     while (leftIndex < left.length && rightIndex < right.length) {
+      // compare the elements at the pointers; copy the lower of them
+      // into the return array and move that pointer forward
       if (left[leftIndex] < right[rightIndex]) {
-        res.push(left[leftIndex]);
+        ret.push(left[leftIndex]);
         leftIndex++;
       } else {
-        res.push(right[rightIndex]);
+        ret.push(right[rightIndex]);
         rightIndex++;
       }
     }
-    return res
-          .concat(left.slice(leftIndex))
+    // one of the two pointers will be pointing at the last element
+    // which needs to be copied in
+    return ret
+          .concat(left.slice(leftIndex)) // (won't do anything if index = length)
           .concat(right.slice(rightIndex));
   }
+
   // take a copy of the array
   let a = arr.slice();
+  // if empty or containing one element, the array is sorted
   if (a.length <= 1) {
     return a;
   }
+  // otherwise, split the array into two subarrays
   let mid = Math.floor(a.length / 2);
   let left = a.slice(0, mid);
   let right = a.slice(mid);
+  // sort each subarray recursively and merge into a single array
+  // using the helper function above
   a = merge(mergeSort(left),mergeSort(right));
 //  console.log(a);
+  // return the sorted array
   return a;
 }
 
