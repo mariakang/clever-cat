@@ -64,9 +64,15 @@ function bubbleSort(arr) {
 function insertionSort(arr) {
   // take a copy of the array
   let a = arr.slice();
+  // starting at the second element, loop through the array
   for (let i = 1; i < a.length; i++) {
+    // this element's value:
     let val = a[i];
+    // the preceding element's index:
     let j = i - 1;
+    // starting with the preceding element, work backwards through
+    // the array, moving the current element down a place until it
+    // is in the correct position
     while (a[j] > val && j >= 0) {
       a[j + 1] = a[j];
       a[j] = val;
