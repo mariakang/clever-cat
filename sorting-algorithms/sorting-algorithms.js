@@ -87,7 +87,6 @@ function insertionSort(arr) {
     a[j] = val;
 //    console.log(a);
   }
- console.log(a)
   // return the sorted array
   return a;
 }
@@ -124,7 +123,6 @@ function selectionSort(arr) {
     a[minIndex] = val;
 //    console.log(a);
   }
- console.log(a)
   // return the sorted array
   return a;
 }
@@ -598,7 +596,7 @@ function runTests() {
     for (let j = 0; j < numEachSize; j++) {
       // generate the test data - the same array will be used for each algorithm
       let testArray = generateTestData(testSize);
-      console.log("test data: " + testArray);
+//      console.log("test data: " + testArray);
      
       console.log("Bubble sort...");
 
