@@ -22,56 +22,87 @@ algorithms, but has since been commented out.
 
 */
 
+/*
+ Linear search
+ 
+ Searches for an integer x in the range 1 to N inclusive, and returns the
+ number of guesses made. Returns false if x is not in the range.
+*/
 function linearSearch(x, N) {
   console.log("x: " + x + ", N: " + N);
-  let count = 0;
+  let count = 0; // number of guesses
   let guess = 0;
+  // starting at 1, increment guess by 1 each time until a match is found.
   while (guess <= N) {
     count++;
     guess++;
 //    console.log("count: " + count + ", guess: " + guess);
+    // if a match has been found, return the number of guesses
     if (guess == x) {
 //      console.log("total guesses: " + count);
       return count;
     }
   }
+  // if N has been reached but no match has been found, return false
   return false;
 }
 
+/*
+ Binary search
+ 
+ Searches for an integer x in the range 1 to N inclusive, and returns the
+ number of guesses made. Returns false if x is not in the range.
+*/
 function binarySearch(x, N) {
   console.log("x: " + x + ", N: " + N);
-  let min = 1;
-  let max = N;
-  let count = 0;
+  let min = 1; // minimum possible value
+  let max = N; // maximum possible value
+  let count = 0; // number of guesses
   while (min <= max) {
     count++;
+    // pick the mid-point as a guess
     let guess = Math.floor((min + max) / 2);
 //    console.log("count: " + count + ", guess: " + guess);
+    // if it's a match, return the number of guesses
     if (guess == x) {
 //      console.log("total guesses: " + count);
       return count;
+    // if x is higher than the guess, then its minimum value is too  
     } else if (guess < x) {
       min = guess + 1;
+    // if x is lower than the guess, then so is its maximum value  
     } else {
       max = guess - 1;
     }
   }
+  // if the minimum value exceeds the maximum, then x is out of range
   return false;
 }
 
+/*
+ Returns a random integer between 1 and N inclusive.
+*/
 function generateRandomX(N) {
   let x = Math.floor(Math.random() * N) + 1;
   console.log(x);
   return x;
 }
 
-let minN = 1000;
-let maxN = 100000;
-let numEachN = 100;
-let avgsOnly = true;
+/*
+ Global variables
+*/
 
-let charts = [];
-        
+let minN = 1000; // minimum value of N
+let maxN = 100000; // maximum value of N
+let numEachN = 100; // number of tests to run for each value of N
+let avgsOnly = true; // if true, return average number of guesses for each N
+
+let charts = []; // container to hold variables representing charts
+ 
+/*
+ Functions to update global variables, called by onChange events
+*/
+
 function updateMinN(min) {
   reset();
   if (min < 1 || min > 1000000 || Math.round(min) != min) {
@@ -110,6 +141,13 @@ function updateAvgsOnly(str) {
   avgsOnly = str == "Yes";
 }
 
+/*
+ Returns a chart object using the CanvasJS API.
+ 
+ id: id of the HTML element in which to draw the chart
+ title: chart title
+ dataArray: array of chart data objects
+*/
 function createChart(id, title, dataArray) {
   let chart = new CanvasJS.Chart(id, {
       title: {
@@ -136,6 +174,16 @@ function createChart(id, title, dataArray) {
   return chart;
 }
 
+/*
+ Returns a chart data object.
+ 
+ An array of chart data objects is required to create a
+ chart object using the CanvasJS API.
+ 
+ name: name of line graph, to appear in legend
+ color: color of line and tooltip text
+ dataPointsArray: array of (x, y) value pair objects
+*/
 function createChartDataObject(name, color, dataPointsArr) {
   let dataObject = {
     type: "line",
@@ -150,6 +198,12 @@ function createChartDataObject(name, color, dataPointsArr) {
   return dataObject;  
 }
 
+/*
+ Renders a chart object created using the CanvasJS API.
+ 
+ id: id of the HTML element against which to render the chart
+ chart: chart object
+ */
 function drawChart(id, chart) {
   document.getElementById(id).setAttribute("class", "chart");
   chart.render();
@@ -157,10 +211,18 @@ function drawChart(id, chart) {
   document.getElementById(id+"Export").setAttribute("onclick", "exportChart(charts[" + id.replace("chart", "") + "])");
 }
 
+/*
+ Exports a chart object as a jpg.
+ 
+ Function to be called by an onClick button event.
+*/
 function exportChart(chart) {
   chart.exportChart({format: "jpg"});
 }
 
+/*
+ Resets the UI
+*/
 function reset() {
   for (let i = 0; i <= 2; i++) {
     document.getElementById("chart" + i).innerHTML = "";
@@ -178,6 +240,9 @@ function reset() {
   document.getElementById("bottom").setAttribute("class", "flexColumn");
 }
 
+/*
+ Resets the UI and non-select global variables
+*/
 function resetAll() {
   reset();
 
@@ -190,7 +255,9 @@ function resetAll() {
   document.getElementById("numEach").value = numEachN;
 }
 
-
+/*
+ Runs the tests, creates a CSV export of the results, and draws charts to the UI.
+*/
 function runTests() {
   console.log("min: " + minN);
   console.log("max: " + maxN);
@@ -242,8 +309,6 @@ function runTests() {
   
   document.getElementById("runTests").innerHTML = "Reset";
   document.getElementById("runTests").setAttribute("onclick", "resetAll()");
-
-  let csvContent = "data:text/csv;charset=utf-8,";
 
   if (avgsOnly) {
     let avgRows = [["N", "Number of tests", "Linear search", "Binary search"]];
@@ -302,6 +367,8 @@ function runTests() {
     document.getElementById("top").setAttribute("class", "flexRow");
     document.getElementById("bottom").setAttribute("class", "flexRow");
   }
+
+  let csvContent = "data:text/csv;charset=utf-8,";
 
   for(let i = 0; i < rows.length; i++) {
       let row = rows[i].join(",");
