@@ -1,4 +1,5 @@
-/* Sorting Algorithms
+/* 
+Sorting Algorithms
 
 This application defines five sorting functions: bubble sort, insertion
 sort, selection sort, merge sort and shell sort. For a given test size n,
@@ -32,20 +33,30 @@ function bubbleSort(arr) {
   // take a copy of the array
   let a = arr.slice();
   let loop = true;
+  // Loop through the array, swapping pairs of adjacent elements if
+  // not in ascending order. Keep looping through the array until
+  // the number of swaps made is zero, indicating that the array
+  // is now in ascending order.
   while (loop) {
     let swaps = 0;
+    // loop over the array
     for (let i = 0; i < a.length - 1; i++) {
+      // the first value in the pair:
       let val = a[i];
+      // the second value in the pair:
       let nextVal = a[i + 1];
+      // if the pair are out of order, swap them and count the swap
       if (val > nextVal) {
         a[i] = nextVal;
         a[i + 1] = val;
         swaps += 1;
       }
     }
+    // check the number of swaps made for this loop; if non-zero, loop again
     loop = swaps > 0;
 //    console.log(a);
   }
+  // return the sorted array
   return a;
 }
 
@@ -63,6 +74,7 @@ function insertionSort(arr) {
     }
 //    console.log(a);
   }
+  // return the sorted array
   return a;
 }
 
@@ -83,6 +95,7 @@ function selectionSort(arr) {
     a.splice(i, 0, min);
 //    console.log(a);
   }
+  // return the sorted array
   return a;
 }
 
@@ -150,6 +163,7 @@ function shellSort(arr, gapsArr) {
     }
 //    console.log(a);
   }
+  // return the sorted array
   return a;
 }
 
