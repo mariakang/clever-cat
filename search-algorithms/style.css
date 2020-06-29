@@ -40,6 +40,8 @@ body {
 
 p {
   color: grey;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .button {
