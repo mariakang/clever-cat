@@ -565,9 +565,12 @@ function runTests() {
   console.log("max: " + maxSize);
   console.log("num: " + numEachSize);
   
+  // initialise an array of arrays to hold the results - the first row contains the headings
   let rows = [["Test", "Array size", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
   
+  // generate an array containing the different test sizes
   let testSizes = [];
+  // increment the test sizes by powers of 10, e.g. 10, 20, ..., 90, 100, 200, ..., 900, 1000, 2000, ...etc.
   let increment = Math.pow(10, Math.floor(Math.log10(minSize)));
   for (let x = parseInt(minSize, 10); x <= maxSize; x += increment) {
     testSizes.push(x);
@@ -583,12 +586,15 @@ function runTests() {
   
   let currentTest = 1;
     
+  // for each test size, generate the gaps array needed for shell sort
   for (let i = 0; i < testSizes.length; i++) {
     let testSize = testSizes[i];
     console.log("test size: " + testSize);
     let gapsArr = getGaps(testSize);
-        
+    
+    // run numEachSize repetitions for each test size
     for (let j = 0; j < numEachSize; j++) {
+      // generate the test data - the same array will be used for each algorithm
       let testArray = generateTestData(testSize);
 //      console.log("test data: " + testArray);
      
@@ -597,7 +603,7 @@ function runTests() {
       let t1s = performance.now();
       bubbleSort(testArray);
       let t1e = performance.now();
-      let t1 = round(t1e - t1s);
+      let t1 = round(t1e - t1s); // runtime, rounded to 4 d.p.
       
       console.log("Bubble sort completed in " + t1 + "ms.\nInsertion sort...");
 
@@ -630,6 +636,7 @@ function runTests() {
 
       console.log("Shell sort completed in " + t5 + "ms.");
       
+      // add the test number, test size, and runtimes to the results array
       rows.push([currentTest, testSize, t1, t2, t3, t4, t5]);
       
       let message = "Completed " + currentTest + " of " + totalNumTests + " tests";
@@ -638,75 +645,95 @@ function runTests() {
       currentTest++;
     }
   }
-  
+  // change the behaviour of the "run tests" button to reset the page
   document.getElementById("runTests").innerHTML = "Reset";
   document.getElementById("runTests").setAttribute("onclick", "resetAll()");
 
-  let csvContent = "data:text/csv;charset=utf-8,";
-
+  // if averages only has been set to true, then aggregate the results and draw charts
   if (avgsOnly) {
- 
+    // create a new results array of arrays with new headings
     let avgRows = [["Array size", "Number of tests", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
+    // for each test size, find the portion of the results array relating to it
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachSize * i, numEachSize * (i + 1));
-      console.log("subArrays: ");
-      for (let j = 0; j < numEachSize; j++) {
-        console.log(subArr[j]);
-      }
+//      console.log("subArrays: ");
+//      // output each row to the console to check arithmetic
+//      for (let j = 0; j < numEachSize; j++) {
+//        console.log(subArr[j]);
+//      }
+     
+      // aggregate the arrays into a single array containing the totals
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachSize, x[2] + y[2], x[3] + y[3], x[4] + y[4], x[5] + y[5], x[6] + y[6]]);
-      console.log("totals: "+ totalsArr);
+//      console.log("totals: "+ totalsArr);
+      // convert the totals into averages
       let avgsArr = totalsArr.map((x, i) => i < 2 ? x : round(x / numEachSize));
-      console.log("avgs: " + avgsArr);
+//      console.log("avgs: " + avgsArr);
+      // add the new row array to the results array
       avgRows.push(avgsArr);
     }
+    // replace the original results array (of arrays) with this new array (of arrays) 
     rows = avgRows.slice();
     
-    let chartData = [];
+    // draw line graphs of the results
+    let chartData = []; // array of data objects needed for the chart containing all line graphs
     let lineColors = ["hsl(0, 100%, 50%)", "hsl(240, 50%, 50%)", "hsl(150, 50%, 50%)", "hsl(300, 50%, 50%)", "hsl(40, 100%, 50%)"];
     
+    // loop over the sorting algorithms
     for (let s = 1; s <= 5; s++) {
-      let name = avgRows[0][s + 1].slice(0, -5);
+      let name = avgRows[0][s + 1].slice(0, -5); // name of algorithm, obtained from headings row of results array
       let color = lineColors[s - 1];
+      // map each row in the results array to an (x, y) data point object,
+      // where x is the test size and y is the average runtime
       let dataPointsArr = avgRows.slice(1).map(function getData(row) {
         return {
           x: row[0],
           y: row[s + 1]
         };
       });
+      // create a data object containing the graph coordinates
       let dataObject = createChartDataObject(name, color, dataPointsArr);
+      // add this to the collection which will draw the chart showing all algorithm graphs
       chartData.push(dataObject);
-      let compColor = color.replace("50%)", "85%)");
+      // "comp" stands for comparison
+      let compColor = color.replace("50%)", "85%)"); // make a lighter version of the line colour
+      // set a formula string corresponding to the time complexity rule for the algorithm
       let formula = s <= 3 ? "n^2" : "nlog2(n)";
+      // if mostly sorted data has been used, the complexity for insertion sort should be n
       if (s == 2 && mostlySorted) {
         formula = "n";
       }
-      let divisor = getDivisorFromDataPointsArray(dataPointsArr, formula);
-      let compName = "1/" + divisor + " * " + formula;
-      let compDataPointsArr = mapArrayToDataPoints(testSizes, formula, divisor);
-      let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
-      let chart = createChart("chart" + s, name.replace("sort", "Sort"), [dataObject, compDataObject]);
-      charts[s] = chart;
-      drawChart("chart" + s, chart);
+      let divisor = getDivisorFromDataPointsArray(dataPointsArr, formula); // scaling factor
+      let compName = "1/" + divisor + " * " + formula; // title to appear in legend
+      let compDataPointsArr = mapArrayToDataPoints(testSizes, formula, divisor); // data points
+      let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr); // chart data object
+      let chart = createChart("chart" + s, name.replace("sort", "Sort"), [dataObject, compDataObject]); // chart object
+      charts[s] = chart; // add chart to global array variable to enable access during reset
+      drawChart("chart" + s, chart); // render chart to the UI
     }
-    console.log(JSON.stringify(chartData));
+//    console.log(JSON.stringify(chartData));
+    // create a chart with multiple line graphs for all of the algorithms
     let chart0 = createChart("chart0", "Sort Algorithm Average Runtimes", chartData);
-    charts[0] = chart0;
-    drawChart("chart0", chart0);
+    charts[0] = chart0; // add it to the global collection
+    drawChart("chart0", chart0); // render it to the UI
 
+    // display the original input boxes in two rows
     document.getElementById("top").setAttribute("class", "flexRow");
     document.getElementById("bottom").setAttribute("class", "flexRow");
 
   }
 
+  // create a CSV of the results
+  let csvContent = "data:text/csv;charset=utf-8,";
   for(let i = 0; i < rows.length; i++) {
-      let row = rows[i].join(",");
-      csvContent += row + "\r\n";
+      let row = rows[i].join(","); // for each row array, create a string of comma-separated values
+      csvContent += row + "\r\n"; // ensure each row string is on a new line
   }
   
+  // create a link to download the CSV file
   let encodedUri = encodeURI(csvContent);
-  let link = document.getElementById("csvLink");
+  let link = document.getElementById("csvLink");  // hidden HTML hyperlink element
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "test_data.csv");
-  link.setAttribute("class", "button");
+  link.setAttribute("download", "test_data.csv"); // set the hyperlink to download the CSV
+  link.setAttribute("class", "button"); // unhide the HTML element and style it as a button 
   link.innerHTML = "Download results as CSV";
 }
