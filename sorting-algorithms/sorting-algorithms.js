@@ -27,8 +27,11 @@ but has since been commented out.
 
 */
 
+/* 
+ Bubble sort
 
-// Returns a copy of the input array, sorted in ascending order
+ Returns a copy of the input array, sorted in ascending order.
+*/
 function bubbleSort(arr) {
   // take a copy of the array
   let a = arr.slice();
@@ -60,7 +63,11 @@ function bubbleSort(arr) {
   return a;
 }
 
-// Returns a copy of the input array, sorted in ascending order
+/* 
+ Insertion sort
+
+ Returns a copy of the input array, sorted in ascending order.
+*/
 function insertionSort(arr) {
   // take a copy of the array
   let a = arr.slice();
@@ -84,28 +91,47 @@ function insertionSort(arr) {
   return a;
 }
 
-// Returns a copy of the input array, sorted in ascending order
+/* 
+ Selection sort
+
+ Returns a copy of the input array, sorted in ascending order.
+*/
 function selectionSort(arr) {
   // take a copy of the array
   let a = arr.slice();
+  // Starting at 0, for each index i of the array, find the
+  // minimum value in the subarray from i to the end, and swap
+  // it with the element at position i. The subarray from 0 to
+  // i will therefore be sorted in ascending order.
   for (let i = 0; i < a.length - 1; i++) {
-    let min = a[i];
-    let index = i;
+    // store value of element at position i for later
+    let val = a[i];
+    // loop through the subarray, looking for the minimum value
+    // and its index
+    let min = a[i]; // assume it's the first element
+    let minIndex = i; // remember its index
     for (let j = i + 1; j < a.length; j++) {
+      // if any subsequent element is lower, it becomes the new
+      // minimum
       if (a[j] < min) {
         min = a[j];
-        index = j;
+        minIndex = j;
       }
     }
-    a.splice(index, 1);
-    a.splice(i, 0, min);
+    // swap the element at i with the minimum found
+    a[i] = min;
+    a[minIndex] = val;
 //    console.log(a);
   }
   // return the sorted array
   return a;
 }
 
-// Returns a copy of the input array, sorted in ascending order
+/* 
+ Merge sort
+
+ Returns a copy of the input array, sorted in ascending order.
+*/
 function mergeSort(arr) {
   function merge (left, right) {
     let res = [];
@@ -149,7 +175,12 @@ function getGaps(arrSize) {
 //  console.log(gaps);
 }
 
-// Returns a copy of the input array, sorted in ascending order
+/* 
+ Shell sort
+
+ Returns a copy of the input array, sorted in ascending order.
+ Uses the input gaps array to implement the shell sort algorithm.
+*/
 function shellSort(arr, gapsArr) {
   // take a copy of the array
   let a = arr.slice();
