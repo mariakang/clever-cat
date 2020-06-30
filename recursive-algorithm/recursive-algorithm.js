@@ -18,8 +18,8 @@
  Once all tests have finished running, the UI is updated to provide
  a link to download the results as a CSV. If "Average runtimes only"
  was selected, the results will contain one row per value of n, and
- graphs of the results will be drawn to the UI. Otherwise, the results
- will contain a row for each individual test run.
+ a graph of the results will be drawn to the UI. Otherwise, the
+ results will contain a row for each individual test run.
  
  Some console logging was used during development to test the code,
  but has since been commented out.
@@ -48,6 +48,7 @@
  Uses a recursive method.
 */
 function p(n) {
+  // base cases, i.e. n <= 3
   if (n < 1) {
     return 0;
   } else if (n == 1) {
@@ -56,6 +57,7 @@ function p(n) {
     return 2;
   } else if (n == 3) {
     return 4;
+  // for n > 3, use recursion
   } else {
     return p(n - 1) + p(n - 2) + p(n - 3);
   }
@@ -68,7 +70,10 @@ function p(n) {
  of the recursive method.
 */
 function iterativeP(n) {
-  let array = [0, 1, 2, 4];
+  // for n = 0 to n, calculate p(n), add the value to an array,
+  // and then return the last element of the array
+  let array = [0, 1, 2, 4]; // initialise the array with base cases
+  // for n > 3, calculate p(n) from previous array members
   for (let i = 4; i <= n; i++) {
     let p = array[i - 3] + array[i - 2] + array[i - 1];
     array.push(p);
@@ -83,7 +88,7 @@ function iterativeP(n) {
 
 let valueN = 1; // global variable to store current value of n
 
-// function to update global variable, called by onChange event
+// updates global variable, called by onChange event
 function updateValueN(n) {
   reset();
   if (n < 1 || n > 100 || Math.round(n) != n) {
@@ -94,13 +99,15 @@ function updateValueN(n) {
   }
 }
 
+// calculates p(n) and displays it in the UI
 function runTestCase() {
   let recursive = p(valueN);
   let iterative = iterativeP(valueN);
   let message = "Recursive method: p(" + valueN + ") = " + recursive + "<br/>"
     + "Iterative method: p(" + valueN + ") = " + iterative;
   document.getElementById("answer").innerHTML = message;
-  document.getElementById("answer").setAttribute("class", "answer");
+  document.getElementById("answer").setAttribute("class", "answer"); // unhide element
+  // change behaviour of button
   document.getElementById("runTestCase").innerHTML = "Reset";
   document.getElementById("runTestCase").setAttribute("onclick", "resetAll()");
 }
@@ -162,10 +169,21 @@ function updateAvgsOnly(str) {
   avgsOnly = str == "Yes";
 }
 
+
+/*
+ Utility function rounds a number to 4 decimal places
+*/
 function round(n) {
   return Math.round(n * 10000) / 10000;
 }
 
+/*
+ Returns a chart object using the CanvasJS API.
+ 
+ id: id of the HTML element in which to draw the chart
+ title: chart title
+ dataArray: array of chart data objects
+*/
 function createChart(id, title, dataArray) {
   let chart = new CanvasJS.Chart(id, {
       title: {
@@ -192,6 +210,16 @@ function createChart(id, title, dataArray) {
   return chart;
 }
 
+/*
+ Returns a chart data object.
+ 
+ An array of chart data objects is required to create a
+ chart object using the CanvasJS API.
+ 
+ name: name of line graph, to appear in legend
+ color: color of line and tooltip text
+ dataPointsArray: array of (x, y) value pair objects
+*/
 function createChartDataObject(name, color, dataPointsArr) {
   let dataObject = {
     type: "line",
@@ -206,6 +234,12 @@ function createChartDataObject(name, color, dataPointsArr) {
   return dataObject;
 }
 
+/*
+ Renders a chart object created using the CanvasJS API.
+ 
+ id: id of the HTML element against which to render the chart
+ chart: chart object
+ */
 function drawChart(id, chart) {
   document.getElementById(id).setAttribute("class", "chart");
   chart.render();
@@ -213,11 +247,18 @@ function drawChart(id, chart) {
   document.getElementById(id+"Export").setAttribute("onclick", "exportChart(charts[0])");
 }
 
+/*
+ Exports a chart object as a jpg.
+ 
+ Function to be called by an onClick button event.
+*/
 function exportChart(chart) {
   chart.exportChart({format: "jpg"});
 }
 
-
+/*
+ Resets the UI
+*/
 function reset() {
   document.getElementById("chart").innerHTML = "";
   document.getElementById("chart").setAttribute("class", "hidden");
@@ -241,6 +282,9 @@ function reset() {
   document.getElementById("bottom").setAttribute("class", "flexColumn");
 }
 
+/*
+ Resets the UI and all non-select variables
+*/
 function resetAll() {
   reset();
 
@@ -255,15 +299,21 @@ function resetAll() {
   document.getElementById("numEach").value = numEachN;
 }
 
-
+/*
+ Runs the tests, creates a CSV export of the results, and draws a chart to the UI.
+*/
 function runTests() {
   console.log("min: " + minN);
   console.log("max: " + maxN);
   console.log("num: " + numEachN);
   
+  // initialise an array of arrays to hold the results:
+  // each member array represents a row, the first row contains the headings
   let rows = [["Test", "n", "p(n)", "Runtime (ms)"]];
   
+  // generate an array containing the different test sizes (values of n)
   let testSizes = [];
+  // increment the test sizes by 1
   for (let i = parseInt(minN, 10); i <= maxN; i++) {
     testSizes.push(i);
   }
@@ -277,6 +327,7 @@ function runTests() {
   
   let currentTest = 1;
     
+  // for each value of n, run function p(n) numEachN times
   for (let i = 0; i < testSizes.length; i++) {
     let n = testSizes[i];
 
@@ -285,10 +336,11 @@ function runTests() {
       let ts = performance.now();
       let ans = p(n);
       let te = performance.now();
-      let t = round(te - ts);
+      let t = round(te - ts); // runtime of p(n), rounded to 4 d.p.
       
       console.log("p(" + n + ") calculated to be " + ans + " in " + t + "ms");
 
+      // add the test number, test size, value of p(n) and runtime to the results array
       rows.push([currentTest, n, ans, t]);
       
       let message = "Completed " + currentTest + " of " + totalNumTests + " tests";
