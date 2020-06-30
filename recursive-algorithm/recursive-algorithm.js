@@ -1,4 +1,9 @@
 
+/*
+ Returns p(n), the number of parking arrangements for n spaces.
+ 
+ Uses a recursive method.
+*/
 function p(n) {
   if (n < 1) {
     return 0;
@@ -14,23 +19,10 @@ function p(n) {
 }
 
 /*
-function p(n) {
-  console.log("calculating p(" + n + ")");
-  let ans = 0;
-  if (n == 1) {
-    ans = 1;
-  } else if (n == 2) {
-    ans = 2;
-  } else if (n == 3) {
-    ans = 4;
-  } else if (n > 3) {
-    ans = p(n - 1) + p(n - 2) + p(n - 3);
-  }
-  console.log("p(" + n + ") = " + ans);
-  return ans;
-}
+ Returns p(n), the number of parking arrangements for n spaces.
+ 
+ Uses an iterative (faster) method.
 */
-
 function iterativeP(n) {
   let array = [0, 1, 2, 4];
   for (let i = 4; i <= n; i++) {
