@@ -1,3 +1,42 @@
+/*
+ Recursive algorithm
+ 
+ This application defines a recursive function p(n) to calculate
+ the number of parking arrangements for a street with n spaces.
+ All n spaces must be taken up, and there are three possible
+ vehicle types: a bicycle takes up 1 space, a car 2 spaces, and
+ a van 3 spaces.
+ 
+ The application has two sections: the first calculates p(n) for a
+ specified value of n and displays the result, and the second
+ calculates p(n) for multiple values of n and returns the runtimes.
+ 
+ The UI prompts the user to enter the minimum and maximum values of
+ n, the number of tests to run for each value of n, and whether or
+ not to report average runtimes only.
+
+ Once all tests have finished running, the UI is updated to provide
+ a link to download the results as a CSV. If "Average runtimes only"
+ was selected, the results will contain one row per value of n, and
+ graphs of the results will be drawn to the UI. Otherwise, the results
+ will contain a row for each individual test run.
+
+ Logic
+ 
+ Given a value n, if n < 1 then no arrangements are possible.
+ If n = 1, then the only arrangement is a single bicycle (B).
+ If n = 2, then there are 2 arrangements: 2 bicycles or a car (BB, C).
+ If n = 3, then there are 4 arrangements: 3 bicycles, a car and a
+ bicycle, or a van (BBB, BC, CB, V).
+ 
+ If n > 3, then the first vehicle in the arrangement must be a
+ bicycle, a car or a van. If it's a bicycle, then there are (n - 1)
+ spaces left, which can have p(n - 1) possible arrangements, so
+ there are p(n - 1) possible arrangements if the first vehicle
+ is a bicycle. Similarly, there are p(n - 2) possible arrangements
+ if the first vehicle is a car, and p(n - 3) arrangements if the
+ first vehicle is a van. Therefore, for n > 3, we can see that
+ p(n) = p(n - 1) + p(n - 2) + p(n - 3).
 
 /*
  Returns p(n), the number of parking arrangements for n spaces.
@@ -21,7 +60,8 @@ function p(n) {
 /*
  Returns p(n), the number of parking arrangements for n spaces.
  
- Uses an iterative (faster) method.
+ Uses an iterative (faster) method. Used to verify the results
+ of the recursive method.
 */
 function iterativeP(n) {
   let array = [0, 1, 2, 4];
