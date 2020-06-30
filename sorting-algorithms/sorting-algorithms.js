@@ -565,12 +565,14 @@ function runTests() {
   console.log("max: " + maxSize);
   console.log("num: " + numEachSize);
   
-  // initialise an array of arrays to hold the results - the first row contains the headings
+  // initialise an array of arrays to hold the results:
+  // each member array represents a row, the first row contains the headings
   let rows = [["Test", "Array size", "Bubble sort (ms)", "Insertion sort (ms)", "Selection sort (ms)", "Merge sort (ms)", "Shell sort (ms)"]];
   
   // generate an array containing the different test sizes
   let testSizes = [];
-  // increment the test sizes by powers of 10, e.g. 10, 20, ..., 90, 100, 200, ..., 900, 1000, 2000, ...etc.
+  // increment the test sizes by powers of 10
+  // e.g. test sizes = [10, 20, ..., 90, 100, 200, ..., 900, 1000, 2000, ...etc.]
   let increment = Math.pow(10, Math.floor(Math.log10(minSize)));
   for (let x = parseInt(minSize, 10); x <= maxSize; x += increment) {
     testSizes.push(x);
