@@ -20,6 +20,10 @@
  was selected, the results will contain one row per value of n, and
  graphs of the results will be drawn to the UI. Otherwise, the results
  will contain a row for each individual test run.
+ 
+ Some console logging was used during development to test the code,
+ but has since been commented out.
+
 
  Logic
  
