@@ -60,8 +60,8 @@ function linearSearch(x, N) {
 */
 function binarySearch(x, N) {
   console.log("x: " + x + ", N: " + N);
-  let min = 1; // minimum possible value
-  let max = N; // maximum possible value
+  let min = 1; // minimum possible value of x
+  let max = N; // maximum possible value of x
   let count = 0; // number of guesses
   while (min <= max) {
     count++;
@@ -89,7 +89,7 @@ function binarySearch(x, N) {
 */
 function generateRandomX(N) {
   let x = Math.floor(Math.random() * N) + 1;
-  console.log(x);
+//  console.log(x);
   return x;
 }
 
@@ -268,9 +268,14 @@ function runTests() {
   console.log("max: " + maxN);
   console.log("num: " + numEachN);
   
+  // initialise an array of arrays to hold the results:
+  // each array member represents a row, the first row contains the headings
   let rows = [["Test", "N", "Linear search", "Binary search"]];
   
+  // generate an array containing the different test sizes (i.e. values of N)
   let testSizes = [];
+  // increment the test sizes by powers of 10
+  // e.g. test sizes = [1, 2, ... 9, 10, 20, ..., 90, 100, 200, ..., 900, 1000, 2000, ...etc.]
   let increment = Math.pow(10, Math.floor(Math.log10(minN)));
   for (let x = parseInt(minN, 10); x <= maxN; x += increment) {
     testSizes.push(x);
@@ -285,24 +290,26 @@ function runTests() {
         + ".\n\nThis may take some time, so please check the console for progress updates.");
   
   let currentTest = 1;
-    
+  // for each test size N, run numEachN tests   
   for (let i = 0; i < testSizes.length; i++) {
     let N = testSizes[i];
 
     for (let j = 0; j < numEachN; j++) {
+      // generate random integer x between 1 and N
       let x = generateRandomX(N);
       console.log("N: " + N + ", x: " + x);
       
       console.log("Linear search...");
 
-      let linRes = linearSearch(x, N);
+      let linRes = linearSearch(x, N); // number of guesses used to guess x by linear search
       
       console.log("Linear search completed in " + linRes + " guesses.\nBinary search...");
 
-      let binRes = binarySearch(x, N);
+      let binRes = binarySearch(x, N); // number of guesses used to guess x by binary search
 
       console.log("Binary search completed in " + binRes + " guesses.");
 
+      // add the test number, value of N, and numbers of guesses to the results array 
       rows.push([currentTest, N, linRes, binRes]);
       
       let message = "Completed " + currentTest + " of " + totalNumTests + " tests";
@@ -312,24 +319,35 @@ function runTests() {
     }
   }
   
+  // change the behaviour of the "run tests" button to reset the page
   document.getElementById("runTests").innerHTML = "Reset";
   document.getElementById("runTests").setAttribute("onclick", "resetAll()");
 
+  // if averages only has been set to true, then aggregate the results and draw charts
   if (avgsOnly) {
+    // create a new results array (of arrays) with new headings
     let avgRows = [["N", "Number of tests", "Linear search", "Binary search"]];
+    // for each test size, find the portion of the results array relating to it
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachN * i, numEachN * (i + 1));
+      // aggregate the arrays into a single array containing the totals
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachN, x[2] + y[2], x[3] + y[3]]);
-      console.log(totalsArr);
+//      console.log(totalsArr);
+      // convert the totals into averages
       let avgsArr = totalsArr.map((x, i) => i < 2 ? x : Math.round(x / numEachN));
-      console.log(avgsArr);
+//      console.log(avgsArr);
+      // add the new row array to the results array
       avgRows.push(avgsArr);
     }
+    // replace the original results array (of arrays) with this new array (of arrays)
     rows = avgRows.slice();
     
-    let chartData = [];
+    // draw line graphs of the results
+    let chartData = []; // array of data objects needed for the chart containing both line graphs
     let lineColors = ["hsl(240, 50%, 50%)", "hsl(0, 100%, 50%)"];
+    // "comp" stands for comparison
     let compNames = ["N / 2", "log2(N)"];
+    // sets of coordinates to draw comparison graphs
     let compDataArrs = [
       testSizes.map(function getHalf(N) {
         return {
@@ -344,46 +362,56 @@ function runTests() {
         };
       })
     ];
-    
+    // for each search algorithm, draw a chart
     for (let s = 1; s <= 2; s++) {
-      let name = avgRows[0][s + 1];
+      let name = avgRows[0][s + 1]; // name of algorithm, obtained from the results headings row
       let color = lineColors[s - 1];
+      // map each row in the results array to an (x, y) data point object,
+      // where x is the test size (N) and y is the average number of guesses
       let dataPointsArr = avgRows.slice(1).map(function getData(row) {
         return {
           x: row[0],
           y: row[s + 1]
         };
       });
+     
+      // create a data object containing the graph coordinates
       let dataObject = createChartDataObject(name, color, dataPointsArr);
+      // add this to the collection which will draw the chart showing both algorithm graphs
       chartData.push(dataObject);
-      let compName = compNames[s - 1];
-      let compColor = color.replace("50%)", "85%)");
-      let compDataPointsArr = compDataArrs[s - 1];
+      // create a data object containing the comparison graph coordinates
+      let compName = compNames[s - 1]; // title to appear in legend
+      let compColor = color.replace("50%)", "85%)"); // a lighter version of the line colour
+      let compDataPointsArr = compDataArrs[s - 1]; // array of (x, y) coordinates
       let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
+      // create a chart containing two line graphs: the results and comparison
       let chart = createChart("chart" + s, name, [dataObject, compDataObject]);
-      charts[s] = chart;
-      drawChart("chart" + s, chart); 
+      charts[s] = chart; // add chart to global array variable to enable access during reset
+      drawChart("chart" + s, chart); // render chart to the UI
     }
-    console.log(JSON.stringify(chartData));
+//    console.log(JSON.stringify(chartData));
+    // create a chart with line graphs for both of the search algorithms
     let chart0 = createChart("chart0", "Linear and Binary Search Algorithms", chartData);
-    charts[0] = chart0;
-    drawChart("chart0", chart0);
+    charts[0] = chart0; // add it to the global collection
+    drawChart("chart0", chart0); // render it to the UI
 
+    // display the original input boxes in two rows
     document.getElementById("top").setAttribute("class", "flexRow");
     document.getElementById("bottom").setAttribute("class", "flexRow");
   }
 
+  // create a CSV of the results
   let csvContent = "data:text/csv;charset=utf-8,";
-
   for(let i = 0; i < rows.length; i++) {
-      let row = rows[i].join(",");
-      csvContent += row + "\r\n";
+      let row = rows[i].join(","); // for each row array, create a string of comma-separated values
+      csvContent += row + "\r\n"; // ensure each row string is on a new line
   }
   
+  // create a link to download the CSV file
   let encodedUri = encodeURI(csvContent);
-  let link = document.getElementById("csvLink");
+  let link = document.getElementById("csvLink"); // hidden HTML hyperlink element
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "test_data.csv");
-  link.setAttribute("class", "button");
+  link.setAttribute("download", "test_data.csv"); // set the hyperlink to download the CSV
+  link.setAttribute("class", "button"); // unhide the HTML element and style it as a button
   link.innerHTML = "Download results as CSV";
 }
