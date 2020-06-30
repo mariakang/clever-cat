@@ -303,11 +303,11 @@ function runTests() {
 
       let linRes = linearSearch(x, N); // number of guesses used to guess x by linear search
       
-      console.log("Linear search completed in " + linRes + " guesses.\nBinary search...");
+      console.log("Linear search completed in " + linRes + " guess(es).\nBinary search...");
 
       let binRes = binarySearch(x, N); // number of guesses used to guess x by binary search
 
-      console.log("Binary search completed in " + binRes + " guesses.");
+      console.log("Binary search completed in " + binRes + " guess(es).");
 
       // add the test number, value of N, and numbers of guesses to the results array 
       rows.push([currentTest, N, linRes, binRes]);
