@@ -76,8 +76,14 @@ function iterativeP(n) {
   return array[n];
 }
 
-let valueN = 1;
+/*
+ First ("test case") section to display p(n) for a single input
+ value of n.
+*/
 
+let valueN = 1; // global variable to store current value of n
+
+// function to update global variable, called by onChange event
 function updateValueN(n) {
   reset();
   if (n < 1 || n > 100 || Math.round(n) != n) {
@@ -99,13 +105,25 @@ function runTestCase() {
   document.getElementById("runTestCase").setAttribute("onclick", "resetAll()");
 }
 
-let minN = 1;
-let maxN = 30;
-let numEachN = 10;
-let avgsOnly = true;
+/*
+ Second ("runtimes") section to record runtimes of function p(n)
+ for multiple values of n.
+*/
 
-let charts = [];
+/*
+ Global variables
+*/
+let minN = 1; // minimum value of n
+let maxN = 30; // maximum value of n
+let numEachN = 10; // number of tests to run for each value of n
+let avgsOnly = true; // if true, only average runtimes will be reported
+
+let charts = []; // container to hold variables representing charts
         
+/*
+ Functions to update global variables, called by onChange events
+*/
+
 function updateMinN(min) {
   reset();
   if (min < 1 || min > 100 || Math.round(min) != min) {
