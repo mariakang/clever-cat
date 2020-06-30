@@ -2,14 +2,19 @@
 Search Algorithms
 
 This application defines two search functions: linear search and binary
-search. For a given test size N, it generates a random integer x between
-1 and N, and applies each of the search functions in turn to guess x,
-counting the number of guesses required by each one.
+search. Each function takes two arguments: N and x, and will try to find x
+in the range 1 to N (inclusive). If a match is found, the number of guesses
+is returned, otherwise false is returned.
+
+For a given test size N, this application generates a random integer x
+between 1 and N, and applies each of the search functions in turn to guess
+x, recording the output (i.e. number of guesses required by each one).
 
 The UI prompts the user to enter the minimum and maximum values of N,
-the number of tests to run for each value of N, and whether or not to report
-report average numbers of guesses only. Starting with the minimum, the values
-of N will go up in increments of powers of ten, up to the maximum value of N.
+the number of tests to run for each value of N, and whether or not to
+report average numbers of guesses only. Starting with the minimum, the
+values of N will go up in increments of powers of ten, up to the maximum
+value of N.
 
 Once all tests have finished running, the UI is updated to provide a link
 to download the results as a CSV. If "Average number of guesses only" was
