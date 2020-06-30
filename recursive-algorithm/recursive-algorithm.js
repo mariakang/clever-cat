@@ -244,23 +244,33 @@ function runTests() {
     }
   }
   
+  // change the behaviour of the "run tests" button to reset the page
   document.getElementById("runTests").innerHTML = "Reset";
   document.getElementById("runTests").setAttribute("onclick", "resetAll()");
 
-  let csvContent = "data:text/csv;charset=utf-8,";
-
+  // if averages only has been set to true, then aggregate the results and draw charts
   if (avgsOnly) {
+    // create a new results array of arrays with new headings
     let avgRows = [["n", "Number of tests", "p(n)", "Avg runtime (ms)"]];
+    // for each test size, find the portion of the results array relating to it
     for (let i = 0; i < testSizes.length; i++) {
       let subArr = rows.slice(1).slice(numEachN * i, numEachN * (i + 1));
+      // aggregate the arrays into a single array containing the totals
       let totalsArr = subArr.reduce((x, y) => [testSizes[i], numEachN, x[2], x[3] + y[3]]);
-      console.log(totalsArr);
+//      console.log(totalsArr);
+      // convert the totals into averages
       let avgsArr = totalsArr.map((x, i) => i < 3 ? x : round(x / numEachN));
-      console.log(avgsArr);
+//      console.log(avgsArr);
+      // add the new row array to the results array
       avgRows.push(avgsArr);
     }
+    // replace the original results array (of arrays) with this new array (of arrays)
     rows = avgRows.slice();
     
+    // draw a chart with two line graphs: one of the runtimes, and the other a comparison formula
+
+    // map each row in the results array to an (x, y) data point object,
+    // where x is the test size (n) and y is the average runtime
     let dataPointsArr = avgRows.slice(1).map(function getData(row) {
       return {
         x: row[0],
@@ -268,37 +278,45 @@ function runTests() {
       };
     });
     let name = "p(n) average runtime";
-    let color = "hsl(240, 50%, 50%)";
-    let dataObject = createChartDataObject(name, color, dataPointsArr);
+    let color = "hsl(240, 50%, 50%)"; // line and tooltip colour
+    let dataObject = createChartDataObject(name, color, dataPointsArr); // chart data object
+    // calculate an appropriate scaling factor to use for the comparison graph
     let divisorsArr = dataPointsArr.filter(obj => obj.x >= maxN - 5).map(obj => Math.pow(3, obj.x / 2) / obj.y);
-    let divisor = Math.round(divisorsArr.reduce((x, y) => x + y) / divisorsArr.length);
-    let compName = "1/" + divisor + " * 3^n/2";
-    let compColor = color.replace("50%)", "85%)");
+    let divisor = Math.round(divisorsArr.reduce((x, y) => x + y) / divisorsArr.length); // scaling factor
+    // "comp" stands for comparison
+    let compName = "1/" + divisor + " * 3^(n/2)";
+    let compColor = color.replace("50%)", "85%)"); // lighter version of the line colour
+    // map test sizes to a comparison data points array
     let compDataPointsArr = testSizes.map(function (n) {
       return {
         x: n,
         y: round(Math.pow(3, n / 2) / divisor)
       };
     });
-    let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr);
+    let compDataObject = createChartDataObject(compName, compColor, compDataPointsArr); // chart data object
+    // create chart object
     let chart = createChart("chart", "p(n) Algorithm Runtimes", [dataObject, compDataObject]);
-    charts[0] = chart;
-    drawChart("chart", chart);
+    charts[0] = chart; // add it to the global collection
+    drawChart("chart", chart); // render it to the UI
 
+    // hide the test case section and display the original input boxes in two rows
     document.getElementById("testCase").setAttribute("class", "hidden");
     document.getElementById("top").setAttribute("class", "flexRow");
     document.getElementById("bottom").setAttribute("class", "flexRow");
   }
 
+  // create a CSV of the results
+  let csvContent = "data:text/csv;charset=utf-8,";
   for(let i = 0; i < rows.length; i++) {
-      let row = rows[i].join(",");
-      csvContent += row + "\r\n";
+      let row = rows[i].join(","); // for each row array, create a string of comma-separated values
+      csvContent += row + "\r\n"; // ensure each row string is on a new line
   }
   
+  // create a link to download the CSV file
   let encodedUri = encodeURI(csvContent);
-  let link = document.getElementById("csvLink");
+  let link = document.getElementById("csvLink"); // hidden HTML hyperlink element
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "test_data.csv");
-  link.setAttribute("class", "button");
+  link.setAttribute("download", "test_data.csv"); // set the hyperlink to download the CSV
+  link.setAttribute("class", "button"); // unhide the HTML element and style it as a button
   link.innerHTML = "Download results as CSV";
 }
