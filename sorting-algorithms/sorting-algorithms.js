@@ -77,6 +77,7 @@ function insertionSort(arr) {
     let val = a[i];
 
    let j = i;
+    // starting at the element immediately preceding this element,
     // work backwards through the array, shifting the elements 
     // up if higher than this element, and insert this element 
     // at the correct position
