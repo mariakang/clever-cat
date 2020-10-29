@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<title>Vigenere Cipher</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="vigenere-cipher.js"></script>
+	</head>
+  <body>
+    <div class="flexColumn">
+      <h1>Vigenère Cipher</h1>
+      <div class="flexRow">
+        <div class="inputElement">
+          <label>Message</label>
+          <textarea id="message" type="text" onchange="updateMessage(this.value)" ></textarea>
+        </div>
+      </div>
+      <div class="flexRow">
+        <div class="inputElement">
+          <label>Key</label>
+          <input id="key" type="text" onchange="updateKey(this.value)" />
+        </div>
+      </div>
+      <div class="flexColumn">
+        <div class="inputElement">
+          <input id="encrypt" type="radio" name="algorithm" value="encrypt" onchange="setEncrypt()">Encrypt
+          <input id="decrypt" type="radio" name="algorithm" value="decrypt" onchange="setDecrypt()">Decrypt
+        </div>
+      </div>
+    </div>
+    <div id="results" class="flexColumn">
+      <div id="output" class="output"></div>
+    </div>
+  </body>
+</html>
