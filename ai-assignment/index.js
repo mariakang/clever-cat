@@ -91,6 +91,7 @@ function writeToCsv(result) {
     }
   }
   rows.push([name, classes, classification, Math.round(maxConfidence * 100)]);
+  console.log(rows);
   createCsv();
 }
 
