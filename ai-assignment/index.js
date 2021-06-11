@@ -59,7 +59,7 @@ function showFiles() {
 function classify(image) {
   image.setAttribute("class", "visible");
   // once complete, execute the 'processResults' callback
-  classifier.classify(image, displayResults);
+  classifier.classify(image, processResults);
 }
 
 // Callback to write the results to csv and (if appropriate) display them in a chart
