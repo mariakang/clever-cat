@@ -69,6 +69,7 @@ function processResults(error, result) {
   } else {
     writeToCsv(result);
     console.log(rows);
+    createCsv();
     if (displayChart) {
       drawChart(result);
     }
@@ -92,7 +93,6 @@ function writeToCsv(result) {
     }
   }
   rows.push([name, classes, classification, Math.round(maxConfidence * 100)]);
-  createCsv();
 }
 
 // Draws a chart to display the classifier results
