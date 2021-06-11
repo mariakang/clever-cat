@@ -69,7 +69,6 @@ function processResults(error, result) {
   } else {
     writeToCsv(result);
     console.log(rows);
-    createCsv();
     if (displayChart) {
       drawChart(result);
     }
@@ -121,6 +120,7 @@ function drawChart(result) {
   let chart = new google.visualization.BarChart(document.getElementById("chart"));
   chart.draw(view, options);
   document.getElementById("chart").setAttribute("class", "visible");
+  createCsv();
 }
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
@@ -138,6 +138,7 @@ function runTests() {
     document.getElementById("filename").innerHTML = image.src;
     classify(image);
   }
+  createCsv();
 }
 
 // Creates a csv of the results
