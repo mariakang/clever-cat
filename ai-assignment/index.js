@@ -1,41 +1,41 @@
 "use strict";
-// Ada Boilerplate - JavaScript and Computer Vision Teachable Machine,
-// Machine Learning & Teachable Machine Models
 
 // Load Google charts
 google.charts.load("current", {packages: ["corechart", "bar"]});
 
-//for easy lets setup some quick global variables
-let imageModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/"; //variable used to hold path to the model
-let classifier; //variable used to hold the classifier object
+// Store the path of the model 
+let imageModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
+// Store the classifier object
+let classifier;
 
 
+// p5 function which is automatically called by the p5 library (once only)
 function preload() {
-	//p5 function - this function is automatically called by the p5 library, once only
-	classifier = ml5.imageClassifier(imageModelURL + "model.json"); //load the model!
+  // Load the model
+  classifier = ml5.imageClassifier(imageModelURL + "model.json");
 }
 
-
+// p5 function which is automatically called after the 'preload' function (once only)
 function setup() {
-	//p5 function - this function is autmaticallt called after the 'preload' function; the function is only executed once
-	document.getElementById("upload").disabled = false;
-	document.getElementById("tests").disabled = false;
+  // Enable the buttons
+  document.getElementById("upload").disabled = false;
+  document.getElementById("tests").disabled = false;
 }
 
-
+// Clears the display 
 function clear() {
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
   document.getElementById("filename").innerHTML = "";
 }
 
-
+// Launches the file picker
 function openDialog() {
   clear();
   document.getElementById("input").click();
 }
 
-
+// Reads the chosen file into the image element, and launches the classifier
 function showFiles() {
   let demoImage = document.getElementById("image");
   // read the file from the user
@@ -51,24 +51,23 @@ function showFiles() {
   classify(demoImage);
 }
 
-
+// Classify the given image
 function classify(image) {
-	//ml5, classify the current information stored in the camera object
   image.setAttribute("class", "visible");
-	classifier.classify(image, processResults); //once complete execute a callback to the processresults function
+  // once complete, execute the 'processResults' callback
+  classifier.classify(image, processResults);
 }
 
-
+// Callback to process the results
 function processResults(error, result) {
-	//a simple way to return the current classification details
-	if (error) { //something seems to have gone wrong
-		console.error("classifier error: " + error);
-	} else { //no errors detected, so lets grab the label and execute the classify function again
-	  drawChart(result);
-	}
+  if (error) {
+    console.error("classifier error: " + error);
+  } else {
+    drawChart(result);
+  }
 }
 
-
+// Draws a chart to display the classifier results
 function drawChart(result) {
   let data = Array((result.length + 1));
   data[0] = ["Class", "Confidence", { role: "style" }];
@@ -90,12 +89,13 @@ function drawChart(result) {
       height: 150,
       bar: {groupWidth: "75%"},
       legend: { position: "none" },
-    };
+  };
   let chart = new google.visualization.BarChart(document.getElementById("chart"));
   chart.draw(view, options);
   document.getElementById("chart").setAttribute("class", "visible");
 }
 
+// Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests() {
   clear();
   let image = document.getElementById("image");
