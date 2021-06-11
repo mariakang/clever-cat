@@ -158,5 +158,5 @@ function createCsv() {
   link.setAttribute("download", "test_data.csv");
   // unhide the HTML element and style it as a button
   link.setAttribute("class", "button");
-  link.innerHTML = "Download results as CSV";
+  link.innerHTML = "Download CSV";
 }
