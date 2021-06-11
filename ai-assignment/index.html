@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Image recognition</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+		<script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<style>
+			body {
+				font-family: Verdana;
+				font-size: 16px;
+			}
+			
+			h1 {
+			  font-size: 26px;
+			}
+
+			.container {
+			  width: 90%;
+			  margin-top: 20px;
+			  display: flex;
+			  flex-direction: column;
+        justify-content: center;
+        align-items: center;
+			}
+
+			.row {
+			  display: flex;
+			  flex-direction: row;
+        justify-content: center;
+        align-items: center;
+			}
+      
+      button {
+        width: 200px;
+        height: 35px;
+        margin: 25px;
+				font-size: 16px;
+        background: #bfbfbf;
+        color: black;
+        opacity: 0.8;
+        border-radius: 5px;
+        text-decoration: none;
+        border-style: outset;
+        text-align: center;
+        padding-top: 5px;
+      }
+
+      button:disabled {
+        color: grey;
+      }
+
+      button:hover:enabled {
+        background: black;
+        color: white;
+        opacity: 0.8;
+      }
+      
+      #filename {
+        font-size: 12px;
+        margin: 10px;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+
+      .visible {
+        visibility: visible;
+      }
+		</style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      Chest X-Rays - Image Recognition
+    </h1>
+    <br/>
+    <div id="instruction" class="visible">
+      <p>Please upload an image file or run the automated tests:</p>
+    </div>
+    <div id= class="row">
+      <button id="upload" onclick="openDialog()" disabled="true">Upload image</button>
+      <button id="tests" onclick="runTests()" disabled="true">Run tests</button>
+    </div>
+    <input id="input" class="hidden" type="file" onchange="showFiles(event)" accept=".png, .jpg, .jpeg">
+    <img id="image" class="hidden" style="width: 224px; height: 224px;">
+    <div id="filename"></div>
+    <br/>
+    <div id="chart"></div>
+  </div>
+</body>
+<script src="dataset.js"></script>
+<script src="index.js"></script>
+</html>
