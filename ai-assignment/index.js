@@ -68,7 +68,6 @@ function processResults(error, result) {
     console.error("classifier error: " + error);
   } else {
     writeToCsv(result);
-    console.log(rows);
     if (displayChart) {
       drawChart(result);
     }
