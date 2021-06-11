@@ -9,6 +9,8 @@ let imageModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
 let classifier;
 // Whether or not to display a chart
 let displayChart = true;
+// An array representing rows of results
+let rows = [["File", "Classes", "Classification", "Confidence"]];
 
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
@@ -74,6 +76,22 @@ function processResults(error, result) {
 
 // Writes the results to a csv
 function writeToCsv(result) {
+  let name = document.getElementById("filename").innerHTML;
+  let maxConfidence = 0;
+  let classification = "";
+  let classes = "";
+  for (let i = 0; i < result.length; i++) {
+    if (i > 0) {
+      classes += "; ";
+    }
+    classes += result[i].label;
+    if (result[i].confidence > maxConfidence) {
+      maxConfidence = result[i].confidence;
+      classification = result[i].label;
+    }
+  }
+  rows.push([name, classes, classification, Math.round(maxConfidence * 100)]);
+  createCsv();
 }
 
 // Draws a chart to display the classifier results
@@ -119,4 +137,26 @@ function runTests() {
     document.getElementById("filename").innerHTML = image.src;
     classify(image);
   }
+  createCsv();
+}
+
+// Creates a csv of the results
+function createCsv() {
+  let csvContent = "data:text/csv;charset=utf-8,";
+  for(let i = 0; i < rows.length; i++) {
+    // for each row array, create a string of comma-separated values
+    let row = rows[i].join(",");
+    // ensure each row string is on a new line
+    csvContent += row + "\r\n";
+  }
+  
+  // create a link to download the CSV file
+  let encodedUri = encodeURI(csvContent);
+  let link = document.getElementById("csvLink");
+  link.setAttribute("href", encodedUri);
+  // set the hyperlink to download the CSV
+  link.setAttribute("download", "test_data.csv");
+  // unhide the HTML element and style it as a button
+  link.setAttribute("class", "button");
+  link.innerHTML = "Download results as CSV";
 }
