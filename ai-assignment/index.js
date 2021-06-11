@@ -132,13 +132,12 @@ function runTests() {
     console.log("image loaded");
   }
   for (let i = 0; i < 50; i++) {
-    let url = dataset[0];
+    let url = dataset[i];
     console.log(url);
     image.src = url;
     document.getElementById("filename").innerHTML = image.src;
     classify(image);
   }
-  createCsv();
 }
 
 // Creates a csv of the results
