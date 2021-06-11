@@ -7,7 +7,8 @@ google.charts.load("current", {packages: ["corechart", "bar"]});
 let imageModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
 // Store the classifier object
 let classifier;
-
+// Whether or not to display a chart
+let displayChart = true;
 
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
@@ -32,6 +33,7 @@ function clear() {
 // Launches the file picker
 function openDialog() {
   clear();
+  displayChart = true;
   document.getElementById("input").click();
 }
 
@@ -55,16 +57,23 @@ function showFiles() {
 function classify(image) {
   image.setAttribute("class", "visible");
   // once complete, execute the 'processResults' callback
-  classifier.classify(image, processResults);
+  classifier.classify(image, displayResults);
 }
 
-// Callback to process the results
+// Callback to write the results to csv and (if appropriate) display them in a chart
 function processResults(error, result) {
   if (error) {
     console.error("classifier error: " + error);
   } else {
-    drawChart(result);
+    writeToCsv(result);
+    if (displayChart) {
+      drawChart(result);
+    }
   }
+}
+
+// Writes the results to a csv
+function writeToCsv(result) {
 }
 
 // Draws a chart to display the classifier results
@@ -98,13 +107,16 @@ function drawChart(result) {
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests() {
   clear();
+  displayChart = false;
   let image = document.getElementById("image");
-  let url = dataset[0];
-  console.log(url);
-  image.src = url;
   image.onload = function() {
     console.log("image loaded");
   }
-  document.getElementById("filename").innerHTML = image.src;
-  classify(image);
+  for (let i = 0; i < 50; i++) {
+    let url = dataset[0];
+    console.log(url);
+    image.src = url;
+    document.getElementById("filename").innerHTML = image.src;
+    classify(image);
+  }
 }
