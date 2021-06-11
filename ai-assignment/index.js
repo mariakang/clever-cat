@@ -149,7 +149,7 @@ function createCsv() {
     // ensure each row string is on a new line
     csvContent += row + "\r\n";
   }
-  
+  console.log(csvContent);
   // create a link to download the CSV file
   let encodedUri = encodeURI(csvContent);
   let link = document.getElementById("csvLink");
