@@ -57,7 +57,7 @@ function showFiles() {
   classify(demoImage);
 }
 
-// Classify the given image
+// Classifies the given image
 function classify(image) {
   // once complete, execute the 'processResults' callback
   classifier.classify(image, processResults);
@@ -76,7 +76,7 @@ function processResults(error, result) {
   }
 }
 
-// Adds a row of data to the csv
+// Adds a row of data to the csv and loads the next image
 function addRow(result) {
   console.log("adding row " + (currentIndex + 1));
   let urlArray = dataset[currentIndex].split("/");
@@ -97,11 +97,21 @@ function addRow(result) {
   rows.push([filename, classes, classification, Math.round(maxConfidence * 100)]);
   console.log(rows[rows.length - 1]);
   currentIndex++;
-  if (currentIndex == dataset.length) {
+  if (currentIndex < dataset.length) {
+    loadImage(dataset[currentIndex], imageReady);
+  } else {
     document.getElementById("processing").setAttribute("class", "hidden");
     createCsv();
   }
 }
+
+
+// Callback to classify the image when it's finished loading
+function imageReady(image) {
+  image(image, 244, 244);
+  classify(image);
+}
+
 
 // Draws a chart to display the classifier results
 function drawChart(result) {
@@ -134,16 +144,10 @@ function drawChart(result) {
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests() {
-  clear();
   document.getElementById("processing").setAttribute("class", "visible");
+  clear();
   displayChart = false;
-  for (let i = 0; i < dataset.length; i++) {
-    let image = new Image(224, 224);
-    let url = dataset[i];
-    console.log(url);
-    image.src = url;
-    classify(image);
-  }
+  loadImage(dataset[0], imageReady);
 }
 
 // Creates a csv of the results
