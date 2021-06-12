@@ -3,14 +3,16 @@
 // Load Google charts
 google.charts.load("current", {packages: ["corechart", "bar"]});
 
-// Store the path of the model 
+// Store the path of the model
 let imageModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
 // Store the classifier object
 let classifier;
 // Whether or not to display a chart
 let displayChart = true;
 // An array representing rows of results
-let rows = [["File", "Classes", "Classification", "Confidence"]];
+let rows = [["Filename", "Classes", "Classification", "Confidence"]];
+// Current image index
+let currentIndex = 0;
 
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
@@ -25,7 +27,7 @@ function setup() {
   document.getElementById("tests").disabled = false;
 }
 
-// Clears the display 
+// Clears the display
 function clear() {
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
@@ -57,7 +59,6 @@ function showFiles() {
 
 // Classify the given image
 function classify(image) {
-  image.setAttribute("class", "visible");
   // once complete, execute the 'processResults' callback
   classifier.classify(image, processResults);
 }
@@ -67,17 +68,19 @@ function processResults(error, result) {
   if (error) {
     console.error("classifier error: " + error);
   } else {
-    writeToCsv(result);
-    createCsv();
     if (displayChart) {
       drawChart(result);
+    } else {
+      addRow(result);
     }
   }
 }
 
-// Writes the results to a csv
-function writeToCsv(result) {
-  let name = document.getElementById("filename").innerHTML;
+// Adds a row of data to the csv
+function addRow(result) {
+  console.log("adding row " + (currentIndex + 1));
+  let urlArray = dataset[currentIndex].split("/");
+  let filename = urlArray[urlArray.length - 1];
   let maxConfidence = 0;
   let classification = "";
   let classes = "";
@@ -91,7 +94,13 @@ function writeToCsv(result) {
       classification = result[i].label;
     }
   }
-  rows.push([name, classes, classification, Math.round(maxConfidence * 100)]);
+  rows.push([filename, classes, classification, Math.round(maxConfidence * 100)]);
+  console.log(rows[rows.length - 1]);
+  currentIndex++;
+  if (currentIndex == dataset.length) {
+    document.getElementById("processing").setAttribute("class", "hidden");
+    createCsv();
+  }
 }
 
 // Draws a chart to display the classifier results
@@ -120,27 +129,26 @@ function drawChart(result) {
   let chart = new google.visualization.BarChart(document.getElementById("chart"));
   chart.draw(view, options);
   document.getElementById("chart").setAttribute("class", "visible");
+  document.getElementById("image").setAttribute("class", "visible");
 }
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests() {
   clear();
+  document.getElementById("processing").setAttribute("class", "visible");
   displayChart = false;
-  let image = document.getElementById("image");
-  image.onload = function() {
-    console.log("image loaded");
-  }
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < dataset.length; i++) {
+    let image = new Image(224, 224);
     let url = dataset[i];
     console.log(url);
     image.src = url;
-    document.getElementById("filename").innerHTML = image.src;
     classify(image);
   }
 }
 
 // Creates a csv of the results
 function createCsv() {
+  console.log(rows);
   let csvContent = "data:text/csv;charset=utf-8,";
   for(let i = 0; i < rows.length; i++) {
     // for each row array, create a string of comma-separated values
@@ -148,7 +156,6 @@ function createCsv() {
     // ensure each row string is on a new line
     csvContent += row + "\r\n";
   }
-  console.log(csvContent);
   // create a link to download the CSV file
   let encodedUri = encodeURI(csvContent);
   let link = document.getElementById("csvLink");
