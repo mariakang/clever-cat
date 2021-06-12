@@ -108,7 +108,7 @@ function addRow(result) {
 
 // Callback to classify the image when it's finished loading
 function imageReady(image) {
-  image(image, 244, 244);
+  image(image, 0, 0);
   classify(image);
 }
 
