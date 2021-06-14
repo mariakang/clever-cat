@@ -62,7 +62,7 @@ let confusionMatrices = {
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
   // Load the models
-  testModelURL =
+  let testModelURL =
     testModel === "chestXRay" 
       ? chestXRayModelURL
       : testModel === "pneumonia"
