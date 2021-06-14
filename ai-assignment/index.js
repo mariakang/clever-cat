@@ -9,7 +9,7 @@ let testModel = "chestXRay" // "chestXRay", "pneumonia" or "bacterialViral"
 // Store the paths of the models
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
-let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
+let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/sCj_g44v_/";
 // Store the classifier objects
 let testClassifier;
 let chestXRayClassifier;
