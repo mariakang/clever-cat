@@ -6460,5 +6460,2624 @@ const dataset = [
     "Bacterial": false,
     "Viral": false,
     "Tuberculosis": true
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/10.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/1.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/2.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/3.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/4.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5260599105_a42883d50e_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5261942962_475ecc8077_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5262124305_3a98c25ff0_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5265582893_fd74980af3_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5266692333_bc4bf1c228.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5267315086_da9719ebdb_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5269300745_1500414f5b_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5559888754_2f248c5966_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5564811284_1b2c05fd94.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5566073838_87fb3ef0f0_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5566360175_89d62a9d86_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5705124492_8ba30fdf7d_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5705125856_b106d23c97_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5710797121_6a9a9804da_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5713643022_7211ec6f86_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5718131907_9b58461799_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/5.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6016271759_d763c0601e_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6017141014_3e7a0ce9d9_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6018809867_67a7ac67a4.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6022812333_941b742abd_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6025337934_179b56d298_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6029581062_7405febd85_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6624118501_1035985fd6_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6628362625_d67ca3505d_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6640163657_2579f08474_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6645067015_4e68b05821_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6645074943_21825b4a5b_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6645075277_1c072f760a_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6645954623_ac77b56afa_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6652273523_c72545e2d5_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6652341651_1c831850d3_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6686701139_3923e58a68_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6693517113_d63d98317c_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6693517249_fe17579124_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6693517725_60105c4de7_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6693519559_c222f5b783_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6693521875_8a91b0187e_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6697167075_6555022a4b_m.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6697167351_00f7f119a9_n.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/6.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/7.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/8.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9954184R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9955443L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9955443R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9955666L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9955666R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9955820L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9956170L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9956170R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9958526L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9958526R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9958736L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9958736R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9959640R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9960832R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9962045L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9962045R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9964826R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9966825R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9967719R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9967932L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9967932R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9968036L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9968036R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9968950L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9968950R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9970928L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9970928R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9973322R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9973569R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9974327L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9974327R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9974776L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9978813R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9979265L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9979306L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9979306R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980274L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980274R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980704R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980752L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980752R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980800L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9980800R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9982251L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9982251R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9983246R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9983309R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9983798L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9983798R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9986838L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9986838R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9988186L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9988186R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9988421R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9989700L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9990192L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9990192R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9990355L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9990355R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9990698L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9993261R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9995338R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9996284L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9996284R.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9996345L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9997610L.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/9.JPG",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GaJ8WmaFJQRL6z4OUOoV.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GaOuzkfSDKJLuLXTpuai.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GBfn1O7YjzwUMkrDWUZ8.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GbTWw22zLbtg8hftRiJt.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GcFK1rUOVUm8EKCdke0I.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gcgt6fg2UniasJJgo40o.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GcjjZHLaLFi60hgl1FDj.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GcThlSScoKITeZfIqWj5.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GCuvRS4rY3WhMILVdULD.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GDknYOs7ISMnbWZPYiwp.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GdLbIYS1kMkgM4jvniQh.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GDnqpMXh3mia6TK1rigP.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GE5OgUIETY3mH1aQ3ppJ.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GebcUV5Kk80i7Ntzm1ii.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gez2Fzl1Ty1B16O4JQ80.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GeZjy1kSSHCwtsbhiDwY.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GFgyRagZBcEUuZnkEZbu.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GfnGXQwKrkfCvNHonEw4.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gfunesl6pIdpSnPIUULc.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GG2NrDlKkgrJpmC1K2a3.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GGBuukjHeXLTzVvxT28i.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GH340Zi0dn4SnGs7diM1.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GhtNdi6yK1HekVccTSSv.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GHyPYnTs7IGtczE5U8s5.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GHZGP4BEbXacPMzzmZ1Q.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GiiXVblIYadL6whTEl3Q.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GImWhKQLBAJBf1ivElxf.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GJ1TOKCrQohvsdUcm8rf.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gj7H1oZnpQIyneaNfRwY.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GJG5lrpxdQCNaYGjaju7.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GJXrUjzGekjI42ZQa8rT.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GjXvGTrZcXB2YgdoVhhU.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GK2j4Hc3xjtJosyZvKkA.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GKCdnWjjE76LhluhaMNM.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GKDMK3DP5thouQHl8Fei.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GKZbptzAvIhSofNQeNRA.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GLkqrDXHt07xZHN1qdVC.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GlLoPdJRx6jYRX2v8OkE.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GlM3FApgZ3hpqrp7JiCN.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GloTu0aSGg8L0FoZ5PSC.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gmn7HDbtx3IVVQP8aPRV.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GmRMFGG1UmRZz3BDYPjk.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GnaBqcCIM02qKkfQeHcR.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GnrYRwXHLVcaOPQvLpnk.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GnUrdUa2MWg3RDOxjqRS.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GNwAURatr6hV4IeEc3rt.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GNz6687eADid4krKGoGk.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GnzehNPpHLcbM0evCo8U.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Go6Pi1uBsjwDvPWqVaMN.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GoWn8uNIe2MC7WJRznlj.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GP12mbcIwcxPI57HLFFM.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GpBf2C7s6Kxn2A8b4BoD.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GpnNLubEcXCGohMymuDN.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GR3TBNyZfbe28kTnP5Ql.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GRg2ARH1oDkCruMyIGUa.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Grgw51xVORWoQmZLX7Lk.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GrnKAOzZLOIE7vBez8pX.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GRnrD1bRiQvAwbvYTTOA.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GRr52N5ntOvwzzuwiHNN.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GS07s6MKhE4C2nFHLpeL.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GS7SuxOnk4JudjSt2MqR.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GseiksPFvYEX1gpeHro4.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GSTIWO30oAJc6OvHEWZ3.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GsyAIFL31fX47TIEScbU.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GTeOkMLJ1xXchOe38QmH.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GTjAn6COxoGjQJt6xH5d.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GtmNWzxWXvMuf72OPXmc.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GtytftqTovl6EcsGeifz.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GURW0F0bmJYeEyxaZAEZ.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gv6dpFPO05SvXUqUXkgv.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GviE8U35snFpsZRSmd3e.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GvOSKEFLkDSyfN7Z7HvL.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GwcbIGLOTXpvuRGbtwH5.png",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GwFKkRFOt2A32aXOGMr2.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GwGWqDP1iHZvbUMs10RG.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GWhASdG00rfEM7lyyPw4.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GXQiNM4Ntd718Kp8SRms.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GxybeLnjQlVMu8u3A01H.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GycXGEhYz83sRTa8cbJu.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GYiM0d01QRVOUgcRUI3H.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GyoFmiQhMG4dMRhgSUIp.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/Gz0fhdPN01GYBSfhe2bP.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GzJ3tldG3wQNQuk8n2IH.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/GZuMxdBauWpr8qoosFXQ.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/H0iaVjQzErNkeBhW6OB7.jpg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/H1fFuUQ7qGt6L1AspIHZ.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201354.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201355.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201356.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201357.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201358.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201359.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201360.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201361.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201362.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201363.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201364.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201365.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201366.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201367.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201368.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201369.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201370.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201371.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201372.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201373.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201374.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201375.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201376.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201377.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201378.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201379.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201380.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201381.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201382.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201383.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201384.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201385.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201386.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201387.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201388.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201389.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201390.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201391.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201392.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201393.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201394.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201395.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201396.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201397.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201398.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201399.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201400.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201401.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201402.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201403.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201404.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201405.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201406.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201407.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201408.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201409.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201410.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201411.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201412.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201413.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201414.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201415.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201416.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201417.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201418.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201419.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201420.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201421.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201422.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201423.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201424.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201425.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201426.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201427.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201428.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201429.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201430.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201431.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201432.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201433.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201434.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201435.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201436.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201437.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201438.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201439.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201440.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201441.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201442.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
+  },
+  {
+    "URL": "https://www.maria-kang.com/ai-assignment/data/non_chest_xray/test/i%20-%201443.jpeg",
+    "Chest X-Ray": false,
+    "Normal": false,
+    "Pneumonia": false,
+    "Bacterial": false,
+    "Viral": false,
+    "Tuberculosis": false
   }
 ];
