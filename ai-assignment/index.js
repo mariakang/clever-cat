@@ -3,8 +3,10 @@
 // Load Google charts
 google.charts.load("current", {packages: ["corechart", "bar"]});
 
+// The model under test
+let testModel = "chestXRay" // "chestXRay", "pneumonia" or "bacterialViral"
+
 // Store the paths of the models
-let testModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
 let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
@@ -60,6 +62,12 @@ let confusionMatrices = {
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
   // Load the models
+  testModelURL =
+    testModel === "chestXRay" 
+      ? chestXRayModelURL
+      : testModel === "pneumonia"
+        ? normalVsPneumoniaModelURL
+        : bacterialVsViralModelURL;
   testClassifier = ml5.imageClassifier(testModelURL + "model.json");
   chestXRayClassifier = ml5.imageClassifier(chestXRayModelURL + "model.json");
   normalVsPneumoniaClassifier = ml5.imageClassifier(normalVsPneumoniaModelURL + "model.json");
@@ -224,6 +232,12 @@ function drawChart(result, colour) {
 function runTests() {
   document.getElementById("processing").setAttribute("class", "visible");
   clear();
+  if (testModel != "chestXRay") {
+    dataset = dataset.filter(x => x["Chest X-Ray"]);
+    if (testModel === "pneumoniaType") {
+      dataset = dataset.filter(x => x["Pneumonia"]);
+    }
+  }
   loadImage(dataset[0]["URL"], testImageReady);
 }
 
