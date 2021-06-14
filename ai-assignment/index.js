@@ -266,6 +266,7 @@ function analyse(result) {
   // update the relevant confusion matrices
   for (let i = 0; i < result.length; i++) {
     let classLabel = result[i].label;
+    console.log(classLabel);
     let confusionMatrix = confusionMatrices[classLabel];
     if (dataset[currentIndex][classLabel]) {
       if (classification = classLabel && maxConfidence >= 0.8) {
@@ -280,10 +281,12 @@ function analyse(result) {
         confusionMatrix.TN++;
       }
     }
+    console.log(confusionMatrices[classLabel];
   }
   console.log(rows[rows.length - 1]);
   currentIndex++;
-  if (currentIndex < dataset.length) {
+//  if (currentIndex < dataset.length) {
+  if (currentIndex < 50) {
     loadImage(dataset[currentIndex]["URL"], testImageReady);
   } else {
     document.getElementById("processing").setAttribute("class", "hidden");
