@@ -175,7 +175,7 @@ function bacterialOrViral(error, result) {
     console.error("classifier error: " + error);
   } else {
     let summary = "";
-    let resultSnippets = result.map(x -> x.label + "(" + Math.round(x.confidence * 100) + "%)");
+    let resultSnippets = result.map(x => x.label + "(" + Math.round(x.confidence * 100) + "%)");
     if (result[0].confidence > 0.8) {
       summary = "The pneumonia is " + resultSnippets[0];
     } else if (result[1].confidence > 0.8) {
