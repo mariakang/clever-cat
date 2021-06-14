@@ -229,7 +229,7 @@ function runTests() {
 
 // Classifies the given image
 function testImageReady(image) {
-  image(image, 244, 244);
+//  image(image, 224, 224);
   // once complete, execute the 'processTestResult' callback
   testClassifier.classify(image, processTestResult);
 }
