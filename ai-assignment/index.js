@@ -3,21 +3,69 @@
 // Load Google charts
 google.charts.load("current", {packages: ["corechart", "bar"]});
 
-// Store the path of the model
-let imageModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
-// Store the classifier object
-let classifier;
-// Whether or not to display a chart
-let displayChart = true;
+// Store the paths of the models
+let testModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
+let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
+let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
+let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/PlEt6gLqy/";
+// Store the classifier objects
+let testClassifier;
+let chestXRayClassifier;
+let normalVsPneumoniaClassifier;
+let bacterialVsViralClassifier;
 // An array representing rows of results
 let rows = [["Filename", "Classes", "Classification", "Confidence"]];
 // Current image index
 let currentIndex = 0;
+// Confusion matrices
+let confusionMatrices = {
+  ChestXRay: {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  },
+  Normal: {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  },
+  Pneumonia: {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  },
+  Tuberculosis: {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  },
+  Bacterial: {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  },
+  Viral: {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  }
+}
 
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
-  // Load the model
-  classifier = ml5.imageClassifier(imageModelURL + "model.json");
+  // Load the models
+  testClassifier = ml5.imageClassifier(testModelURL + "model.json");
+  chestXRayClassifier = ml5.imageClassifier(chestXRayModelURL + "model.json");
+  normalVsPneumoniaClassifier = ml5.imageClassifier(normalVsPneumoniaModelURL + "model.json");
+//  normalVsTuberculosisClassifier = ml5.imageClassifier(normalVsTuberculosisModelURL + "model.json");
+//  normalVsPneumoniaVsTuberculosisClassifier = ml5.imageClassifier(normalVsPneumoniaVsTuberculosisModelURL + "model.json");
+  bacterialVsViralClassifier = ml5.imageClassifier(bacterialVsViralModelURL + "model.json");
 }
 
 // p5 function which is automatically called after the 'preload' function (once only)
@@ -32,93 +80,117 @@ function clear() {
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
   document.getElementById("filename").innerHTML = "";
+  document.getElementById("filename").setAttribute("class", "hidden");
 }
 
 // Launches the file picker
 function openDialog() {
   clear();
-  displayChart = true;
   document.getElementById("input").click();
 }
 
 // Reads the chosen file into the image element, and launches the classifier
 function showFiles() {
-  let demoImage = document.getElementById("image");
+  let image = document.getElementById("image");
   // read the file from the user
   let file = document.getElementById("input").files[0];
   let name = file.name;
   const reader = new FileReader();
   reader.onload = function (event) {
-      demoImage.src = reader.result;
+      image.src = reader.result;
   }
   reader.readAsDataURL(file);
   console.log(name);
   document.getElementById("filename").innerHTML = name;
-  classify(demoImage);
-}
-
-// Classifies the given image
-function classify(image) {
-  // once complete, execute the 'processResults' callback
-  classifier.classify(image, processResults);
-}
-
-// Callback to write the results to csv and (if appropriate) display them in a chart
-function processResults(error, result) {
-  if (error) {
-    console.error("classifier error: " + error);
-  } else {
-    if (displayChart) {
-      drawChart(result);
-    } else {
-      addRow(result);
-    }
-  }
-}
-
-// Adds a row of data to the csv and loads the next image
-function addRow(result) {
-  console.log("adding row " + (currentIndex + 1));
-  let urlArray = dataset[currentIndex].split("/");
-  let filename = urlArray[urlArray.length - 1];
-  let maxConfidence = 0;
-  let classification = "";
-  let classes = "";
-  for (let i = 0; i < result.length; i++) {
-    if (i > 0) {
-      classes += "; ";
-    }
-    classes += result[i].label;
-    if (result[i].confidence > maxConfidence) {
-      maxConfidence = result[i].confidence;
-      classification = result[i].label;
-    }
-  }
-  rows.push([filename, classes, classification, Math.round(maxConfidence * 100)]);
-  console.log(rows[rows.length - 1]);
-  currentIndex++;
-  if (currentIndex < dataset.length) {
-    loadImage(dataset[currentIndex], imageReady);
-  } else {
-    document.getElementById("processing").setAttribute("class", "hidden");
-    createCsv();
-  }
-}
-
-
-// Callback to classify the image when it's finished loading
-function imageReady(image) {
-//  image(image, 0, 0);
   classify(image);
 }
 
 
+function classify(image) {
+  chestXRayClassifier.classify(image, checkIfChestXRay);
+}
+
+function checkIfChestXRay(error, result) {
+  if (error) {
+    console.error("classifier error: " + error);
+  } else {
+    let confidenceChestXRay = result[0].label == "Chest X-Ray" ? result[0].confidence : result[1].confidence;
+    confidenceChestXRay = Math.round(confidenceChestXRay * 100);
+    let summary = "";
+    if (confidenceChestXray >= 80) {
+      classifyChestXRay();
+      summary = "The image is a chest X-ray (" + confidenceChestRay + "%)";
+    } else {
+      if (confidenceChestXray >= 60) {
+        summary = "The image may be a chest X-ray (" + confidenceChestXRay + "%), but no futher analysis will be performed due to uncertainty.";
+      } else {
+        summary = "The image could not be recognised as a chest X-ray (" + confidenceChestXRay + "%), so no further analysis will be performed.";
+      }
+      drawChart(result, "#982107");
+    }
+    document.getElementById("chestXRaySummary").innerHTML = summary;
+  }
+}
+
+function classifyChestXRay() {
+  let image = document.getElementById("image");
+  normalVsPneumoniaClassifier.classify(image, checkIfPneumonia);
+}
+
+function checkIfPneumonia(error, result) {
+  if (error) {
+    console.error("classifier error: " + error);
+  } else {
+    let confidencePneumonia = result[0].label == "Pneumonia" ? result[0].confidence : result[1].confidence;
+    confidencePneumonia = Math.round(confidencePneumonia * 100);
+    let summary = "";
+    if (confidencePneumonia >= 80) {
+      classifyPneumoniaType();
+      summary = "Pneumonia is present (" + confidencePneumonia + "%)";
+    } else {
+      if (confidencePneumonia >= 50) {
+        summary = "Pneumonia may be present (" + confidencePneumonia + "%), but no futher analysis will be performed due to uncertainty.";
+      } else if (confidencePneumonia >= 20) {
+        summary = "The X-ray is probably normal (" + (100 - confidencePneumonia) + "%), so no further analysis will be performed.";
+      } else {
+        summary = "The X-ray is normal (" + (100 - confidencePneumonia) + "%)";
+      }
+    }
+    drawChart(result, "#0066ff");
+    document.getElementById("pneumoniaSummary").innerHTML = summary;
+  }
+}
+
+function classifyPneumoniaType() {
+  let image = document.getElementById("image");
+  bacterialVsViralClassifier.classify(image, bacterialOrViral);
+}
+
+function bacterialOrViral(error, result) {
+  if (error) {
+    console.error("classifier error: " + error);
+  } else {
+    let summary = "";
+    let resultSnippets = result.map(x -> x.label + "(" + Math.round(x.confidence * 100) + "%)");
+    if (result[0].confidence > 0.8) {
+      summary = "The pneumonia is " + resultSnippets[0];
+    } else if (result[1].confidence > 0.8) {
+      summary = "The pneumonia is " + resultSnippets[1];
+    } else {
+      summary = "The pneumonia could be " + resultSnippets[0] + " or " + resultSnippets[1];
+    }
+    document.getElementById("pneumoniaTypeSummary").innerHTML = summary;
+    drawChart(result, "#339966");
+  }
+}
+
+
 // Draws a chart to display the classifier results
-function drawChart(result) {
+function drawChart(result, colour) {
   let data = Array((result.length + 1));
   data[0] = ["Class", "Confidence", { role: "style" }];
-  data[1] = [result[0].label, Math.round(result[0].confidence * 100), "#982107"];
-  data[2] = [result[1].label, Math.round(result[1].confidence * 100), "#982107"];
+  data[1] = [result[0].label, Math.round(result[0].confidence * 100), colour];
+  data[2] = [result[1].label, Math.round(result[1].confidence * 100), colour];
 
   console.log(data);
   let table = google.visualization.arrayToDataTable(data);
@@ -138,16 +210,97 @@ function drawChart(result) {
   };
   let chart = new google.visualization.BarChart(document.getElementById("chart"));
   chart.draw(view, options);
+  document.getElementById("summary").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "visible");
   document.getElementById("image").setAttribute("class", "visible");
+  document.getElementById("filename").setAttribute("class", "visible");
 }
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests() {
   document.getElementById("processing").setAttribute("class", "visible");
   clear();
-  displayChart = false;
-  loadImage(dataset[0], imageReady);
+  loadImage(dataset[0]["URL"], testImageReady);
+}
+
+// Classifies the given image
+function testImageReady(image) {
+  image(image, 244, 244);
+  // once complete, execute the 'processTestResult' callback
+  testClassifier.classify(image, processTestResult);
+}
+
+// Callback to write the results to csv
+function processTestResult(error, result) {
+  if (error) {
+    console.error("classifier error: " + error);
+  } else {
+    analyse(result);
+  }
+}
+
+// Adds a row of data to the csv, updates the relevant confusion matrices, and loads the next image
+function analyse(result) {
+  console.log("analysing " + (currentIndex + 1));
+  // create a row to add to the CSV
+  let urlArray = dataset[currentIndex]["URL"].split("/");
+  let filename = urlArray[urlArray.length - 1];
+  let maxConfidence = 0;
+  let classification = "";
+  let classes = "";
+  for (let i = 0; i < result.length; i++) {
+    if (i > 0) {
+      classes += "; ";
+    }
+    classes += result[i].label;
+    if (result[i].confidence > maxConfidence) {
+      maxConfidence = result[i].confidence;
+      classification = result[i].label;
+    }
+  }
+  rows.push([filename, classes, classification, Math.round(maxConfidence * 100)]);
+  // update the relevant confusion matrices
+  for (let i = 0; i < result.length; i++) {
+    let classLabel = result[i].label;
+    let confusionMatrix = confusionMatrices[classLabel];
+    if (dataset[currentIndex][classLabel]) {
+      if (classification = classLabel && maxConfidence >= 0.8) {
+        confusionMatrix.TP++;
+      } else {
+        confusionMatrix.FN++;
+      }
+    } else {
+      if (classification = classLabel && maxConfidence >= 0.8) {
+        confusionMatrix.FP++;
+      } else {
+        confusionMatrix.TN++;
+      }
+    }
+  }
+  console.log(rows[rows.length - 1]);
+  currentIndex++;
+  if (currentIndex < dataset.length) {
+    loadImage(dataset[currentIndex]["URL"], testImageReady);
+  } else {
+    document.getElementById("processing").setAttribute("class", "hidden");
+    addConfusionMatrixRows();
+    createCsv();
+  }
+}
+
+// Adds rows to the csv to represent the confusion matrices
+function addConfusionMatrixRows() {
+  rows.push([""]);
+  for (const [key, value] of Object.entries(confusionMatrices)) {
+    if (value.TP > 0 || value.FP > 0 || value.FN > 0 || value.TN > 0) {
+      rows.push(["Confusion matrix for class '" + key + "'"]);
+      rows.push(["TP", value.TP]);
+      rows.push(["FP", value.FP]);
+      rows.push(["FN", value.FN]);
+      rows.push(["TN", value.TN]);
+      rows.push([""]);
+    }
+  }
 }
 
 // Creates a csv of the results
