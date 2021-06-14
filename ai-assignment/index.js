@@ -81,6 +81,10 @@ function clear() {
   document.getElementById("image").setAttribute("class", "hidden");
   document.getElementById("filename").innerHTML = "";
   document.getElementById("filename").setAttribute("class", "hidden");
+  document.getElementById("summary").setAttribute("class", "hidden");
+  document.getElementById("chestXRaySummary").innerHTML = "";
+  document.getElementById("pneumoniaSummary").innerHTML = "";
+  document.getElementById("pneumoniaTypeSummary").innerHTML = "";
 }
 
 // Launches the file picker
