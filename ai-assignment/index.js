@@ -269,13 +269,13 @@ function analyse(result) {
     console.log(classLabel);
     let confusionMatrix = confusionMatrices[classLabel];
     if (dataset[currentIndex][classLabel]) {
-      if (classification = classLabel && maxConfidence >= 0.8) {
+      if (classification === classLabel && maxConfidence >= 0.8) {
         confusionMatrix.TP++;
       } else {
         confusionMatrix.FN++;
       }
     } else {
-      if (classification = classLabel && maxConfidence >= 0.8) {
+      if (classification === classLabel && maxConfidence >= 0.8) {
         confusionMatrix.FP++;
       } else {
         confusionMatrix.TN++;
