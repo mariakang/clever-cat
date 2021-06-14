@@ -19,37 +19,37 @@ let rows = [["Filename", "Classes", "Classification", "Confidence"]];
 let currentIndex = 0;
 // Confusion matrices
 let confusionMatrices = {
-  ChestXRay: {
+  "Chest X-Ray": {
     TP: 0,
     FP: 0,
     FN: 0,
     TN: 0,
   },
-  Normal: {
+  "Normal": {
     TP: 0,
     FP: 0,
     FN: 0,
     TN: 0,
   },
-  Pneumonia: {
+  "Pneumonia": {
     TP: 0,
     FP: 0,
     FN: 0,
     TN: 0,
   },
-  Tuberculosis: {
+  "Tuberculosis": {
     TP: 0,
     FP: 0,
     FN: 0,
     TN: 0,
   },
-  Bacterial: {
+  "Bacterial": {
     TP: 0,
     FP: 0,
     FN: 0,
     TN: 0,
   },
-  Viral: {
+  "Viral": {
     TP: 0,
     FP: 0,
     FN: 0,
