@@ -27,6 +27,12 @@ let confusionMatrices = {
     FN: 0,
     TN: 0,
   },
+  "Other": {
+    TP: 0,
+    FP: 0,
+    FN: 0,
+    TN: 0,
+  },
   "Normal": {
     TP: 0,
     FP: 0,
