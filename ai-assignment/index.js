@@ -285,8 +285,7 @@ function analyse(result) {
   }
   console.log(rows[rows.length - 1]);
   currentIndex++;
-//  if (currentIndex < dataset.length) {
-  if (currentIndex < 50) {
+  if (currentIndex < dataset.length) {
     loadImage(dataset[currentIndex]["URL"], testImageReady);
   } else {
     document.getElementById("processing").setAttribute("class", "hidden");
