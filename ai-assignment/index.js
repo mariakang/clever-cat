@@ -121,11 +121,11 @@ function checkIfChestXRay(error, result) {
     let confidenceChestXRay = result[0].label == "Chest X-Ray" ? result[0].confidence : result[1].confidence;
     confidenceChestXRay = Math.round(confidenceChestXRay * 100);
     let summary = "";
-    if (confidenceChestXray >= 80) {
+    if (confidenceChestXRay >= 80) {
       classifyChestXRay();
-      summary = "The image is a chest X-ray (" + confidenceChestRay + "%)";
+      summary = "The image is a chest X-ray (" + confidenceChestXRay + "%)";
     } else {
-      if (confidenceChestXray >= 60) {
+      if (confidenceChestXRay >= 60) {
         summary = "The image may be a chest X-ray (" + confidenceChestXRay + "%), but no futher analysis will be performed due to uncertainty.";
       } else {
         summary = "The image could not be recognised as a chest X-ray (" + confidenceChestXRay + "%), so no further analysis will be performed.";
