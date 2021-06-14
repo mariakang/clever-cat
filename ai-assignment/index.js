@@ -281,7 +281,7 @@ function analyse(result) {
         confusionMatrix.TN++;
       }
     }
-    console.log(confusionMatrices[classLabel];
+    console.log(confusionMatrices[classLabel]);
   }
   console.log(rows[rows.length - 1]);
   currentIndex++;
