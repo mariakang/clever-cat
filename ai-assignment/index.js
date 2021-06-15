@@ -3,13 +3,19 @@
 // Load Google charts
 google.charts.load("current", {packages: ["corechart", "bar"]});
 
-// The model under test
-let testModel = "pneumonia" // "chestXRay", "pneumonia" or "pneumoniaType"
-
 // Store the paths of the models
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/oWAhGDGrT/";
 let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/sCj_g44v_/";
+let normalVsTuberculosisModelURL = "https://teachablemachine.withgoogle.com/models/EIuQzA8b4/";
+// The model under test
+let testModel = "tuberculosis" // "chestXRay", "pneumonia", "tuberculosis" or "pneumoniaType"
+const testModelMap = {
+  "chestXRay": chestXRayModelURL,
+  "pneumonia": normalVsPneumoniaModelURL,
+  "tuberculosis": normalVsTuberculosisModelURL,
+  "pneumoniaType": bacterialVsViralModelURL
+}
 // Store the classifier objects
 let testClassifier;
 let chestXRayClassifier;
@@ -68,12 +74,7 @@ let confusionMatrices = {
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
   // Load the models
-  let testModelURL =
-    testModel === "chestXRay" 
-      ? chestXRayModelURL
-      : testModel === "pneumonia"
-        ? normalVsPneumoniaModelURL
-        : bacterialVsViralModelURL;
+  let testModelURL = testModelMap[testModel];
   testClassifier = ml5.imageClassifier(testModelURL + "model.json");
   chestXRayClassifier = ml5.imageClassifier(chestXRayModelURL + "model.json");
   normalVsPneumoniaClassifier = ml5.imageClassifier(normalVsPneumoniaModelURL + "model.json");
