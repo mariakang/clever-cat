@@ -119,6 +119,7 @@ function showFiles() {
   reader.readAsDataURL(file);
   console.log(name);
   document.getElementById("filename").innerHTML = name;
+  document.getElementById("processing").setAttribute("class", "visible");
   classify(image);
 }
 
@@ -128,6 +129,7 @@ function classify(image) {
 }
 
 function checkIfChestXRay(error, result) {
+  console.log("Checking if image is a chest x-ray");
   if (error) {
     console.error("classifier error: " + error);
   } else {
@@ -155,6 +157,7 @@ function classifyChestXRay() {
 }
 
 function checkIfPneumonia(error, result) {
+  console.log("Checking for pneumonia");
   if (error) {
     console.error("classifier error: " + error);
   } else {
@@ -172,8 +175,8 @@ function checkIfPneumonia(error, result) {
       } else {
         summary = "The X-ray is normal (" + (100 - confidencePneumonia) + "%)";
       }
+      drawChart(result, "#0066ff");
     }
-    drawChart(result, "#0066ff");
     document.getElementById("pneumoniaSummary").innerHTML = summary;
   }
 }
@@ -184,11 +187,12 @@ function classifyPneumoniaType() {
 }
 
 function bacterialOrViral(error, result) {
+  console.log("Classifying as bacterial or viral");
   if (error) {
     console.error("classifier error: " + error);
   } else {
     let summary = "";
-    let resultSnippets = result.map(x => x.label + "(" + Math.round(x.confidence * 100) + "%)");
+    let resultSnippets = result.map(x => x.label + " (" + Math.round(x.confidence * 100) + "%)");
     if (result[0].confidence > 0.8) {
       summary = "The pneumonia is " + resultSnippets[0];
     } else if (result[1].confidence > 0.8) {
@@ -204,12 +208,12 @@ function bacterialOrViral(error, result) {
 
 // Draws a chart to display the classifier results
 function drawChart(result, colour) {
+  console.log("Drawing chart");
   let data = Array((result.length + 1));
   data[0] = ["Class", "Confidence", { role: "style" }];
   data[1] = [result[0].label, Math.round(result[0].confidence * 100), colour];
   data[2] = [result[1].label, Math.round(result[1].confidence * 100), colour];
 
-  console.log(data);
   let table = google.visualization.arrayToDataTable(data);
   let view = new google.visualization.DataView(table);
   view.setColumns([0, 1,
@@ -231,6 +235,7 @@ function drawChart(result, colour) {
   document.getElementById("chart").setAttribute("class", "visible");
   document.getElementById("image").setAttribute("class", "visible");
   document.getElementById("filename").setAttribute("class", "visible");
+  document.getElementById("processing").setAttribute("class", "hidden");
 }
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
