@@ -94,7 +94,15 @@ function clear() {
 
 // Launches the file picker
 function openDialog() {
-  clear();
+  document.getElementById("chart").setAttribute("class", "hidden");
+  document.getElementById("image").setAttribute("class", "hidden");
+  document.getElementById("filename").innerHTML = "";
+  document.getElementById("filename").setAttribute("class", "hidden");
+  document.getElementById("summary").setAttribute("class", "hidden");
+  document.getElementById("chestXRaySummary").innerHTML = "";
+  document.getElementById("pneumoniaSummary").innerHTML = "";
+  document.getElementById("pneumoniaTypeSummary").innerHTML = "";
+
   document.getElementById("input").click();
 }
 
@@ -228,7 +236,14 @@ function drawChart(result, colour) {
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests() {
   document.getElementById("processing").setAttribute("class", "visible");
-  clear();
+  document.getElementById("chart").setAttribute("class", "hidden");
+  document.getElementById("image").setAttribute("class", "hidden");
+  document.getElementById("filename").innerHTML = "";
+  document.getElementById("filename").setAttribute("class", "hidden");
+  document.getElementById("summary").setAttribute("class", "hidden");
+  document.getElementById("chestXRaySummary").innerHTML = "";
+  document.getElementById("pneumoniaSummary").innerHTML = "";
+  document.getElementById("pneumoniaTypeSummary").innerHTML = "";
   if (testModel != "chestXRay") {
     dataset = dataset.filter(x => x["Chest X-Ray"]);
     if (testModel === "pneumoniaType") {
