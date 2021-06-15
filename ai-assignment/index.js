@@ -344,7 +344,7 @@ function createCsv() {
   let link = document.getElementById("csvLink");
   link.setAttribute("href", encodedUri);
   // set the hyperlink to download the CSV
-  link.setAttribute("download", "test_data.csv");
+  link.setAttribute("download", testModel + "Model_test_data.csv");
   // unhide the HTML element and style it as a button
   link.setAttribute("class", "button");
   link.innerHTML = "Download CSV";
