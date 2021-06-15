@@ -1,4 +1,4 @@
-const dataset = [
+let dataset = [
   {
     "URL": "https://www.maria-kang.com/ai-assignment/data/chest_xray/test/NORMAL/NORMAL-1049278-0001.jpeg",
     "Chest X-Ray": true,
