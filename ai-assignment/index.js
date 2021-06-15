@@ -7,13 +7,11 @@ google.charts.load("current", {packages: ["corechart", "bar"]});
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/oWAhGDGrT/";
 let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/sCj_g44v_/";
-let normalVsTuberculosisModelURL = "https://teachablemachine.withgoogle.com/models/EIuQzA8b4/";
 // The model under test
-let testModel = "tuberculosis" // "chestXRay", "pneumonia", "tuberculosis" or "pneumoniaType"
+let testModel = "pneumonia" // "chestXRay", "pneumonia" or "pneumoniaType"
 const testModelMap = {
   "chestXRay": chestXRayModelURL,
   "pneumonia": normalVsPneumoniaModelURL,
-  "tuberculosis": normalVsTuberculosisModelURL,
   "pneumoniaType": bacterialVsViralModelURL
 }
 // Store the classifier objects
@@ -51,12 +49,6 @@ let confusionMatrices = {
     FN: 0,
     TN: 0,
   },
-  "Tuberculosis": {
-    TP: 0,
-    FP: 0,
-    FN: 0,
-    TN: 0,
-  },
   "Bacterial": {
     TP: 0,
     FP: 0,
@@ -78,8 +70,6 @@ function preload() {
   testClassifier = ml5.imageClassifier(testModelURL + "model.json");
   chestXRayClassifier = ml5.imageClassifier(chestXRayModelURL + "model.json");
   normalVsPneumoniaClassifier = ml5.imageClassifier(normalVsPneumoniaModelURL + "model.json");
-//  normalVsTuberculosisClassifier = ml5.imageClassifier(normalVsTuberculosisModelURL + "model.json");
-//  normalVsPneumoniaVsTuberculosisClassifier = ml5.imageClassifier(normalVsPneumoniaVsTuberculosisModelURL + "model.json");
   bacterialVsViralClassifier = ml5.imageClassifier(bacterialVsViralModelURL + "model.json");
 }
 
