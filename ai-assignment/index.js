@@ -247,6 +247,7 @@ function runTests(testModel) {
       testClassifier = bacterialVsViralClassifier;
     } else {
       testClassifier = normalVsPneumoniaClassifier;
+    }
   }
   console.log(testClassifier.modelURL);
   loadImage(dataset[0]["URL"], testImageReady);
