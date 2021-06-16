@@ -17,8 +17,8 @@
     }
 
     .container {
-      width: 80%;
-      margin-top: 40px;
+      width: 90%;
+      margin-top: 20px;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -91,6 +91,20 @@
       opacity: 0.6;
       padding: 50px;
     }
+    
+    .modalContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      width: 500px;
+      opacity: 1;
+      background: white;
+      color: black;
+      border: 1px solid black;
+      z-index: 2;
+    }
 
     .hidden {
       visibility: hidden;
@@ -115,7 +129,7 @@
       <button id="tests" onclick="openModal()" disabled="true">Run tests</button>
     </div>
     <div id="modal" class="hidden">
-      <div class="container">
+      <div class="modalContent">
         <div>Which model would you like to test?</div>
         <br/>
         <button onclick="runTests('chestXRay')">Chest X-Ray vs Other</button>
