@@ -5,14 +5,13 @@ google.charts.load("current", {packages: ["corechart", "bar"]});
 
 // Store the paths of the models
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
-let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/3DTcolOWc/";
+let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/wgismIVl4/";
 let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/sCj_g44v_/";
-// The model under test
-let testModel = "pneumonia" // "chestXRay", "pneumonia" or "pneumoniaType"
+// Map model description to classifier (used to define the model under test)
 const testModelMap = {
-  "chestXRay": chestXRayModelURL,
-  "pneumonia": normalVsPneumoniaModelURL,
-  "pneumoniaType": bacterialVsViralModelURL
+  "chestXRay": chestXRayClassifier,
+  "pneumonia": normalVsPneumoniaClassifier,
+  "pneumoniaType": bacterialVsViralClassifier
 }
 // Store the classifier objects
 let testClassifier;
@@ -66,8 +65,6 @@ let confusionMatrices = {
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
   // Load the models
-  let testModelURL = testModelMap[testModel];
-  testClassifier = ml5.imageClassifier(testModelURL + "model.json");
   chestXRayClassifier = ml5.imageClassifier(chestXRayModelURL + "model.json");
   normalVsPneumoniaClassifier = ml5.imageClassifier(normalVsPneumoniaModelURL + "model.json");
   bacterialVsViralClassifier = ml5.imageClassifier(bacterialVsViralModelURL + "model.json");
@@ -227,7 +224,7 @@ function drawChart(result, colour) {
 }
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
-function runTests() {
+function runTests(testModel) {
   document.getElementById("processing").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
@@ -243,6 +240,7 @@ function runTests() {
       dataset = dataset.filter(x => x["Pneumonia"]);
     }
   }
+  testClassifier = testModelMap[testModel];
   loadImage(dataset[0]["URL"], testImageReady);
 }
 
