@@ -225,6 +225,7 @@ function drawChart(result, colour) {
 
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests(testModel) {
+  console.log(testModel);
   document.getElementById("processing").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
