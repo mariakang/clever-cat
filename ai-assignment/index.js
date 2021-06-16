@@ -241,6 +241,7 @@ function runTests(testModel) {
     }
   }
   testClassifier = testModelMap[testModel];
+  console.log(testClassifier);
   loadImage(dataset[0]["URL"], testImageReady);
 }
 
