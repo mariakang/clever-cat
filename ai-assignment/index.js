@@ -12,12 +12,6 @@ let testClassifier;
 let chestXRayClassifier;
 let normalVsPneumoniaClassifier;
 let bacterialVsViralClassifier;
-// Map model description to classifier (used to define the model under test)
-const testModelMap = {
-  "chestXRay": chestXRayClassifier,
-  "pneumonia": normalVsPneumoniaClassifier,
-  "pneumoniaType": bacterialVsViralClassifier
-}
 // An array representing rows of results
 let rows = [["Filename", "Classes", "Classification", "Confidence"]];
 // Current image index
@@ -223,8 +217,17 @@ function drawChart(result, colour) {
   document.getElementById("processing").setAttribute("class", "hidden");
 }
 
+function openModal() {
+  document.getElementById("modal").setAttribute("class", "visible");
+}
+
+function closeModal() {
+  document.getElementById("modal").setAttribute("class", "hidden");
+}
+
 // Loops over the list of image URLs provided by `data/dataset.js` and classifies them
 function runTests(testModel) {
+  document.getElementById("modal").setAttribute("class", "hidden");
   console.log(testModel);
   document.getElementById("processing").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "hidden");
@@ -235,20 +238,22 @@ function runTests(testModel) {
   document.getElementById("chestXRaySummary").innerHTML = "";
   document.getElementById("pneumoniaSummary").innerHTML = "";
   document.getElementById("pneumoniaTypeSummary").innerHTML = "";
-  if (testModel != "chestXRay") {
+  if (testModel === "chestXRay") {
+    testClassifier = chestXRayClassifier;
+  } else {
     dataset = dataset.filter(x => x["Chest X-Ray"]);
     if (testModel === "pneumoniaType") {
       dataset = dataset.filter(x => x["Pneumonia"]);
-    }
+      testClassifier = bacterialVsViralClassifier;
+    } else {
+      testClassifier = normalVsPneumoniaClassifier;
   }
-  testClassifier = normalVsPneumoniaClassifier;
-  console.log(testClassifier);
+  console.log(testClassifier.modelURL);
   loadImage(dataset[0]["URL"], testImageReady);
 }
 
 // Classifies the given image
 function testImageReady(image) {
-//  image(image, 224, 224);
   // once complete, execute the 'processTestResult' callback
   testClassifier.classify(image, processTestResult);
 }
@@ -343,7 +348,7 @@ function createCsv() {
   let link = document.getElementById("csvLink");
   link.setAttribute("href", encodedUri);
   // set the hyperlink to download the CSV
-  link.setAttribute("download", testModel + "Model_test_data.csv");
+  link.setAttribute("download", "test_data.csv");
   // unhide the HTML element and style it as a button
   link.setAttribute("class", "button");
   link.innerHTML = "Download CSV";
