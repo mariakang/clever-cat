@@ -241,7 +241,7 @@ function runTests(testModel) {
       dataset = dataset.filter(x => x["Pneumonia"]);
     }
   }
-  testClassifier = testModelMap[testModel];
+  testClassifier = normalVsPneumoniaClassifier;
   console.log(testClassifier);
   loadImage(dataset[0]["URL"], testImageReady);
 }
