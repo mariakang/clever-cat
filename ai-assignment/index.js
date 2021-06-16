@@ -80,18 +80,6 @@ function setup() {
   document.getElementById("tests").disabled = false;
 }
 
-// Clears the display
-function clear() {
-  document.getElementById("chart").setAttribute("class", "hidden");
-  document.getElementById("image").setAttribute("class", "hidden");
-  document.getElementById("filename").innerHTML = "";
-  document.getElementById("filename").setAttribute("class", "hidden");
-  document.getElementById("summary").setAttribute("class", "hidden");
-  document.getElementById("chestXRaySummary").innerHTML = "";
-  document.getElementById("pneumoniaSummary").innerHTML = "";
-  document.getElementById("pneumoniaTypeSummary").innerHTML = "";
-}
-
 // Launches the file picker
 function openDialog() {
   document.getElementById("chart").setAttribute("class", "hidden");
