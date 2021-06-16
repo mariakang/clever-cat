@@ -73,6 +73,7 @@ function setup() {
 
 // Launches the file picker
 function openDialog() {
+  document.getElementById("csvLink").setAttribute("class", "hidden");
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
   document.getElementById("filename").innerHTML = "";
@@ -229,6 +230,7 @@ function closeModal() {
 function runTests(testModel) {
   document.getElementById("modal").setAttribute("class", "hidden");
   console.log(testModel);
+  document.getElementById("csvLink").setAttribute("class", "hidden");
   document.getElementById("processing").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "hidden");
   document.getElementById("image").setAttribute("class", "hidden");
@@ -270,7 +272,7 @@ function processTestResult(error, result) {
 
 // Adds a row of data to the csv, updates the relevant confusion matrices, and loads the next image
 function analyse(result) {
-  console.log("analysing " + (currentIndex + 1));
+  console.log("analysing image " + (currentIndex + 1));
   // create a row to add to the CSV
   let urlArray = dataset[currentIndex]["URL"].split("/");
   let filename = urlArray[urlArray.length - 1];
@@ -336,7 +338,6 @@ function addConfusionMatrixRows() {
 
 // Creates a csv of the results
 function createCsv() {
-  console.log(rows);
   let csvContent = "data:text/csv;charset=utf-8,";
   for(let i = 0; i < rows.length; i++) {
     // for each row array, create a string of comma-separated values
@@ -351,6 +352,6 @@ function createCsv() {
   // set the hyperlink to download the CSV
   link.setAttribute("download", "test_data.csv");
   // unhide the HTML element and style it as a button
-  link.setAttribute("class", "button");
+  link.setAttribute("class", "visible, button");
   link.innerHTML = "Download CSV";
 }
