@@ -35,7 +35,7 @@
       align-items: center;
     }
       
-    button, .button {
+    .button {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,11 +52,11 @@
       border-style: outset;
     }
 
-    button:disabled {
+    .button:disabled {
       color: grey;
     }
 
-    button:hover:enabled, .button:hover {
+    .button:hover:enabled, .button:hover {
       background: black;
       color: white;
       opacity: 0.8;
@@ -100,7 +100,10 @@
       background: white;
       color: black;
       border: 1px solid black;
-      z-index: 2;
+    }
+
+    p {
+      color: black;
     }
 
     .hidden {
@@ -122,18 +125,18 @@
       <p>Please upload an image file or run the automated tests:</p>
     </div>
     <div class="row">
-      <button id="upload" onclick="openDialog()" disabled="true">Upload image</button>
-      <button id="tests" onclick="openModal()" disabled="true">Run tests</button>
+      <button class="button" id="upload" onclick="openDialog()" disabled="true">Upload image</button>
+      <button class="button" id="tests" onclick="openModal()" disabled="true">Run tests</button>
     </div>
     <div id="modal" class="hidden">
       <div class="modalContent">
 	<p>Which model would you like to test?</p>
         <br/>
-        <button onclick="runTests('chestXRay')">Chest X-Ray vs Other</button>
-        <button onclick="runTests('pneumonia')">Pneumonia vs Normal</button>
-        <button onclick="runTests('pneumoniaType')">Bacterial vs Viral</button>
+        <button class="button" onclick="runTests('chestXRay')">Chest X-Ray vs Other</button>
+        <button class="button" onclick="runTests('pneumonia')">Pneumonia vs Normal</button>
+        <button class="button" onclick="runTests('pneumoniaType')">Bacterial vs Viral</button>
         <br/>
-        <button onclick="closeModal()">Cancel</button>
+        <button class="button" onclick="closeModal()">Cancel</button>
       </div>
     </div>
     <input id="input" class="hidden" type="file" onchange="showFiles(event)" accept=".png, .jpg, .jpeg">
