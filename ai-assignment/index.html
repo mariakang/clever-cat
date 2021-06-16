@@ -23,6 +23,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background: white;
     }
 
     .row {
@@ -73,6 +74,22 @@
       margin: 10px;
     }
 
+    #modal {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background: grey;
+      opacity: 0.6;
+      padding: 50px;
+    }
+
     .hidden {
       visibility: hidden;
     }
@@ -93,7 +110,18 @@
     </div>
     <div class="row">
       <button id="upload" onclick="openDialog()" disabled="true">Upload image</button>
-      <button id="tests" onclick="runTests('pneumonia')" disabled="true">Run tests</button>
+      <button id="tests" onclick="openModal()" disabled="true">Run tests</button>
+    </div>
+    <div id="modal" class="hidden">
+      <div class="container">
+        <div>Which model would you like to test?</div>
+        <br/>
+        <button onclick="runTests('chestXRay')">Chest X-Ray vs Other</button>
+        <button onclick="runTests('pneumonia')">Pneumonia vs Normal</button>
+        <button onclick="runTests('pneumoniaType')">Bacterial vs Viral</button>
+        <br/>
+        <button onclick="closeModal()">Cancel</button>
+      </div>
     </div>
     <input id="input" class="hidden" type="file" onchange="showFiles(event)" accept=".png, .jpg, .jpeg">
     <div id="processing" class="hidden">Processing... (see console log for details)</div>
