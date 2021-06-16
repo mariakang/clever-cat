@@ -7,17 +7,17 @@ google.charts.load("current", {packages: ["corechart", "bar"]});
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/wgismIVl4/";
 let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/sCj_g44v_/";
+// Store the classifier objects
+let testClassifier;
+let chestXRayClassifier;
+let normalVsPneumoniaClassifier;
+let bacterialVsViralClassifier;
 // Map model description to classifier (used to define the model under test)
 const testModelMap = {
   "chestXRay": chestXRayClassifier,
   "pneumonia": normalVsPneumoniaClassifier,
   "pneumoniaType": bacterialVsViralClassifier
 }
-// Store the classifier objects
-let testClassifier;
-let chestXRayClassifier;
-let normalVsPneumoniaClassifier;
-let bacterialVsViralClassifier;
 // An array representing rows of results
 let rows = [["Filename", "Classes", "Classification", "Confidence"]];
 // Current image index
