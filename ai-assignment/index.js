@@ -6,7 +6,7 @@ google.charts.load("current", {packages: ["corechart", "bar"]});
 // Store the paths of the models
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/3DTcolOWc/";
-let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/sCj_g44v_/";
+let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/YT7g6geS-/";
 // Store the classifier objects
 let testClassifier;
 let chestXRayClassifier;
