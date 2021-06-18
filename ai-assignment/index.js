@@ -98,7 +98,7 @@ function showFiles() {
   const reader = new FileReader();
   reader.onload = function (event) {
     image.src = reader.result;
-    loadImage(image, imageReady);
+    imageReady(image);
   }
   reader.readAsDataURL(file);
   console.log(name);
