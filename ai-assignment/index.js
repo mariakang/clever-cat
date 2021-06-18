@@ -103,7 +103,31 @@ function showFiles() {
   console.log(name);
   document.getElementById("filename").innerHTML = name;
   document.getElementById("processing").setAttribute("class", "visible");
-  classify(image);
+  classify(cropTo(image, 224));
+}
+
+function cropTo(image, size) {
+  let canvas = document.createElement("canvas");
+  let width = image.width;
+  let height = image.height;
+
+  let min = Math.min(width, height);
+  let scale = size / min;
+  let scaledW = Math.ceil(width * scale);
+  let scaledH = Math.ceil(height * scale);
+  let dx = scaledW - size;
+  let dy = scaledH - size;
+  canvas.width = canvas.height = size;
+  let ctx = canvas.getContext('2d');
+  ctx.drawImage(image, ~~(dx / 2) * -1, ~~(dy / 2) * -1, scaledW, scaledH);
+
+    // canvas is already sized and cropped to center correctly
+//    if (flipped) {
+//        ctx.scale(-1, 1);
+//        ctx.drawImage(canvas, size * -1, 0);
+//    }
+
+  return canvas;
 }
 
 function classify(image) {
