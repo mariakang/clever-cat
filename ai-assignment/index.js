@@ -103,7 +103,22 @@ function showFiles() {
   console.log(name);
   document.getElementById("filename").innerHTML = name;
   document.getElementById("processing").setAttribute("class", "visible");
+  image = crop(image);
   classify(image);
+}
+
+function crop(image) {
+  let width = image.shape[0];
+  let height = image.shape[1];
+  // use the shorter side as the size to which we will crop
+  let shorterSide = Math.min(image.shape[0], image.shape[1]);
+  // calculate beginning and ending crop points
+  let startingHeight = (height - shorterSide) / 2;
+  let startingWidth = (width - shorterSide) / 2;
+  let endingHeight = startingHeight + shorterSide;
+  let endingWidth = startingWidth + shorterSide;
+  // return image data cropped to those points
+  return image.slice([startingWidth, startingHeight, 0], [endingWidth, endingHeight, 3]);}
 }
 
 
@@ -259,9 +274,10 @@ function runTests(testModel) {
   loadImage(dataset[0]["URL"], testImageReady);
 }
 
-// Classifies the given image
+// Crops and classifies the given image
 function testImageReady(image) {
   // once complete, execute the 'processTestResult' callback
+  image = crop(image);
   testClassifier.classify(image, processTestResult);
 }
 
