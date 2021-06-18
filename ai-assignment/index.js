@@ -124,7 +124,7 @@ function checkIfChestXRay(error, result) {
       summary = "The image is a chest X-ray (" + confidenceChestXRay + "%)";
     } else {
       if (confidenceChestXRay >= 60) {
-        summary = "The image may be a chest X-ray (" + confidenceChestXRay + "%), but no futher analysis will be performed due to uncertainty.";
+        summary = "The image is probably a chest X-ray (" + confidenceChestXRay + "%), but no futher analysis will be performed due to uncertainty.";
       } else {
         summary = "The image could not be recognised as a chest X-ray (" + confidenceChestXRay + "%), so no further analysis will be performed.";
       }
