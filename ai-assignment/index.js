@@ -78,7 +78,7 @@ function setup() {
 function openDialog() {
   document.getElementById("csvLink").setAttribute("class", "hidden");
   document.getElementById("chart").setAttribute("class", "hidden");
-  document.getElementById("image").setAttribute("class", "hidden");
+  document.getElementById("canvas").setAttribute("class", "hidden");
   document.getElementById("filename").innerHTML = "";
   document.getElementById("filename").setAttribute("class", "hidden");
   document.getElementById("summary").setAttribute("class", "hidden");
@@ -91,15 +91,14 @@ function openDialog() {
 
 // Reads the chosen file into the image element, and launches the classifier
 function showFiles() {
-//  let image = document.getElementById("image");
-  let image = document.createElement("img");
+  let image = document.getElementById("image");
   // read the file from the user
   let file = document.getElementById("input").files[0];
   let name = file.name;
   const reader = new FileReader();
   reader.onload = function (event) {
     image.src = reader.result;
-    loadImage(image, transformToCanvas);
+    loadImage(image, imageReady);
   }
   reader.readAsDataURL(file);
   console.log(name);
@@ -108,8 +107,8 @@ function showFiles() {
 //  classify(image);
 }
 
-function transformToCanvas(image) {
-  let canvas = document.getElementById("image");
+function imageReady(image) {
+  let canvas = document.getElementById("canvas");
   let size = 224;
   let width = image.width;
   let height = image.height;
@@ -124,30 +123,6 @@ function transformToCanvas(image) {
   let ctx = canvas.getContext('2d');
   ctx.drawImage(image, ~~(dx / 2) * -1, ~~(dy / 2) * -1, scaledW, scaledH);
   classify(canvas);
-}
-
-function cropTo(image, size) {
-  let canvas = document.createElement("canvas");
-  let width = image.width;
-  let height = image.height;
-
-  let min = Math.min(width, height);
-  let scale = size / min;
-  let scaledW = Math.ceil(width * scale);
-  let scaledH = Math.ceil(height * scale);
-  let dx = scaledW - size;
-  let dy = scaledH - size;
-  canvas.width = canvas.height = size;
-  let ctx = canvas.getContext('2d');
-  ctx.drawImage(image, ~~(dx / 2) * -1, ~~(dy / 2) * -1, scaledW, scaledH);
-
-    // canvas is already sized and cropped to center correctly
-//    if (flipped) {
-//        ctx.scale(-1, 1);
-//        ctx.drawImage(canvas, size * -1, 0);
-//    }
-
-  return canvas;
 }
 
 function classify(image) {
@@ -259,7 +234,7 @@ function drawChart(result, colour) {
   chart.draw(view, options);
   document.getElementById("summary").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "visible");
-  document.getElementById("image").setAttribute("class", "visible");
+  document.getElementById("canvas").setAttribute("class", "visible");
   document.getElementById("filename").setAttribute("class", "visible");
   document.getElementById("processing").setAttribute("class", "hidden");
 }
@@ -279,7 +254,7 @@ function runTests(testModel) {
   document.getElementById("csvLink").setAttribute("class", "hidden");
   document.getElementById("processing").setAttribute("class", "visible");
   document.getElementById("chart").setAttribute("class", "hidden");
-  document.getElementById("image").setAttribute("class", "hidden");
+  document.getElementById("canvas").setAttribute("class", "hidden");
   document.getElementById("filename").innerHTML = "";
   document.getElementById("filename").setAttribute("class", "hidden");
   document.getElementById("summary").setAttribute("class", "hidden");
