@@ -121,7 +121,7 @@ function imageReady(image) {
   let dy = scaledH - size;
 //  canvas.width = canvas.height = size;
   let ctx = canvas.getContext('2d');
-  ctx.drawImage(image, ~~(dx / 2) * -1, ~~(dy / 2) * -1, scaledW, scaledH);
+  ctx.drawImage(image, dx / 2, dy / 2, scaledW, scaledH, size, size);
   classify(canvas);
 }
 
