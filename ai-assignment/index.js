@@ -109,6 +109,8 @@ function showFiles() {
 
 function imageReady(image) {
   let canvas = document.getElementById("canvas");
+  canvas.width = 224;
+  canvas.height = 224;
   let width = image.width;
   let height = image.height;
   let min = Math.min(width, height);
