@@ -92,6 +92,9 @@ function openDialog() {
 // Reads the chosen file into the image element, and launches the classifier
 function showFiles() {
   let image = document.getElementById("image");
+  image.addEventListener("load", e => {
+    imageReady(image);
+  });
   // read the file from the user
   let file = document.getElementById("input").files[0];
   let name = file.name;
@@ -103,8 +106,7 @@ function showFiles() {
   console.log(name);
   document.getElementById("filename").innerHTML = name;
   document.getElementById("processing").setAttribute("class", "visible");
-  imageReady(image);
-//  classify(image);
+  //  classify(image);
 }
 
 function imageReady(image) {
@@ -117,10 +119,8 @@ function imageReady(image) {
   let dx = width - min;
   let dy = height - min;
   let ctx = canvas.getContext('2d');
-  image.addEventListener('load', e => {
-    ctx.drawImage(image, dx / 2, dy / 2, min, min, 0, 0, 224, 224);
-    classify(canvas);
-  });
+  ctx.drawImage(image, dx / 2, dy / 2, min, min, 0, 0, 224, 224);
+  classify(canvas);
 }
 
 function classify(image) {
