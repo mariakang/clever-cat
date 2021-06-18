@@ -336,6 +336,15 @@ function runTests(testModel) {
   });
   // reset the current index to 0
   currentIndex = 0;
+  // reset the confusion matrices
+  for (const [key, value] of Object.entries(confusionMatrices)) {
+    value.TP = 0;
+    value.FP = 0;
+    value.FN = 0;
+    value.TN = 0;
+  }
+  // reset the array of CSV rows
+  rows = [["Filename", "Classes", "Classification", "Confidence"]];
   // set the image source as the URL of the first data item
   image.src = dataset[0]["URL"];
 }
