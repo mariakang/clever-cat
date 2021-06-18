@@ -142,15 +142,14 @@
     <br/>
     <div id="chart"></div>
   </div>
-  <div id="modal" class="hidden">
+  <div id="modal" class="hidden" onclick="closeModal()">
     <div class="modalContent">
       <p>Which model would you like to test?</p>
       <br/>
       <button class="button" onclick="runTests('chestXRay')">Chest X-Ray vs Other</button>
       <button class="button" onclick="runTests('pneumonia')">Pneumonia vs Normal</button>
       <button class="button" onclick="runTests('pneumoniaType')">Bacterial vs Viral</button>
-      <br/>
-      <button class="button" onclick="closeModal()">Cancel</button>
+      <button class="button" onclick="runTests('multiclass')">Multiclass Model</button>
     </div>
   </div>
 </body>
