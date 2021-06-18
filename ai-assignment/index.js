@@ -118,7 +118,7 @@ function crop(image) {
   let endingHeight = startingHeight + shorterSide;
   let endingWidth = startingWidth + shorterSide;
   // return image data cropped to those points
-  return image.slice([startingWidth, startingHeight, 0], [endingWidth, endingHeight, 3]);}
+  return image.slice([startingWidth, startingHeight, 0], [endingWidth, endingHeight, 3]);
 }
 
 
