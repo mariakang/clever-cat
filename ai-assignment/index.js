@@ -109,19 +109,13 @@ function showFiles() {
 
 function imageReady(image) {
   let canvas = document.getElementById("canvas");
-  let size = 224;
   let width = image.width;
   let height = image.height;
-
   let min = Math.min(width, height);
-  let scale = size / min;
-  let scaledW = Math.ceil(width * scale);
-  let scaledH = Math.ceil(height * scale);
-  let dx = scaledW - size;
-  let dy = scaledH - size;
-//  canvas.width = canvas.height = size;
+  let dx = width - min;
+  let dy = height - min;
   let ctx = canvas.getContext('2d');
-  ctx.drawImage(image, dx / 2, dy / 2, scaledW, scaledH, 0, 0, size, size);
+  ctx.drawImage(image, dx / 2, dy / 2, min, min, 0, 0, 224, 224);
   classify(canvas);
 }
 
