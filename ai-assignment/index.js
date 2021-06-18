@@ -7,11 +7,13 @@ google.charts.load("current", {packages: ["corechart", "bar"]});
 let chestXRayModelURL = "https://teachablemachine.withgoogle.com/models/4ET1--Ix-/";
 let normalVsPneumoniaModelURL = "https://teachablemachine.withgoogle.com/models/3DTcolOWc/";
 let bacterialVsViralModelURL = "https://teachablemachine.withgoogle.com/models/VafwJDyiu/";
+let multiclassModelURL = "https://teachablemachine.withgoogle.com/models/yjBlRUsUV/";
 // Store the classifier objects
 let testClassifier;
 let chestXRayClassifier;
 let normalVsPneumoniaClassifier;
 let bacterialVsViralClassifier;
+let multiclassClassifier;
 // An array representing rows of results
 let rows = [["Filename", "Classes", "Classification", "Confidence"]];
 // Current image index
@@ -62,6 +64,7 @@ function preload() {
   chestXRayClassifier = ml5.imageClassifier(chestXRayModelURL + "model.json");
   normalVsPneumoniaClassifier = ml5.imageClassifier(normalVsPneumoniaModelURL + "model.json");
   bacterialVsViralClassifier = ml5.imageClassifier(bacterialVsViralModelURL + "model.json");
+  multiclassClassifier = ml5.imageClassifier(multiclassModelURL + "model.json");
 }
 
 // p5 function which is automatically called after the 'preload' function (once only)
@@ -242,6 +245,8 @@ function runTests(testModel) {
   document.getElementById("pneumoniaTypeSummary").innerHTML = "";
   if (testModel === "chestXRay") {
     testClassifier = chestXRayClassifier;
+  } else if (testModel === "multiclass") {
+    testClassifier = multiclassClassifier;
   } else {
     dataset = dataset.filter(x => x["Chest X-Ray"]);
     if (testModel === "pneumoniaType") {
@@ -251,7 +256,6 @@ function runTests(testModel) {
       testClassifier = normalVsPneumoniaClassifier;
     }
   }
-  console.log(testClassifier.modelURL);
   loadImage(dataset[0]["URL"], testImageReady);
 }
 
