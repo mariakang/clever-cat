@@ -418,6 +418,7 @@ function analyse(result) {
   // the final confusion matrix results to the 'rows' array, and generate the CSV and download button
   } else {
     document.getElementById("processing").setAttribute("class", "hidden");
+    document.getElementById("canvas").setAttribute("class", "hidden");
     addConfusionMatrixRows();
     createCsv();
   }
