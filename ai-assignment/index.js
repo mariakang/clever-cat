@@ -280,14 +280,14 @@ function runTests(testModel) {
   image.addEventListener("load", e => {
     testImageReady(image);
   });
-//  loadImage(dataset[0]["URL"], testImageReady);
+  currentIndex = 0;
   image.src = dataset[0]["URL"];
 }
 
 // Classifies the given image
 function testImageReady(image) {
   // once complete, execute the 'processTestResult' callback
-  let canvas = document.createElement("canvas");
+  let canvas = document.getElementById("canvas");
   cropAndResizeImageToCanvas(image, canvas);
   canvas.setAttribute("class", "visible");
   testClassifier.classify(canvas, processTestResult);
@@ -347,7 +347,6 @@ function analyse(result) {
   if (currentIndex < dataset.length) {
     let image = document.getElementById("image");
     image.src = dataset[currentIndex]["URL"];
-//    loadImage(dataset[currentIndex]["URL"], testImageReady);
   } else {
     document.getElementById("processing").setAttribute("class", "hidden");
     addConfusionMatrixRows();
