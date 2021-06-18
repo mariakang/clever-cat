@@ -98,12 +98,12 @@ function showFiles() {
   const reader = new FileReader();
   reader.onload = function (event) {
     image.src = reader.result;
-    imageReady(image);
   }
   reader.readAsDataURL(file);
   console.log(name);
   document.getElementById("filename").innerHTML = name;
   document.getElementById("processing").setAttribute("class", "visible");
+  imageReady(image);
 //  classify(image);
 }
 
