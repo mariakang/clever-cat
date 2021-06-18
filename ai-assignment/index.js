@@ -92,23 +92,23 @@ function openDialog() {
 // Reads the chosen file into the image element, and launches the classifier
 function showFiles() {
 //  let image = document.getElementById("image");
+  let image = document.createElement("img");
   // read the file from the user
   let file = document.getElementById("input").files[0];
   let name = file.name;
   const reader = new FileReader();
   reader.onload = function (event) {
-//      image.src = reader.result;
-    loadImage(reader.result, imageReady);
+    image.src = reader.result;
+    transformToCanvas(image)
   }
   reader.readAsDataURL(file);
   console.log(name);
   document.getElementById("filename").innerHTML = name;
   document.getElementById("processing").setAttribute("class", "visible");
-//  image = cropTo(image, 224);
 //  classify(image);
 }
 
-function imageReady(image) {
+function transformToCanvas(image) {
   let canvas = document.getElementById("image");
   let size = 224;
   let width = image.width;
