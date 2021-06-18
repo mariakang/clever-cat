@@ -99,7 +99,7 @@ function showFiles() {
   const reader = new FileReader();
   reader.onload = function (event) {
     image.src = reader.result;
-    transformToCanvas(image)
+    loadImage(image, transformToCanvas);
   }
   reader.readAsDataURL(file);
   console.log(name);
@@ -120,7 +120,7 @@ function transformToCanvas(image) {
   let scaledH = Math.ceil(height * scale);
   let dx = scaledW - size;
   let dy = scaledH - size;
-  canvas.width = canvas.height = size;
+//  canvas.width = canvas.height = size;
   let ctx = canvas.getContext('2d');
   ctx.drawImage(image, ~~(dx / 2) * -1, ~~(dy / 2) * -1, scaledW, scaledH);
   classify(canvas);
