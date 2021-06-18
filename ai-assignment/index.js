@@ -414,8 +414,8 @@ function analyse(result) {
     // classification process, which includes moving on to the next item
     let image = document.getElementById("image");
     image.src = dataset[currentIndex]["URL"];
-  // if we have reached the end of the dataset, then hide the "processing..." message, add the final
-  // confusion matrix results to the 'rows' array, and generate the CSV and button to download it
+  // if we have reached the end of the dataset, then hide the "processing..." message and image, add
+  // the final confusion matrix results to the 'rows' array, and generate the CSV and download button
   } else {
     document.getElementById("processing").setAttribute("class", "hidden");
     addConfusionMatrixRows();
