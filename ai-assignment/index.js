@@ -124,9 +124,9 @@ function checkIfChestXRay(error, result) {
       summary = "The image is a chest X-ray (" + confidenceChestXRay + "%)";
     } else {
       if (confidenceChestXRay >= 60) {
-        summary = "The image is probably a chest X-ray (" + confidenceChestXRay + "%), but no futher analysis will be performed due to uncertainty.";
+        summary = "The image is probably a chest X-ray (" + confidenceChestXRay + "%), but no futher analysis was performed due to uncertainty.";
       } else {
-        summary = "The image could not be recognised as a chest X-ray (" + confidenceChestXRay + "%), so no further analysis will be performed.";
+        summary = "The image could not be recognised as a chest X-ray (" + confidenceChestXRay + "%), so no further analysis was performed.";
       }
       drawChart(result, "#982107");
     }
@@ -152,9 +152,9 @@ function checkIfPneumonia(error, result) {
       summary = "Pneumonia is present (" + confidencePneumonia + "%)";
     } else {
       if (confidencePneumonia >= 50) {
-        summary = "Pneumonia may be present (" + confidencePneumonia + "%), but no futher analysis will be performed due to uncertainty.";
+        summary = "Pneumonia may be present (" + confidencePneumonia + "%), but no futher analysis was performed due to uncertainty.";
       } else if (confidencePneumonia >= 20) {
-        summary = "The X-ray is probably normal (" + (100 - confidencePneumonia) + "%), so no further analysis will be performed.";
+        summary = "The X-ray is probably normal (" + (100 - confidencePneumonia) + "%), so no further analysis was performed.";
       } else {
         summary = "The X-ray is normal (" + (100 - confidencePneumonia) + "%)";
       }
