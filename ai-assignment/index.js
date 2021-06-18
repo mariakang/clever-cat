@@ -276,7 +276,12 @@ function runTests(testModel) {
       testClassifier = normalVsPneumoniaClassifier;
     }
   }
-  loadImage(dataset[0]["URL"], testImageReady);
+  let image = document.getElementById("image");
+  image.addEventListener("load", e => {
+    testImageReady(image);
+  });
+//  loadImage(dataset[0]["URL"], testImageReady);
+  image.src = dataset[0]["URL"];
 }
 
 // Classifies the given image
@@ -284,6 +289,7 @@ function testImageReady(image) {
   // once complete, execute the 'processTestResult' callback
   let canvas = document.createElement("canvas");
   cropAndResizeImageToCanvas(image, canvas);
+  canvas.setAttribute("class", "visible");
   testClassifier.classify(canvas, processTestResult);
 }
 
@@ -339,7 +345,9 @@ function analyse(result) {
   console.log(rows[rows.length - 1]);
   currentIndex++;
   if (currentIndex < dataset.length) {
-    loadImage(dataset[currentIndex]["URL"], testImageReady);
+    let image = document.getElementById("image");
+    image.src = dataset[currentIndex]["URL"];
+//    loadImage(dataset[currentIndex]["URL"], testImageReady);
   } else {
     document.getElementById("processing").setAttribute("class", "hidden");
     addConfusionMatrixRows();
