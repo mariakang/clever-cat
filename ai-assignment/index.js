@@ -111,6 +111,11 @@ function showFiles() {
 
 function imageReady(image) {
   let canvas = document.getElementById("canvas");
+  cropAndResizeImageToCanvas(image, canvas);
+  classify(canvas);
+}
+
+function cropAndResizeImageToCanvas(image, canvas) {
   canvas.width = 224;
   canvas.height = 224;
   let width = image.width;
@@ -120,7 +125,6 @@ function imageReady(image) {
   let dy = height - min;
   let ctx = canvas.getContext('2d');
   ctx.drawImage(image, dx / 2, dy / 2, min, min, 0, 0, 224, 224);
-  classify(canvas);
 }
 
 function classify(image) {
@@ -278,7 +282,9 @@ function runTests(testModel) {
 // Classifies the given image
 function testImageReady(image) {
   // once complete, execute the 'processTestResult' callback
-  testClassifier.classify(image, processTestResult);
+  let canvas = document.createElement("canvas");
+  cropAndResizeImageToCanvas(image, canvas);
+  testClassifier.classify(canvas, processTestResult);
 }
 
 // Callback to write the results to csv
