@@ -108,10 +108,10 @@ function showFiles() {
 }
 
 function crop(image) {
-  let width = image.shape[0];
-  let height = image.shape[1];
+  let width = image.naturalWidth;
+  let height = image.naturalHeight;
   // use the shorter side as the size to which we will crop
-  let shorterSide = Math.min(image.shape[0], image.shape[1]);
+  let shorterSide = Math.min(width, height);
   // calculate beginning and ending crop points
   let startingHeight = (height - shorterSide) / 2;
   let startingWidth = (width - shorterSide) / 2;
