@@ -117,8 +117,10 @@ function imageReady(image) {
   let dx = width - min;
   let dy = height - min;
   let ctx = canvas.getContext('2d');
-  ctx.drawImage(image, dx / 2, dy / 2, min, min, 0, 0, 224, 224);
-  classify(canvas);
+  image.addEventListener('load', e => {
+    ctx.drawImage(image, dx / 2, dy / 2, min, min, 0, 0, 224, 224);
+    classify(canvas);
+  });
 }
 
 function classify(image) {
