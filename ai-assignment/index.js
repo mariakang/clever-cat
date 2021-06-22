@@ -277,6 +277,7 @@ function drawChart(result, colour) {
       height: 150,
       bar: {groupWidth: "75%"},
       legend: { position: "none" },
+      hAxis: {minValue: 0, maxValue: 100}
   };
   // Draw a horizontal bar chart
   let chart = new google.visualization.BarChart(document.getElementById("chart"));
