@@ -16,6 +16,8 @@ let bacterialVsViralClassifier;
 let multiclassClassifier;
 // An array representing rows of results
 let rows = [["Filename", "Classes", "Classification", "Confidence"]];
+// An array of objects representing the test data files
+let dataset;
 // Current image index
 let currentIndex = 0;
 // Confusion matrices
@@ -311,6 +313,8 @@ function runTests(testModel) {
   document.getElementById("pneumoniaTypeSummary").innerHTML = "";
   // display a "processing..." message
   document.getElementById("processing").setAttribute("class", "visible");
+  // copy the master dataset
+  dataset = masterDataset.slice();
   // set the testClassifier to the relevant one, and discard any irrelevant data items
   if (testModel === "chestXRay") {
     testClassifier = chestXRayClassifier;
