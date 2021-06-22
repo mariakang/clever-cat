@@ -59,6 +59,10 @@ let confusionMatrices = {
     TN: 0,
   }
 }
+// Store the image elements in variables
+let userImage = document.getElementById("userImage");
+let testImage = document.getElementById("testImage");
+
 
 // p5 function which is automatically called by the p5 library (once only)
 function preload() {
@@ -74,6 +78,14 @@ function setup() {
   // Enable the buttons
   document.getElementById("upload").disabled = false;
   document.getElementById("tests").disabled = false;
+  // set listeners to call 'imageReady' and 'testImageReady' whenever the image or test image
+  // is loaded (which will happen every time its 'src' attribute is set)
+  userImage.addEventListener("load", e => {
+    imageReady(userImage);
+  });
+  testImage.addEventListener("load", e => {
+    testImageReady(testImage);
+  });
 }
 
 // Launches the file picker
@@ -94,19 +106,13 @@ function openDialog() {
 
 // Reads the chosen file into the image element, and launches the classifier
 function showFiles() {
-  // Store the image element in a variable, and set a listener to call 'imageReady'
-  // whenever the image is loaded (which will happen every time its 'src' attribute is set)
-  let image = document.getElementById("image");
-  image.addEventListener("load", e => {
-    imageReady(image);
-  });
   // read the file from the user
   let file = document.getElementById("input").files[0];
   let name = file.name;
   const reader = new FileReader();
   reader.onload = function (event) {
     // set the 'src' attribute of the image to the file path
-    image.src = reader.result;
+    userImage.src = reader.result;
   }
   reader.readAsDataURL(file);
   // log the filename and store it in the relevant element
@@ -179,10 +185,9 @@ function checkIfChestXRay(error, result) {
 
 // Classifies the chest x-ray
 function classifyChestXRay() {
-  let image = document.getElementById("image");
   // use the pneumonia classifier to predict whether or not pneumonia is present;
   // if so, then further classification will follow
-  normalVsPneumoniaClassifier.classify(image, checkIfPneumonia);
+  normalVsPneumoniaClassifier.classify(userImage, checkIfPneumonia);
 }
 
 // Callback for the pneumonia model: determines whether or not pneumonia is present in the image, and if so,
@@ -220,8 +225,7 @@ function checkIfPneumonia(error, result) {
 
 // Classifies the pneumonia type as "bacterial" or "viral"
 function classifyPneumoniaType() {
-  let image = document.getElementById("image");
-  bacterialVsViralClassifier.classify(image, bacterialOrViral);
+  bacterialVsViralClassifier.classify(userImage, bacterialOrViral);
 }
 
 // Callback for the pneumonia type model: determines whether the pneumonia is "bacterial" or "viral"
@@ -332,12 +336,6 @@ function runTests(testModel) {
       testClassifier = normalVsPneumoniaClassifier;
     }
   }
-  // Store the image element in a variable, and set a listener to call 'testImageReady'
-  // whenever the image is loaded (which will happen every time its 'src' attribute is set)
-  let image = document.getElementById("image");
-  image.addEventListener("load", e => {
-    testImageReady(image);
-  });
   // reset the current index to 0
   currentIndex = 0;
   // reset the confusion matrices
@@ -350,7 +348,7 @@ function runTests(testModel) {
   // reset the array of CSV rows
   rows = [["Filename", "Classes", "Classification", "Confidence"]];
   // set the image source as the URL of the first data item
-  image.src = dataset[0]["URL"];
+  testImage.src = dataset[0]["URL"];
 }
 
 // Called when the image is ready: crops, resizes and classifies it
@@ -425,8 +423,7 @@ function analyse(result) {
   if (currentIndex < dataset.length) {
     // set the image src attribute to the URL of the next item; the 'load' listener will trigger the
     // classification process, which includes moving on to the next item
-    let image = document.getElementById("image");
-    image.src = dataset[currentIndex]["URL"];
+    testImage.src = dataset[currentIndex]["URL"];
   // if we have reached the end of the dataset, then hide the "processing..." message and image, add
   // the final confusion matrix results to the 'rows' array, and generate the CSV and download button
   } else {
