@@ -5,7 +5,7 @@ let userPoolData = {
   ClientId: "5ciuhpl5vt3im105tngdjg08ma"
 };
 
-let cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+let cognitoUserPool = new AmazonCognitoIdentity.CognitoUserPool(userPoolData);
 
 ReactDOM.render(<Home userPool={cognitoUserPool} apiUrl={apiInvokeUrl} />, document.getElementById('app'));
 
