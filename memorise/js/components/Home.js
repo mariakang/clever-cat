@@ -43,7 +43,7 @@ class Home extends React.Component{
         } else {
           cognitoUser.getUserAttributes(function attributesCallback(err, attributes) {
             this.setState({
-              name: attributes.find(x -> x.Name == "name").Value,
+              name: attributes.find(x => x.Name == "name").Value,
               authToken: session.getIdToken().getJwtToken()
             });
             console.log("name changed to " + this.state.name + ", authToken changed to " + this.state.authToken);
