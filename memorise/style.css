@@ -1,0 +1,332 @@
+:root {
+  font-size: calc(10px + 2vmin);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  background-image: url(https://www.maria-kang.com/photos/Africa-Elephants.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: calc(100vw * 1136/640);
+  min-width: 640px;
+  min-height: 1136px;
+  width: 100%;
+  font-family: verdana;
+}
+.container {
+  width: 80%;
+  max-width: 800px;
+  margin-top: calc(20px + 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  width: 80%;
+}
+.option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+  width: 100%;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  position: relative;
+  width: 100%;
+}
+.auto-width {
+  width: auto;
+}
+input {
+  min-height: 1.6rem;
+  text-align: left;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+  width: auto;
+  margin: 0.1rem;
+  border: 1px solid #321b26;
+}
+.invalid:focus {
+  background-color: #e07552;
+  color: #990000;
+}
+label {
+  font-size: 1rem;
+  width: auto;
+}
+button {
+  background-color: #ffff99;
+  font-family: verdana;
+  padding: 7px;
+  margin: 0.5rem;
+  width: 12rem;
+  border: 1px solid #321b26;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+  font-size: 0.8rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.go {
+  width: 5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: #b3cc66;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.test {
+  background-color: #b3cc66;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.delete {
+  width: auto;
+  background-color: #e07552;
+  min-width: 1.5rem;
+}
+.delete-wide {
+  min-width: 4.5rem;
+}
+.add {
+  width: 3.6rem;
+}
+.switch {
+  width: auto;
+}
+.addRows {
+  width: auto;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.outline {
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+.buffer {
+  width: 120px;
+  height: 5rem;
+}
+button:hover {
+  background-color: #321b26;
+  color: #fafafa;
+  border: 1px solid #fafafa;
+}
+button:disabled {
+  background-color: #cccccc;
+  color: #808080;
+  cursor: not-allowed;
+}
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #321b26;
+  cursor: pointer;
+}
+.radio {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #321b26;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+h1 {
+  font-size: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+  font-family: 'Joti One', verdana;
+  color: #321b26
+}
+b {
+  color: #321b26
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: 1rem;
+}
+h3 {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #ffb84d;
+  background-color: #321b26;
+  z-index: 3;
+}
+.headerSection-left{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-family: 'Joti One', verdana;
+}
+.headerSection-right{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.headerItem {
+  margin: 20px;
+  font-size: 0.8rem;
+}
+.table {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(auto-fill, auto-fit);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.tableBody {
+  max-height: calc((100vw * 1136/640 - 400px) * 0.4);
+  overflow-y: scroll;
+  width: 100%;
+}
+.tableBody-form {
+  max-height: calc((100vw * 1136/640 - 400px) * 0.6);
+  overflow-y: scroll;
+  width: 100%;
+}
+@media screen and (max-width: 640px) {
+  .tableBody {
+    max-height: calc(640px * 0.24 * 1136/640);
+  }
+  .tableBody-form {
+    max-height: calc(640px * 0.4 * 1136/640);
+  }
+}
+.tableRow-3 {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 6% 47% 47%;
+  width: 90%;
+  min-height: 30px;
+  margin: 5px;
+}
+.tableRow-4 {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 6% 42% 42% 10%;
+}
+.columnHeading {
+  padding: 2px;
+  margin: 5px 5px 5px 20px;
+  word-wrap: break-word;
+}
+.tableHeading {
+  color: #ffb84d;
+  background-color: #321b26;
+  width: 100%;
+}
+.tableEnding {
+  background-color: #321b26;
+  width: 100%;
+  height: 5px;
+  margin-bottom: 10px;
+}
+.tableCell {
+  margin-left: 30px;
+}
+.description {
+  font-size: 0.8rem;
+}
+.blurb {
+  font-size: 0.5rem;
+  font-style: italic;
+  margin-top: -40px;
+  margin-bottom: 20px;
+  color: #532d3f;
+}
+.answer {
+  margin-bottom: 3rem;
+}
+.red {
+  color: #b30000;
+}
+.green {
+  color: #008000;
+}
+.brown {
+  color: #993333;
+}
+.guess {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+/*
+@media screen and (max-width: 1000px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main {
+    align-items: flex-start;
+    padding-left: 80px;
+  }
+  .container {
+    margin-left: 80px;
+  }
+  @media screen and (max-width: 800px) {
+    .main{
+      padding-left: 50px;
+    }
+    .container {
+      margin-left: 50px;
+    }
+    @media screen and (max-width: 600px) {
+      .main{
+        padding-left: 20px;
+      }
+      .container {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+*/
