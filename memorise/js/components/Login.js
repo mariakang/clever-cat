@@ -10,20 +10,24 @@ class Login extends React.Component{
       password: "",
       passwordValid: false,
       confirmPassword: "",
-      passwordsMatch: false
+      passwordsMatch: false,
+      verificationCode: "",
+      verificationCodeValid: false
     };
-    this.handleToggleForm = this.handleToggleForm.bind(this);
+    this.handleChangeForm = this.handleChangeForm.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleConfirmPassword = this.handleConfirmPassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleVerificationCode = this.handleVerificationCode.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleVerify = this.handleVerify.bind(this);
   }
 
-  handleToggleForm(event) {
-    let newForm = this.state.form == "login" ? "registration" : "login";
+  handleChangeForm(form) {
     this.setState({
-      form: newForm,
+      form: form,
     });
     console.log("form changed to " + this.state.form);
   }
@@ -69,42 +73,56 @@ class Login extends React.Component{
     });
     console.log("password confirmation changed to " + this.state.confirmPassword + "(match: " + this.state.passwordsMatch + ")");
   }
+  
+  handleVerificationCode(event) {
+    let newValue = event.target.value;
+    let valid = /^[0-9]{6}$/.test(newValue);
+    this.setState({
+      verificationCode: newValue,
+      verificationCodeValid: valid
+    });
+    console.log("verification code changed to " + this.state.verificationCode + " (valid: " + this.state.verificationCodeValid + ")");
+  }
 
-  handleSubmit(event) {
-    let userPool = this.props.userPool;
-    let email = this.state.email;
-    let username = email.replace('@', '-at-');
-    let password = this.state.password;
-    if (this.state.form == "registration") {
-      let emailData = {
-        Name: 'email',
-        Value: email
-      };
-      let nameData = {
-        Name: 'name',
-        Value: this.state.name
-      };
-      let emailAttribute = new AmazonCognitoIdentity.CognitoUserAttribute(emailData);
-      let nameAttribute = new AmazonCognitoIdentity.CognitoUserAttribute(nameData);
+  handleRegister(event) {
+    let emailData = {
+      Name: 'email',
+      Value: this.state.email
+    };
+    let nameData = {
+      Name: 'name',
+      Value: this.state.name
+    };
+    let emailAttribute = new AmazonCognitoIdentity.CognitoUserAttribute(emailData);
+    let nameAttribute = new AmazonCognitoIdentity.CognitoUserAttribute(nameData);
 
-      userPool.signUp(username, password, [emailAttribute, nameAttribute], null,
-        function signUpCallback(err, result) {
-          if (!err) {
-            console.log('Username is ' + result.user.getUsername());
-          } else {
-            alert(err.message || JSON.stringify(err));
-          }
+    let username = this.state.email.replace('@', '-at-');
+    this.props.userPool.signUp(username, this.state.password, [emailAttribute, nameAttribute], null,
+      function signUpCallback(err, result) {
+        if (!err) {
+          console.log('Username is ' + result.user.getUsername());
+          this.setState({
+            form: "verification"
+          });
+          console.log("form changed to " + this.state.form);
+        } else {
+          alert(err.message || JSON.stringify(err));
         }
-      );
-    }
+      }
+    );
+  }
+  
+  handleLogin(event) {
+    let username = this.state.email.replace('@', '-at-');
+
     let authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
       Username: username,
-      Password: password
+      Password: this.state.password
     });
 
     let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
       Username: username,
-      Pool: userPool
+      Pool: this.props.userPool
     });
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function signinSuccess() {
@@ -116,15 +134,39 @@ class Login extends React.Component{
       }
     });
   }
+  
+  handleVerify(event) {
+    let username = this.state.email.replace('@', '-at-');
+    let cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+      Username: username,
+      Pool: this.props.userPool
+    });
+    cognitoUser.confirmRegistration(this.state.verificationCode, true,
+      function verificationCallback(err, result) {
+        if (!err) {
+          console.log('User has been verified');
+          this.setState({
+            form: "login"
+          });
+          console.log("form changed to " + this.state.form);
+        } else {
+          alert(err.message || JSON.stringify(err));
+        }
+      }
+    );
+  }
 
   render() {
     let form = this.state.form;
-    let activeButtonText = form == "login" ? "Log in" : "Register";
-    let toggleButtonText = form == "login" ? "Register" : "Log in";
-    let disabled = !this.state.emailValid || !this.state.passwordValid;
-    if (form == "registration" && (!this.state.nameValid || !this.state.passwordsMatch)) {
-      disabled = true;
-    }
+    let emailAndPasswordValid = this.state.emailValid && this.state.passwordValid;
+    let nameValidAndPasswordsMatch = this.state.nameValid && this.state.passwordsMatch;
+    let emailAndVerificationCodeValid = this.state.emailValid && this.state.verificationCodeValid;
+    let submitButton = 
+      form == "login"
+        ? (<button onClick={this.handleLogin} disabled={!emailAndPasswordValid}>Log in</button>)
+        : form == "registration"
+          ? (<button onClick={this.handleRegister} disabled={!emailAndPasswordValid || !nameValidAndPasswordsMatch}>Register</button>)
+          : (<button onClick={this.handleVerify} disabled={!emailAndVerificationCodeValid}>Verify</button>);
     let name = null;
     let confirmPassword = null;
     if (form == "registration") {
@@ -141,6 +183,34 @@ class Login extends React.Component{
         </div>
       );
     }
+    let passwordOrVerificationCode =
+      form == "verification"
+        ? (
+            <div className="row">
+              <label>Verification code: </label>
+              <input type="text" name='verificationCode' placeholder='123456' onChange={this.handleVerificationCode} className={this.state.verificationCodeValid ? "valid" : "invalid"}></input>
+            </div>
+          )
+        : (
+            <div className="row">
+              <label>Confirm password: </label>
+              <input type="password" name='confirmPassword' placeholder='********' onChange={this.handleConfirmPassword} className={this.state.passwordsMatch ? "valid" : "invalid"}></input>
+            </div>
+          );
+    let links =
+      form == "login"
+        ? (
+            <div className="row">
+              <button className="link" onClick={this.handleChangeForm("registration")}>Register</button>
+              <button className="link" onClick={this.handleChangeForm("verification")}>Verify Account</button>
+            </div>
+          )
+        : (
+            <div className="row">
+              <button className="link" onClick={this.handleChangeForm("login")}>Cancel</button>
+            </div>
+          );
+
     return (
       <div className="container">
         <h1>Memorise!</h1>
@@ -151,17 +221,11 @@ class Login extends React.Component{
             <label>Email: </label>
             <input type="text" name='email' placeholder='username@example.com' onChange={this.handleChangeEmail} className={this.state.emailValid ? "valid" : "invalid"}></input>
           </div>
-          <div className="row">
-            <label>Password: </label>
-            <input type="password" name='password' placeholder='********' onChange={this.handleChangePassword} className={this.state.passwordValid ? "valid" : "invalid"}></input>
-          </div>
+          {passwordOrVerificationCode}
           {confirmPassword}
-          <button onClick={this.handleSubmit} disabled={disabled}>{activeButtonText}</button>
+          {submitButton}
         </div>
-        <div className="row">
-          <div>Or</div>
-          <button onClick={this.handleToggleForm}>{toggleButtonText}</button>
-        </div>
+          {links}
       </div>
     );
   }
