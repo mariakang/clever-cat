@@ -116,7 +116,6 @@ class Login extends React.Component{
       function signUpCallback(err, result) {
         if (!err) {
           console.log('Username is ' + result.user.getUsername());
-          console.log("form changed to " + this.state.form);
         } else {
           alert(err.message || JSON.stringify(err));
         }
