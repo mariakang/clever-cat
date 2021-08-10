@@ -224,8 +224,8 @@ class Login extends React.Component{
           {passwordOrVerificationCode}
           {confirmPassword}
           {submitButton}
-        </div>
           {links}
+        </div>
       </div>
     );
   }
