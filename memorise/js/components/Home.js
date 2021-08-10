@@ -27,7 +27,7 @@ class Home extends React.Component{
     let cognitoUser = userPool.getCurrentUser();
 
     if (cognitoUser) {
-      cognitoUser.getSession(function sessionCallback(err, session) {
+      cognitoUser.getSession((err, session) => {
         if (err) {
           console.log("Error getting user session");
           this.setState({
@@ -41,7 +41,7 @@ class Home extends React.Component{
           });
           console.log("mode changed to " + this.state.mode);
         } else {
-          cognitoUser.getUserAttributes(function attributesCallback(err, attributes) {
+          cognitoUser.getUserAttributes((err, attributes) => {
             this.setState({
               name: attributes.find(x => x.Name == "name").Value,
               authToken: session.getIdToken().getJwtToken()
@@ -53,7 +53,7 @@ class Home extends React.Component{
                 Authorization: this.state.authToken
               },
               contentType: 'application/json',
-              success: function storeLists(err, data) {
+              success: (err, data) => {
                 this.setState({
                   mode: "home",
                   array: data
@@ -113,7 +113,7 @@ class Home extends React.Component{
       data: JSON.stringify({
         ListId: this.state.activeList.listId
       }),
-      success: function ListDeleted(err, data) {
+      success: (err, data) => {
         console.log('Successfully deleted list');
         window.location.href = 'index.html';
       }
