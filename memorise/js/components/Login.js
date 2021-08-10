@@ -230,17 +230,15 @@ class Login extends React.Component{
       <div className="container">
         <h1>Memorise!</h1>
         <p className="blurb">Create lists of things you want to learn and test yourself!</p>
-        <div class="form">
-          {name}
-          <div className="row">
-            <label>Email: </label>
-            <input type="text" name='email' placeholder='username@example.com' onChange={this.handleChangeEmail} className={this.state.emailValid ? "valid" : "invalid"}></input>
-          </div>
-          {passwordOrVerificationCode}
-          {confirmPassword}
-          {submitButton}
-          {links}
+        {name}
+        <div className="row">
+          <label>Email: </label>
+          <input type="text" name='email' placeholder='username@example.com' onChange={this.handleChangeEmail} className={this.state.emailValid ? "valid" : "invalid"}></input>
         </div>
+        {passwordOrVerificationCode}
+        {confirmPassword}
+        {submitButton}
+        {links}
       </div>
     );
   }
