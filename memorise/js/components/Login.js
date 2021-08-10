@@ -15,6 +15,9 @@ class Login extends React.Component{
       verificationCodeValid: false
     };
     this.handleChangeForm = this.handleChangeForm.bind(this);
+    this.handleChangeFormToRegistration = this.handleChangeFormToRegistration.bind(this);
+    this.handleChangeFormToVerification = this.handleChangeFormToVerification.bind(this);
+    this.handleChangeFormToLogin = this.handleChangeFormToLogin.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -30,6 +33,18 @@ class Login extends React.Component{
       form: form,
     });
     console.log("form changed to " + this.state.form);
+  }
+
+  handleChangeFormToRegistration(event) {
+    this.handleChangeForm("registration");
+  }
+
+  handleChangeFormToVerification(event) {
+    this.handleChangeForm("verification");
+  }
+
+  handleChangeFormToLogin(event) {
+    this.handleChangeForm("login");
   }
 
   handleChangeName(event) {
@@ -201,13 +216,13 @@ class Login extends React.Component{
       form == "login"
         ? (
             <div className="row">
-              <button className="link" onClick={this.handleChangeForm("registration")}>Register</button>
-              <button className="link" onClick={this.handleChangeForm("verification")}>Verify Account</button>
+              <button className="link" onClick={this.handleChangeFormToRegistration}>Register</button>
+              <button className="link" onClick={this.handleChangeFormToVerification}>Verify Account</button>
             </div>
           )
         : (
             <div className="row">
-              <button className="link" onClick={this.handleChangeForm("login")}>Cancel</button>
+              <button className="link" onClick={this.handleChangeFormToLogin}>Cancel</button>
             </div>
           );
 
