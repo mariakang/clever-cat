@@ -92,8 +92,8 @@ label {
   width: auto;
 }
 button {
-  background-color: #36486b;
-  color: #fffffc;
+  background-color: #fefbd8;
+  color: #36486b;
   font-family: verdana;
   padding: 7px;
   margin: 0.5rem;
@@ -153,7 +153,7 @@ button {
   height: 5rem;
 }
 button:hover {
-  background-color: #618685;
+  background-color: #36486b;
   color: #fffffc;
   border: 1px solid #fffffc;
 }
@@ -287,12 +287,12 @@ h3 {
   word-wrap: break-word;
 }
 .tableHeading {
-  color: #618685;
-  background-color: #fefbd8;
+  color: #fffffc;
+  background-color: #618685;
   width: 100%;
 }
 .tableEnding {
-  background-color: #fefbd8;
+  background-color: #618685;
   width: 100%;
   height: 5px;
   margin-bottom: 10px;
