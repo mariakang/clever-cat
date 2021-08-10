@@ -75,7 +75,7 @@ class Login extends React.Component{
     let email = this.state.email;
     let username = email.replace('@', '-at-');
     let password = this.state.password;
-    if (this.state.form = "registration") {
+    if (this.state.form == "registration") {
       let emailData = {
         Name: 'email',
         Value: email
