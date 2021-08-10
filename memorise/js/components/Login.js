@@ -92,7 +92,7 @@ class Login extends React.Component{
           if (!err) {
             console.log('Username is ' + result.user.getUsername());
           } else {
-            alert(err);
+            alert(err.message || JSON.stringify(err));
           }
         }
       );
@@ -112,7 +112,7 @@ class Login extends React.Component{
         window.location.href = 'index.html';
       },
       onFailure: function signinError(err) {
-        alert(err);
+        alert(err.message || JSON.stringify(err));
       }
     });
   }
