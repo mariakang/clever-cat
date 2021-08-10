@@ -85,6 +85,7 @@ label {
 }
 button {
   background-color: #618685;
+  color: #36486b;
   font-family: verdana;
   padding: 7px;
   margin: 0.5rem;
@@ -216,7 +217,7 @@ h3 {
   font-size: 0.8rem;
 }
 .link {
-  background-color: #fefbd8;
+  background-color: #fffffc;
   font-family: verdana;
   text-decoration: underline;
   border: none;
