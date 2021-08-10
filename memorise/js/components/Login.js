@@ -208,7 +208,7 @@ class Login extends React.Component{
           )
         : (
             <div className="row">
-              <label>Confirm password: </label>
+              <label>Password: </label>
               <input type="password" name='password' placeholder='********' onChange={this.handleChangePassword} className={this.state.passwordValid ? "valid" : "invalid"}></input>
             </div>
           );
