@@ -70,14 +70,23 @@ input {
   min-height: 1.6rem;
   text-align: left;
   padding-left: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   width: auto;
   margin: 0.1rem;
   border: 1px solid #36486b;
+  color: #36486b;
+}
+.invalid {
+  background-color: #fefbd8;
+  color: #990000;
 }
 .invalid:focus {
   background-color: #e07552;
   color: #990000;
+}
+.valid {
+  background-color: #b3cc66;
+  color: #36486b;
 }
 label {
   font-size: 0.7rem;
@@ -223,10 +232,15 @@ h3 {
   border: none;
   box-shadow: none;
   cursor: pointer;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+}
+.link:hover {
+  background-color: #fffffc;
+  color: #618685;
+  border: none;
 }
 .table {
   display: grid;
