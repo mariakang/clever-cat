@@ -116,15 +116,13 @@ class Login extends React.Component{
       function signUpCallback(err, result) {
         if (!err) {
           console.log('Username is ' + result.user.getUsername());
-          this.setState({
-            form: "verification"
-          });
           console.log("form changed to " + this.state.form);
         } else {
           alert(err.message || JSON.stringify(err));
         }
       }
     );
+    this.handleChangeForm("verification");
   }
   
   handleLogin(event) {
@@ -160,15 +158,12 @@ class Login extends React.Component{
       function verificationCallback(err, result) {
         if (!err) {
           console.log('User has been verified');
-          this.setState({
-            form: "login"
-          });
-          console.log("form changed to " + this.state.form);
         } else {
           alert(err.message || JSON.stringify(err));
         }
       }
     );
+    this.handleChangeForm("login");
   }
 
   render() {
@@ -188,13 +183,13 @@ class Login extends React.Component{
       name = (
         <div className="row">
           <label>Name: </label>
-          <input type="text" name='name' placeholder="Name" onChange={this.handleChangeName} className={this.state.nameValid ? "valid" : "invalid"}></input>
+          <input type="text" name='name' placeholder="Name" onChange={this.handleChangeName} className={this.state.nameValid ? "valid" : "invalid"} value={this.state.name}></input>
         </div>
       );
       confirmPassword = (
         <div className="row">
           <label>Confirm password: </label>
-          <input type="password" name='confirmPassword' placeholder='********' onChange={this.handleConfirmPassword} className={this.state.passwordsMatch ? "valid" : "invalid"}></input>
+          <input type="password" name='confirmPassword' placeholder='********' onChange={this.handleConfirmPassword} className={this.state.passwordsMatch ? "valid" : "invalid"} value={this.state.confirmPassword}></input>
         </div>
       );
     }
@@ -203,13 +198,13 @@ class Login extends React.Component{
         ? (
             <div className="row">
               <label>Verification code: </label>
-              <input type="text" name='verificationCode' placeholder='123456' onChange={this.handleVerificationCode} className={this.state.verificationCodeValid ? "valid" : "invalid"}></input>
+              <input type="text" name='verificationCode' placeholder='123456' onChange={this.handleVerificationCode} className={this.state.verificationCodeValid ? "valid" : "invalid"} value={this.state.verificationCode}></input>
             </div>
           )
         : (
             <div className="row">
               <label>Password: </label>
-              <input type="password" name='password' placeholder='********' onChange={this.handleChangePassword} className={this.state.passwordValid ? "valid" : "invalid"}></input>
+              <input type="password" name='password' placeholder='********' onChange={this.handleChangePassword} className={this.state.passwordValid ? "valid" : "invalid"} value={this.state.password}></input>
             </div>
           );
     let links =
@@ -233,7 +228,7 @@ class Login extends React.Component{
         {name}
         <div className="row">
           <label>Email: </label>
-          <input type="text" name='email' placeholder='username@example.com' onChange={this.handleChangeEmail} className={this.state.emailValid ? "valid" : "invalid"}></input>
+          <input type="text" name='email' placeholder='username@example.com' onChange={this.handleChangeEmail} className={this.state.emailValid ? "valid" : "invalid"} value={this.state.email}></input>
         </div>
         {passwordOrVerificationCode}
         {confirmPassword}
