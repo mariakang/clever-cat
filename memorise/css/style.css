@@ -8,7 +8,7 @@
 }
 
 .main {
-  background-color: #fcfcf7;
+  background-color: #fefbd8;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -72,23 +72,23 @@ input {
   font-size: 1rem;
   width: auto;
   margin: 0.1rem;
-  border: 1px solid #321b26;
+  border: 1px solid #36486b;
 }
 .invalid:focus {
   background-color: #e07552;
   color: #990000;
 }
 label {
-  font-size: 1rem;
+  font-size: 0.7rem;
   width: auto;
 }
 button {
-  background-color: #ffff99;
+  background-color: #618685;
   font-family: verdana;
   padding: 7px;
   margin: 0.5rem;
   width: 12rem;
-  border: 1px solid #321b26;
+  border: 1px solid #36486b;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   cursor: pointer;
   font-size: 0.8rem;
@@ -143,9 +143,9 @@ button {
   height: 5rem;
 }
 button:hover {
-  background-color: #321b26;
-  color: #fafafa;
-  border: 1px solid #fafafa;
+  background-color: #36486b;
+  color: #fffffc;
+  border: 1px solid #fffffc;
 }
 button:disabled {
   background-color: #cccccc;
@@ -155,13 +155,13 @@ button:disabled {
 .checkbox {
   width: 1.5rem;
   height: 1.5rem;
-  border: 1px solid #321b26;
+  border: 1px solid #36486b;
   cursor: pointer;
 }
 .radio {
   width: 25px;
   height: 25px;
-  border: 1px solid #321b26;
+  border: 1px solid #36486b;
   cursor: pointer;
   margin-right: 2rem;
 }
@@ -172,10 +172,10 @@ h1 {
   width: 100%;
   text-align: center;
   font-family: verdana;
-  color: #321b26
+  color: #36486b
 }
 b {
-  color: #321b26
+  color: #36486b
 }
 
 h2 {
@@ -195,8 +195,8 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #fcfcf7;
-  background-color: #321b26;
+  color: #fefbd8;
+  background-color: #36486b;
   z-index: 3;
 }
 .headerSection-left{
@@ -215,7 +215,7 @@ h3 {
   font-size: 0.8rem;
 }
 .link {
-  background-color: #fcfcf7;
+  background-color: #fefbd8;
   font-family: verdana;
   text-decoration: underline;
   border: none;
@@ -271,7 +271,7 @@ h3 {
   word-wrap: break-word;
 }
 .tableHeading {
-  color: #ffb84d;
+  color: #618685;
   background-color: #fffffc;
   width: 100%;
 }
@@ -292,7 +292,7 @@ h3 {
   font-style: italic;
   margin-top: -40px;
   margin-bottom: 20px;
-  color: #532d3f;
+  color: #36486b;
 }
 .answer {
   margin-bottom: 3rem;
