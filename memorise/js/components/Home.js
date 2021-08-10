@@ -203,9 +203,7 @@ class Home extends React.Component{
     );
     if (this.state.mode == "login") {
       content = (
-        <div className="container">
-          <Login userPool={this.props.userPool} />
-        </div>
+        <Login userPool={this.props.userPool} />
       );
     } else if (this.state.mode == "create") {
       const newRecord = {
