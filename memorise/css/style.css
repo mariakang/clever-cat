@@ -93,8 +93,8 @@ label {
   width: auto;
 }
 button {
-  background-color: #618685;
-  color: #36486b;
+  background-color: #36486b;
+  color: #fffffc;
   font-family: verdana;
   padding: 7px;
   margin: 0.5rem;
@@ -154,7 +154,7 @@ button {
   height: 5rem;
 }
 button:hover {
-  background-color: #36486b;
+  background-color: #618685;
   color: #fffffc;
   border: 1px solid #fffffc;
 }
@@ -206,7 +206,7 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #fefbd8;
+  color: #fffffc;
   background-color: #36486b;
   z-index: 3;
 }
