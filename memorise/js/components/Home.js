@@ -60,11 +60,11 @@ class Home extends React.Component{
                 });
                 console.log("mode changed to " + this.state.mode + ", array changed to " + this.state.array);
               }
-//              error: function ajaxError(jqXHR, textStatus, errorThrown) {
-//                console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
-//                console.error('Response: ', jqXHR.responseText);
-//                alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
-//              }
+              "error": (jqXHR, textStatus, errorThrown) => {
+                console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
+              }
             });
           });
         }
@@ -117,11 +117,11 @@ class Home extends React.Component{
         console.log('Successfully deleted list');
         window.location.href = 'index.html';
       }
-//      error: function ajaxError(jqXHR, textStatus, errorThrown) {
-//        console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
-//        console.error('Response: ', jqXHR.responseText);
-//        alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
-//      }
+      "error": (jqXHR, textStatus, errorThrown) => {
+        console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
+        console.error('Response: ', jqXHR.responseText);
+        alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
+      }
     });
   }
   handleEdit(event) {
