@@ -87,7 +87,7 @@ class ListForm extends React.Component{
         Authorization: this.props.authToken
       },
       body: {
-        ListId: this.state.activeList.listId,
+        id: this.props.record.id,
         username: this.props.username,
         title: this.state.title,
         column1: this.state.column1,
