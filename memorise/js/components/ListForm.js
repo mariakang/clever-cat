@@ -71,8 +71,10 @@ class ListForm extends React.Component{
     });
     console.log("items changed to " + this.state.items);
   }
+
   handleSave(event) {
   }
+
   render() {
     const title = this.state.title;
     const heading = title == "" ? "New list" : title;
@@ -86,8 +88,7 @@ class ListForm extends React.Component{
         onDelete={this.handleDeleteItem} />
     ));
     const unpopulatedItems = this.state.items.filter(x => x[0] == "" && x[1] == "");
-    const titleExists = this.props.titles.filter(x => x == title).length > 0;
-    const disabled = titleExists || title == "" || column1 == "" || column2 == "" || unpopulatedItems.length > 0;
+    const disabled = title == "" || column1 == "" || column2 == "" || unpopulatedItems.length > 0;
     return (
       <div class="form">
         <h1>{heading}</h1>
@@ -116,16 +117,12 @@ class ListForm extends React.Component{
         </div>
         <div className="row">
           <div className="addRows">
-            <div className="brown">Add </div>
+            <div>Add </div>
             <input name="rowsToAdd" className="add" value={this.state.rowsToAdd} onChange={this.handleChangeRowsToAdd} type="number"></input>
-            <div className="brown">{" row" + (this.state.rowsToAdd == 1 ? " " : "s ")}</div>
+            <div>{" row" + (this.state.rowsToAdd == 1 ? " " : "s ")}</div>
             <button className="add" type="button" disabled={this.state.rowsToAdd < 1} onClick={this.handleAddItems}>Add <i className="fa fa-plus"></i></button>
           </div>
         </div>
-        <input type="hidden" name="listId" value={this.props.record._id}></input>
-        <input type="hidden" name="username" value={this.props.username}></input>
-        <input type="hidden" name="name" value={this.props.name}></input>
-        <input type="hidden" name="itemsCount" value={this.state.items.length}></input>
         <button onClick={this.handleSave} disabled={disabled}>Save <i className="fa fa-save"></i></button>
       </div>
     );
