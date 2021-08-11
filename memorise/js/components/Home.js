@@ -241,6 +241,7 @@ class Home extends React.Component{
       content = (
         <div className="container">
           <ListForm record={newRecord}
+            authToken={this.state.authToken}
             username={this.state.username} />
           <button onClick={this.handleCancelCreate}>Cancel</button>
         </div>
@@ -265,6 +266,7 @@ class Home extends React.Component{
       content = (
         <div className="container">
           <ListForm record={this.state.activeList}
+            authToken={this.state.authToken}
             username={this.state.username} />
           <button onClick={this.handleCancelEdit}>Cancel</button>
         </div>
