@@ -4,8 +4,10 @@ class Home extends React.Component{
     this.state = {
       mode: "loading",
       name: "",
+      username: "",
       authToken: "",
-      array: [],
+      userLists: [],
+      publicLists: [],
       activeList: {}
     };
     this.handleNewList = this.handleNewList.bind(this);
@@ -18,8 +20,7 @@ class Home extends React.Component{
     this.handleCancelEdit = this.handleCancelEdit.bind(this);
     this.handleCancelCreate = this.handleCancelCreate.bind(this);
     this.handleLaunchTest = this.handleLaunchTest.bind(this);
-    this.handleDemo = this.handleDemo.bind(this);
-    this.handleLaunchDemoTest = this.handleLaunchDemoTest.bind(this);
+    this.handlePublic = this.handlePublic.bind(this);
   }
   componentDidMount() {
     let userPool = this.props.userPool;
@@ -41,24 +42,30 @@ class Home extends React.Component{
           });
           console.log("mode changed to " + this.state.mode);
         } else {
+          let username = cognitoUser.getUsername();
           cognitoUser.getUserAttributes((err, attributes) => {
             this.setState({
               name: attributes.find(x => x.Name == "name").Value,
+              username: username,
               authToken: session.getIdToken().getJwtToken()
             });
-            console.log("name changed to " + this.state.name + ", authToken changed to " + this.state.authToken);
+            console.log("name changed to " + this.state.name + ", username changed to " + this.state.username + ", authToken changed to " + this.state.authToken);
             fetch(this.props.apiUrl + "/lists", {
               method: 'POST',
               headers: {
                 Authorization: this.state.authToken
               },
+              body: {
+                username: username
+              },
               contentType: 'application/json',
               success: (err, data) => {
                 this.setState({
                   mode: "home",
-                  array: data
+                  userLists: data.userLists,
+                  publicLists: data.publicLists
                 });
-                console.log("mode changed to " + this.state.mode + ", array changed to " + this.state.array);
+                console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
               }
               "error": (jqXHR, textStatus, errorThrown) => {
                 console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
@@ -156,19 +163,13 @@ class Home extends React.Component{
     });
     console.log("mode changed to " + this.state.mode);
   }
-  handleDemo(event) {
+  handlePublic(event) {
     this.setState({
-      mode: "demo"
+      mode: "public"
     });
     console.log("mode changed to " + this.state.mode);
   }
-  handleLaunchDemoTest(event, record) {
-    this.setState({
-      activeList: record,
-      mode: "test"
-    });
-    console.log("mode changed to " + this.state.mode + ", activeRecord changed to " + this.state.activeRecord);
-  }
+
   render() {
     let message = this.state.mode == "loading"
         ? "Loading lists..."
@@ -176,15 +177,13 @@ class Home extends React.Component{
           ? "An error occurred"
           : "You haven't created any lists yet";
     let lists = (<div className="description">{message}</div>);
-    const array = this.state.array;
-    let titles = [];
-    if (array.length > 0) {
-      lists = array.map(x => (
+    const userLists = this.state.userLists;
+    if (userLists.length > 0) {
+      lists = userLists.map(x => (
         <ContentsRow record={x}
           onGo={this.handleViewList}
           onDelete={this.handleDeleteList} />
       ));
-      titles = array.map(x => x.title);
     }
     let content = (
       <div className="container">
@@ -198,28 +197,51 @@ class Home extends React.Component{
         </div>
         <div className="tableEnding"></div>
         <button onClick={this.handleNewList}>New list</button>
-        <button onClick={this.handleDemo}>See example list</button>
+        <button onClick={this.handlePublic}>See public lists</button>
       </div>
     );
     if (this.state.mode == "login") {
       content = (
         <Login userPool={this.props.userPool} />
       );
+    } else if (this.state.mode == "public") {
+      lists = (<div className="description">"There aren't any public lists yet"</div>);
+      const publicLists = this.state.publicLists;
+      if (publicLists.length > 0) {
+        lists = publicLists.map(x => (
+          <ContentsRow record={x}
+            onGo={this.handleViewList}
+            onDelete={this.handleDeleteList} />
+        ));
+      }
+      let content = (
+        <div className="container">
+          <h1>"Public lists"</h1>
+          <div className="row tableHeading">
+            <h2>Public lists</h2>
+            <div></div>
+          </div>
+          <div className="table tableBody">
+            {lists}
+          </div>
+          <div className="tableEnding"></div>
+          <button onClick={this.handleHome}>Home <i className="fa fa-home"></i></button>
+        </div>
+      );
     } else if (this.state.mode == "create") {
       const newRecord = {
+        id: "",
         username: this.props.username,
         title: "",
         column1: "",
         column2: "",
         items: [["",""]],
-        _id: "new"
+        public: false
       };
       content = (
         <div className="container">
           <ListForm record={newRecord}
-            username={this.props.username}
-            name={this.state.name}
-            titles={titles} />
+            username={this.state.username} />
           <button onClick={this.handleCancelCreate}>Cancel</button>
         </div>
       );
@@ -228,14 +250,9 @@ class Home extends React.Component{
         <div className="container">
           <List record={this.state.activeList} />
           <button onClick={this.handleLaunchTest} className="test">Test me!</button>
-          <button onClick={this.handleEdit}>Edit <i className="fa fa-edit"></i></button>
+          <button onClick={this.handleEdit} disabled={this.state.username != this.state.activeList.username}>Edit <i className="fa fa-edit"></i></button>
           <button onClick={this.handleHome}>Home <i className="fa fa-home"></i></button>
         </div>
-      );
-    } else if (this.state.mode == "demo") {
-      content = (
-        <DemoList onTest={this.handleLaunchDemoTest}
-            onHome={this.handleHome}/>
       );
     } else if (this.state.mode == "test") {
       content = (
@@ -248,18 +265,20 @@ class Home extends React.Component{
       content = (
         <div className="container">
           <ListForm record={this.state.activeList}
-            username={this.props.username}
-            name={this.state.name}
-            titles={titles.filter(x => x != this.state.activeList.title)} />
+            username={this.state.username} />
           <button onClick={this.handleCancelEdit}>Cancel</button>
         </div>
       );
     } else if (this.state.mode == "delete") {
-      let message = "Are you sure you want to delete \"" + record.title + "\"?";
+      let message = "Are you sure you want to delete \"" + this.state.activeList.title + "\"?";
+      let disallowed = this.state.username != this.state.activeList.username;
+      if (disallowed) {
+        message = "You cannot delete \"" + this.state.activeList.title + "\", as you didn't create it";
+      }
       content = (
         <div className="container">
           <h2>{message}</h2>
-          <button onClick={this.handleConfirmDelete} tabIndex="-1">Delete <i className="fa fa-trash"></i></button>
+          <button onClick={this.handleConfirmDelete} disabled={disallowed} tabIndex="-1">Delete <i className="fa fa-trash"></i></button>
           <button onClick={this.handleCancelDelete}>Cancel</button>
         </div>
       );
