@@ -57,21 +57,21 @@ class Home extends React.Component{
               },
               body: {
                 username: username
-              },
-              contentType: 'application/json',
-              success: (err, data) => {
+              }
+            }).then((response) => {
                 this.setState({
                   mode: "home",
-                  userLists: data.userLists,
-                  publicLists: data.publicLists
+                  userLists: response.userLists,
+                  publicLists: response.publicLists
                 });
                 console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
-              }
-              "error": (jqXHR, textStatus, errorThrown) => {
-                console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
-                console.error('Response: ', jqXHR.responseText);
-                alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
-              }
+                console.log('Successfully fetched lists');
+                console.log(JSON.stringify(response));
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error('Error fetching lists');
+                console.error(JSON.stringify(error));
+                alert('An error occured when fetching your lists');
             });
           });
         }
@@ -116,19 +116,17 @@ class Home extends React.Component{
       headers: {
         Authorization: this.state.authToken
       },
-      contentType: 'application/json',
-      data: JSON.stringify({
+      body: JSON.stringify({
         ListId: this.state.activeList.listId
-      }),
-      success: (err, data) => {
+      })
+    }).then((response) => {
         console.log('Successfully deleted list');
+        console.log(JSON.stringify(response));
         window.location.href = 'index.html';
-      }
-      "error": (jqXHR, textStatus, errorThrown) => {
-        console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
-        console.error('Response: ', jqXHR.responseText);
-        alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
-      }
+    }).catch((error) => {
+        console.error('Error deleting list');
+        console.error(JSON.stringify(error));
+        alert('An error occured when deleting your list');
     });
   }
   handleEdit(event) {
@@ -242,6 +240,7 @@ class Home extends React.Component{
         <div className="container">
           <ListForm record={newRecord}
             authToken={this.state.authToken}
+            apiUrl={this.props.apiUrl}
             username={this.state.username} />
           <button onClick={this.handleCancelCreate}>Cancel</button>
         </div>
@@ -267,6 +266,7 @@ class Home extends React.Component{
         <div className="container">
           <ListForm record={this.state.activeList}
             authToken={this.state.authToken}
+            apiUrl={this.props.apiUrl}
             username={this.state.username} />
           <button onClick={this.handleCancelEdit}>Cancel</button>
         </div>
