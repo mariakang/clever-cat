@@ -6,6 +6,7 @@ class ListForm extends React.Component{
       column1: this.props.record.column1,
       column2: this.props.record.column2,
       items: this.props.record.items,
+      public: this.props.record.public,
       rowsToAdd: 1
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
@@ -15,6 +16,7 @@ class ListForm extends React.Component{
     this.handleAddItems = this.handleAddItems.bind(this);
     this.handleChangeItems = this.handleChangeItems.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    this.handleTogglePublic = this.handleTogglePublic.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
   handleChangeTitle(event) {
@@ -71,8 +73,37 @@ class ListForm extends React.Component{
     });
     console.log("items changed to " + this.state.items);
   }
+  handleTogglePublic(event) {
+    this.setState({
+      public: !this.state.public,
+    });
+    console.log("public changed to " + this.state.public);
+  }
 
   handleSave(event) {
+    fetch(this.props.apiUrl + "/save", {
+      method: 'POST',
+      headers: {
+        Authorization: this.props.authToken
+      },
+      body: {
+        ListId: this.state.activeList.listId,
+        username: this.props.username,
+        title: this.state.title,
+        column1: this.state.column1,
+        column2: this.state.column2,
+        items: this.state.items,
+        public: this.state.public
+      }
+    }).then((response) => {
+        console.log('Successfully saved list');
+        console.log(JSON.stringify(response));
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        console.error('Error saving list');
+        console.error(JSON.stringify(error));
+        alert('An error occured when saving your list');
+    });
   }
 
   render() {
@@ -89,6 +120,8 @@ class ListForm extends React.Component{
     ));
     const unpopulatedItems = this.state.items.filter(x => x[0] == "" && x[1] == "");
     const disabled = title == "" || column1 == "" || column2 == "" || unpopulatedItems.length > 0;
+    const publicOrPrivate = this.state.public ? "Public" : "Private";
+    const makePublicOrPrivate = this.state.public ? "Make private" : "Make public";
     return (
       <div class="form">
         <h1>{heading}</h1>
@@ -122,6 +155,10 @@ class ListForm extends React.Component{
             <div>{" row" + (this.state.rowsToAdd == 1 ? " " : "s ")}</div>
             <button className="add" type="button" disabled={this.state.rowsToAdd < 1} onClick={this.handleAddItems}>Add <i className="fa fa-plus"></i></button>
           </div>
+        </div>
+        <div className="row">
+          <div>{publicOrPrivate}</div>
+          <button onClick={this.handleTogglePublic}>{makePublicOrPrivate}</button>
         </div>
         <button onClick={this.handleSave} disabled={disabled}>Save <i className="fa fa-save"></i></button>
       </div>
