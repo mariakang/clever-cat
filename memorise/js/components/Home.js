@@ -117,7 +117,7 @@ class Home extends React.Component{
         Authorization: this.state.authToken
       },
       body: JSON.stringify({
-        ListId: this.state.activeList.listId
+        ListId: this.state.activeList.id
       })
     }).then((response) => {
         console.log('Successfully deleted list');
