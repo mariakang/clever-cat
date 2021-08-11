@@ -1,9 +1,9 @@
 const List = (props) => {
   const items = props.record.items.map((x, i) => (
     <div className="tableRow-3">
-      <div className="brown">{(i + 1) + ". "}</div>
-      <div className="tableCell brown">{x[0]}</div>
-      <div className="tableCell brown">{x[1]}</div>
+      <div>{(i + 1) + ". "}</div>
+      <div className="tableCell">{x[0]}</div>
+      <div className="tableCell">{x[1]}</div>
     </div>
   ));
   return (
