@@ -59,7 +59,16 @@ class Home extends React.Component{
               body: {
                 username: username
               }
+            }).catch((error) => {
+                this.setState({
+                  mode: "error",
+                });
+                console.log("mode changed to " + this.state.mode);
+                console.error('Error fetching lists');
+                console.error(JSON.stringify(error));
+                alert('An error occured when fetching your lists');
             }).then((response) => {
+                console.log(response);
                 this.setState({
                   mode: "home",
                   userLists: response.body.userLists,
@@ -73,10 +82,10 @@ class Home extends React.Component{
                 this.setState({
                   mode: "error",
                 });
-                console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
-                console.error('Error fetching lists');
+                console.log("mode changed to " + this.state.mode);
+                console.error('Error reading response');
                 console.error(JSON.stringify(error));
-                alert('An error occured when fetching your lists');
+                alert('An error occured when reading the response');
             });
           });
         }
