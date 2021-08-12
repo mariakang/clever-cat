@@ -70,6 +70,10 @@ class Home extends React.Component{
                 console.log(JSON.stringify(response));
                 window.location.href = 'index.html';
             }).catch((error) => {
+                this.setState({
+                  mode: "error",
+                });
+                console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
                 console.error('Error fetching lists');
                 console.error(JSON.stringify(error));
                 alert('An error occured when fetching your lists');
