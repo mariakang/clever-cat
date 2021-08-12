@@ -60,7 +60,7 @@ class Home extends React.Component{
                 username: username
               }
             }).then((response) => {
-                console.log(response);
+                console.log(JSON.stringify(response));
                 if (response.ok) {
                   this.setState({
                     mode: "home",
