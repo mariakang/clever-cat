@@ -59,6 +59,27 @@ class Home extends React.Component{
               body: {
                 username: username
               }
+            }).then((response) => {
+                console.log(response);
+                if (response.ok) {
+                  this.setState({
+                    mode: "home",
+                    userLists: response.body.userLists,
+                    publicLists: response.body.publicLists
+                  });
+                  console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
+                  console.log('Successfully fetched lists');
+                  console.log(JSON.stringify(response));
+                  window.location.href = 'index.html';
+                } else {
+                  this.setState({
+                    mode: "error",
+                  });
+                  console.log("mode changed to " + this.state.mode);
+                  console.error('Error fetching lists');
+                  console.error(JSON.stringify(error));
+                  alert('An error occured when fetching your lists');
+                }
             }).catch((error) => {
                 this.setState({
                   mode: "error",
@@ -67,25 +88,6 @@ class Home extends React.Component{
                 console.error('Error fetching lists');
                 console.error(JSON.stringify(error));
                 alert('An error occured when fetching your lists');
-            }).then((response) => {
-                console.log(response);
-                this.setState({
-                  mode: "home",
-                  userLists: response.body.userLists,
-                  publicLists: response.body.publicLists
-                });
-                console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
-                console.log('Successfully fetched lists');
-                console.log(JSON.stringify(response));
-                window.location.href = 'index.html';
-            }).catch((error) => {
-                this.setState({
-                  mode: "error",
-                });
-                console.log("mode changed to " + this.state.mode);
-                console.error('Error reading response');
-                console.error(JSON.stringify(error));
-                alert('An error occured when reading the response');
             });
           });
         }
