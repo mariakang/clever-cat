@@ -61,8 +61,8 @@ class Home extends React.Component{
             }).then((response) => {
                 this.setState({
                   mode: "home",
-                  userLists: response.userLists,
-                  publicLists: response.publicLists
+                  userLists: response.body.userLists,
+                  publicLists: response.body.publicLists
                 });
                 console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
                 console.log('Successfully fetched lists');
