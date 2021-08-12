@@ -43,6 +43,7 @@ class Home extends React.Component{
           console.log("mode changed to " + this.state.mode);
         } else {
           let username = cognitoUser.getUsername();
+          console.log("Username: " + username);
           cognitoUser.getUserAttributes((err, attributes) => {
             this.setState({
               name: attributes.find(x => x.Name == "name").Value,
