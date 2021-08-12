@@ -77,7 +77,7 @@ class Home extends React.Component{
                   });
                   console.log("mode changed to " + this.state.mode);
                   console.error('Error fetching lists');
-                  console.error(JSON.stringify(error));
+                  console.error(JSON.stringify(response));
                   alert('An error occured when fetching your lists');
                 }
             });
