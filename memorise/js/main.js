@@ -1,4 +1,4 @@
-let apiInvokeUrl = 'https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod';
+let apiInvokeUrl = 'https://mv0qnh22i7.execute-api.us-east-1.amazonaws.com/prod';
 
 let userPoolData = {
   UserPoolId: "us-east-1_628HLgkPV",
