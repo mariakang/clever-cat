@@ -58,7 +58,8 @@ class Home extends React.Component{
               },
               body: {
                 "username": username
-              }
+              },
+              mode: 'cors'
             }).then((response) => {
                 console.log(response);
                 if (response.ok) {
