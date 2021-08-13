@@ -51,35 +51,36 @@ class Home extends React.Component{
               authToken: session.getIdToken().getJwtToken()
             });
             console.log("name changed to " + this.state.name + ", username changed to " + this.state.username + ", authToken changed to " + this.state.authToken);
-            fetch(this.props.apiUrl + "/lists", {
-              method: 'POST',
-              headers: JSON.stringify({
+            $.ajax({
+              method: "POST",
+              url: this.props.apiUrl + "/lists",
+              headers: {
                 Authorization: this.state.authToken
-              }),
-              body: JSON.stringify({
+              },
+              data: JSON.stringify({
                 username: username
-              })
-            }).then((response) => {
-                console.log(response);
-                if (response.ok) {
-                  this.setState({
-                    mode: "home",
-                    userLists: response.body.userLists,
-                    publicLists: response.body.publicLists
-                  });
-                  console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
-                  console.log('Successfully fetched lists');
-                  console.log(JSON.stringify(response));
-                  window.location.href = 'index.html';
-                } else {
-                  this.setState({
-                    mode: "error",
-                  });
-                  console.log("mode changed to " + this.state.mode);
-                  console.error('Error fetching lists');
-                  console.error(JSON.stringify(response));
-                  alert('An error occured when fetching your lists');
-                }
+              }),
+              contentType: 'application/json',
+              success: (response) => {
+                this.setState({
+                  mode: "home",
+                  userLists: response.body.userLists,
+                  publicLists: response.body.publicLists
+                });
+                console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
+                console.log('Successfully fetched lists');
+                console.log(JSON.stringify(response));
+                window.location.href = 'index.html';
+              },
+              error: (jqXHR, textStatus, errorThrown) => {
+                this.setState({
+                  mode: "error",
+                });
+                console.log("mode changed to " + this.state.mode);
+                console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
+              }
             });
           });
         }
