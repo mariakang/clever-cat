@@ -187,6 +187,7 @@ class Home extends React.Component{
     if (userLists.length > 0) {
       lists = userLists.map(x => (
         <ContentsRow record={x}
+          username={this.state.username}
           onGo={this.handleViewList}
           onDelete={this.handleDeleteList} />
       ));
@@ -216,6 +217,7 @@ class Home extends React.Component{
       if (publicLists.length > 0) {
         lists = publicLists.map(x => (
           <ContentsRow record={x}
+            username={this.state.username}
             onGo={this.handleViewList}
             onDelete={this.handleDeleteList} />
         ));
