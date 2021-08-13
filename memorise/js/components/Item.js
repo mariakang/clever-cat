@@ -44,7 +44,7 @@ class Item extends React.Component {
      let index = this.props.index;
      return (
       <div id={"item-" + index} className="tableRow-4">
-        <div className="brown">{(index + 1) + ". "}</div>
+        <div>{(index + 1) + ". "}</div>
         <input name={"item-" + index + "-0"} value={this.state.value1} onChange={this.handleChangeValue1} type="text"></input>
         <input name={"item-" + index + "-1"} value={this.state.value2} onChange={this.handleChangeValue2} type="text"></input>
         <button type="button" className="delete" onClick={this.handleDelete} tabIndex="-1"> <i className="fa fa-trash"></i>   </button>
