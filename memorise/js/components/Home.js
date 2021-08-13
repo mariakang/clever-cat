@@ -53,13 +53,12 @@ class Home extends React.Component{
             console.log("name changed to " + this.state.name + ", username changed to " + this.state.username + ", authToken changed to " + this.state.authToken);
             fetch(this.props.apiUrl + "/lists", {
               method: 'POST',
-              headers: {
-                "Authorization": this.state.authToken
-              },
-              body: {
-                "username": username
-              },
-              mode: 'cors'
+              headers: JSON.stringify({
+                Authorization: this.state.authToken
+              }),
+              body: JSON.stringify({
+                username: username
+              })
             }).then((response) => {
                 console.log(response);
                 if (response.ok) {
