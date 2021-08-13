@@ -123,7 +123,7 @@ class ListForm extends React.Component{
     const publicOrPrivate = this.state.public ? "Public" : "Private";
     const makePublicOrPrivate = this.state.public ? "Make private" : "Make public";
     return (
-      <div class="container">
+      <div className="container">
         <h1>{heading}</h1>
         <div className="row">
           <label>Title: </label>
