@@ -63,23 +63,14 @@ class Home extends React.Component{
               contentType: 'application/json',
               success: (response) => {
                 console.log(response);
-                if (response.ok) {
-                  this.setState({
-                    mode: "home",
-                    userLists: response.body.userLists,
-                    publicLists: response.body.publicLists
-                  });
-                  console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
-                  console.log('Successfully fetched lists');
-                  window.location.href = 'index.html';
-                } else {
-                  this.setState({
-                    mode: "error",
-                  });
-                  console.log("mode changed to " + this.state.mode);
-                  console.error('Error fetching lists');
-                  alert('An error occured when fetching your lists');
-                }
+                this.setState({
+                  mode: "home",
+                  userLists: response.userLists,
+                  publicLists: response.publicLists
+                });
+                console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
+                console.log('Successfully fetched lists');
+                window.location.href = 'index.html';
               },
               error: (jqXHR, textStatus, errorThrown) => {
                 this.setState({
