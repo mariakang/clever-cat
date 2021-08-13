@@ -62,7 +62,7 @@ class Home extends React.Component{
               }),
               contentType: 'application/json',
               success: (response) => {
-                console.log(JSON.stringify(response));
+                console.log(response);
                 if (response.ok) {
                   this.setState({
                     mode: "home",
