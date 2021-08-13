@@ -56,7 +56,6 @@ class Home extends React.Component{
               url: this.props.apiUrl + "/lists",
               headers: {
                 Authorization: this.state.authToken,
-                "Access-Control-Allow-Origin": "*"
               },
               data: JSON.stringify({
                 username: username
