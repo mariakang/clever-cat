@@ -54,10 +54,10 @@ class Home extends React.Component{
             fetch(this.props.apiUrl + "/lists", {
               method: 'POST',
               headers: {
-                Authorization: this.state.authToken
+                "Authorization": this.state.authToken
               },
               body: {
-                username: username
+                "username": username
               }
             }).then((response) => {
                 console.log(response);
@@ -122,10 +122,10 @@ class Home extends React.Component{
     fetch(this.props.apiUrl + "/delete", {
       method: 'POST',
       headers: {
-        Authorization: this.state.authToken
+        "Authorization": this.state.authToken
       },
       body: JSON.stringify({
-        ListId: this.state.activeList.id
+        "ListId": this.state.activeList.id
       })
     }).then((response) => {
         console.log('Successfully deleted list');
