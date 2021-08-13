@@ -172,20 +172,38 @@ class Home extends React.Component{
   handlePublic(event) {
     this.setState({
       mode: "public"
-    }, () => this.forceUpdate());
-    console.log("mode changed to " + this.state.mode);
+    }, () => {
+      console.log("mode changed to " + this.state.mode);
+    });
   }
 
   render() {
+    let heading = this.state.mode == "loading"
+        ? "Loading..."
+        : this.state.mode == "error"
+          ? "Whoops!"
+          : this.state.mode == "home"
+            ? "Hello " + this.state.name
+            : this.state.mode == "public"
+              ? "Public lists"
+              : "";
     let message = this.state.mode == "loading"
         ? "Loading lists..."
         : this.state.mode == "error"
           ? "An error occurred"
-          : "You haven't created any lists yet";
+          : this.state.mode == "home"
+            ? "You haven't created any lists yet"
+            : this.state.mode == "public"
+              ? "There aren't any public lists yet"
+              : "";
     let lists = (<div className="description">{message}</div>);
-    const userLists = this.state.userLists;
-    if (userLists.length > 0) {
-      lists = userLists.map(x => (
+    const array = this.state.mode == "home"
+        ? this.state.userLists
+        : this.state.mode == "public"
+          ? this.state.publicLists
+          : [];
+    if (array.length > 0) {
+      lists = array.map(x => (
         <ContentsRow record={x}
           username={this.state.username}
           onGo={this.handleViewList}
@@ -194,7 +212,7 @@ class Home extends React.Component{
     }
     let content = (
       <div className="container">
-        <h1>{"Hello " + this.state.name}</h1>
+        <h1>{heading}</h1>
         <div className="row tableHeading">
           <h2>My lists</h2>
           <div></div>
@@ -212,19 +230,9 @@ class Home extends React.Component{
         <Login userPool={this.props.userPool} />
       );
     } else if (this.state.mode == "public") {
-      lists = (<div className="description">"There aren't any public lists yet"</div>);
-      const publicLists = this.state.publicLists;
-      if (publicLists.length > 0) {
-        lists = publicLists.map(x => (
-          <ContentsRow record={x}
-            username={this.state.username}
-            onGo={this.handleViewList}
-            onDelete={this.handleDeleteList} />
-        ));
-      }
-      let content = (
+      content = (
         <div className="container">
-          <h1>"Public lists"</h1>
+          <h1>{heading}</h1>
           <div className="row tableHeading">
             <h2>Public lists</h2>
             <div></div>
