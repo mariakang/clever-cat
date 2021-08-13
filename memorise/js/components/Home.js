@@ -321,7 +321,7 @@ class Home extends React.Component{
         : "";
     let logOut = this.state.authToken == ""
       ? null
-      : (<button onClick={this.handleLogOut} className="headerItemLink">Log out</div>);
+      : (<button onClick={this.handleLogOut} className="headerItemLink">Log out</button>);
     return (
       <div className="main">
         <div className="header">
