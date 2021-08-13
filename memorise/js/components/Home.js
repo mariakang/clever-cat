@@ -263,7 +263,7 @@ class Home extends React.Component{
         column1: "",
         column2: "",
         items: [["",""]],
-        public: false
+        publicOrPrivate: "private"
       };
       content = (
         <div className="container">
