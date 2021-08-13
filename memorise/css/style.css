@@ -114,7 +114,7 @@ button {
 }
 .test {
   background-color: #618685;
-  color: #36486b;
+  color: #fffffc;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -294,7 +294,7 @@ h3 {
   align-items: center;
   grid-template-columns: 6% 47% 47%;
   width: 90%;
-  min-height: 30px;
+  min-height: 1.2rem;
   margin: 1px;
 }
 .tableRow-4 {
