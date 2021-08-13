@@ -119,22 +119,26 @@ class Home extends React.Component{
     console.log("mode changed to " + this.state.mode);
   }
   handleConfirmDelete(event) {
-    fetch(this.props.apiUrl + "/delete", {
-      method: 'POST',
+    $.ajax({
+      method: "POST",
+      url: this.props.apiUrl + "/lists",
       headers: {
-        "Authorization": this.state.authToken
+        Authorization: this.state.authToken,
       },
-      body: JSON.stringify({
-        "ListId": this.state.activeList.id
-      })
-    }).then((response) => {
+      data: JSON.stringify({
+        listId: this.state.activeList.id
+      }),
+      contentType: 'application/json',
+      success: (response) => {
+        console.log(response);
         console.log('Successfully deleted list');
-        console.log(JSON.stringify(response));
         window.location.href = 'index.html';
-    }).catch((error) => {
-        console.error('Error deleting list');
-        console.error(JSON.stringify(error));
-        alert('An error occured when deleting your list');
+      },
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.error('Error deleting list: ', textStatus, ', Details: ', errorThrown);
+        console.error('Response: ', jqXHR.responseText);
+        alert('An error occured when deleting this list:\n' + jqXHR.responseText);
+      }
     });
   }
   handleEdit(event) {
