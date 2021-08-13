@@ -81,12 +81,13 @@ class ListForm extends React.Component{
   }
 
   handleSave(event) {
-    fetch(this.props.apiUrl + "/save", {
-      method: 'POST',
+    $.ajax({
+      method: "POST",
+      url: this.props.apiUrl + "/save",
       headers: {
-        Authorization: this.props.authToken
+        Authorization: this.state.authToken,
       },
-      body: {
+      data: JSON.stringify({
         id: this.props.record.id,
         username: this.props.username,
         title: this.state.title,
@@ -94,15 +95,18 @@ class ListForm extends React.Component{
         column2: this.state.column2,
         items: this.state.items,
         public: this.state.public
-      }
-    }).then((response) => {
+      }),
+      contentType: 'application/json',
+      success: (response) => {
+        console.log(response);
         console.log('Successfully saved list');
-        console.log(JSON.stringify(response));
         window.location.href = 'index.html';
-    }).catch((error) => {
-        console.error('Error saving list');
-        console.error(JSON.stringify(error));
-        alert('An error occured when saving your list');
+      },
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.error('Error saving list: ', textStatus, ', Details: ', errorThrown);
+        console.error('Response: ', jqXHR.responseText);
+        alert('An error occured when saving this list:\n' + jqXHR.responseText);
+      }
     });
   }
 
