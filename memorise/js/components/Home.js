@@ -58,7 +58,7 @@ class Home extends React.Component{
                 Authorization: this.state.authToken,
               },
               data: JSON.stringify({
-                username: username
+                "username": username
               }),
               contentType: 'application/json',
               success: (response) => {
