@@ -221,7 +221,7 @@ class Login extends React.Component{
           );
 
     return (
-      <div className="container">
+      <div className="loginContainer">
         <h1>Memorise!</h1>
         <p className="blurb">Create lists of things you want to learn and test yourself!</p>
         {name}
