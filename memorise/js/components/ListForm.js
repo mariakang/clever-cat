@@ -85,7 +85,7 @@ class ListForm extends React.Component{
       method: "POST",
       url: this.props.apiUrl + "/save",
       headers: {
-        Authorization: this.state.authToken,
+        Authorization: this.props.authToken,
       },
       data: JSON.stringify({
         id: this.props.record.id,
