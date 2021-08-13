@@ -72,6 +72,13 @@ class Home extends React.Component{
                   console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
                   console.log('Successfully fetched lists');
                   window.location.href = 'index.html';
+                } else {
+                  this.setState({
+                    mode: "error",
+                  });
+                  console.log("mode changed to " + this.state.mode);
+                  console.error('Error fetching lists');
+                  alert('An error occured when fetching your lists');
                 }
               },
               error: (jqXHR, textStatus, errorThrown) => {
