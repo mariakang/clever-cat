@@ -172,7 +172,7 @@ class Home extends React.Component{
   handlePublic(event) {
     this.setState({
       mode: "public"
-    }, forceUpdate());
+    }, () => this.forceUpdate());
     console.log("mode changed to " + this.state.mode);
   }
 
