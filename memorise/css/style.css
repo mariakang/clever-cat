@@ -259,8 +259,8 @@ h3 {
   color: #fffffc;
 }
 .headerItemLink:hover {
-  background-color: #fffffc;
-  color: #36486b;
+  background-color: #36486b;
+  color: #fefbd8;
   border: none;
 }
 .table {
