@@ -70,7 +70,6 @@ class Home extends React.Component{
                 });
                 console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
                 console.log('Successfully fetched lists');
-                window.location.href = 'index.html';
               },
               error: (jqXHR, textStatus, errorThrown) => {
                 this.setState({
