@@ -257,7 +257,7 @@ class Home extends React.Component{
       );
     } else if (this.state.mode == "create") {
       const newRecord = {
-        id: "",
+        id: "new",
         username: this.props.username,
         title: "",
         column1: "",
