@@ -55,7 +55,8 @@ class Home extends React.Component{
               method: "POST",
               url: this.props.apiUrl + "/lists",
               headers: {
-                Authorization: this.state.authToken
+                Authorization: this.state.authToken,
+                Access-Control-Allow-Origin: "*"
               },
               data: JSON.stringify({
                 username: username
