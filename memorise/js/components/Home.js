@@ -65,7 +65,7 @@ class Home extends React.Component{
                 console.log(response);
                 this.setState({
                   mode: "home",
-                  userLists: response.userLists,
+                  userLists: response.usernameLists,
                   publicLists: response.publicLists
                 });
                 console.log("mode changed to " + this.state.mode + ", user lists changed to " + this.state.userLists + ", public lists changed to " + this.state.publicLists);
