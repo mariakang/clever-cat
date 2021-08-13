@@ -121,7 +121,7 @@ button {
 .delete {
   width: auto;
   background-color: #990033;
-  color: #36486b;
+  color: #fffffc;
   min-width: 1.5rem;
 }
 .delete-wide {
@@ -166,6 +166,7 @@ button:disabled {
   border: 1px solid #36486b;
   cursor: pointer;
   background-color: #618685;
+  color: #fffffc;
 }
 .radio {
   width: 25px;
@@ -174,6 +175,7 @@ button:disabled {
   cursor: pointer;
   margin-right: 2rem;
   background-color: #618685;
+  color: #fffffc;
 }
 h1 {
   font-size: 2rem;
