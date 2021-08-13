@@ -21,11 +21,10 @@ class Home extends React.Component{
     this.handleCancelCreate = this.handleCancelCreate.bind(this);
     this.handleLaunchTest = this.handleLaunchTest.bind(this);
     this.handlePublic = this.handlePublic.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
   componentDidMount() {
-    let userPool = this.props.userPool;
-
-    let cognitoUser = userPool.getCurrentUser();
+    let cognitoUser = this.props.userPool.getCurrentUser();
 
     if (cognitoUser) {
       cognitoUser.getSession((err, session) => {
@@ -121,7 +120,7 @@ class Home extends React.Component{
   handleConfirmDelete(event) {
     $.ajax({
       method: "POST",
-      url: this.props.apiUrl + "/lists",
+      url: this.props.apiUrl + "/delete",
       headers: {
         Authorization: this.state.authToken,
       },
@@ -179,6 +178,14 @@ class Home extends React.Component{
     }, () => {
       console.log("mode changed to " + this.state.mode);
     });
+  }
+  handleLogOut(event) {
+    let cognitoUser = this.props.userPool.getCurrentUser();
+    if (cognitoUser) {
+      cognitoUser.signOut();
+      console.log("User logged out");
+      window.location.href = 'index.html'
+    }
   }
 
   render() {
@@ -312,6 +319,9 @@ class Home extends React.Component{
       : this.state.mode == "login"
         ? "Login / Register"
         : "";
+    let logOut = this.state.authToken == ""
+      ? null
+      : (<button onClick={this.handleLogOut} className="headerItemLink">Log out</div>);
     return (
       <div className="main">
         <div className="header">
@@ -319,8 +329,9 @@ class Home extends React.Component{
             <div className="headerItem">Memorise!</div>
           </div>
           <div className="headerSection-right">
-            <div className="headerItem">{this.state.name}</div>
             <div className="headerItem">{title}</div>
+            <div className="headerItem">{this.state.name}</div>
+            {logOut}
           </div>
         </div>
         {content}
