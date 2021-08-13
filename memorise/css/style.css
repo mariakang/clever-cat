@@ -244,6 +244,25 @@ h3 {
   color: #618685;
   border: none;
 }
+.headerItemLink {
+  background-color: #36486b;
+  width: auto;
+  font-family: verdana;
+  text-decoration: underline;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 0.6rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: #fffffc;
+}
+.headerItemLink:hover {
+  background-color: #fffffc;
+  color: #36486b;
+  border: none;
+}
 .table {
   display: grid;
   grid-template-columns: 100%;
