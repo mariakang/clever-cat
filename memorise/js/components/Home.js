@@ -118,6 +118,7 @@ class Home extends React.Component{
     console.log("mode changed to " + this.state.mode);
   }
   handleConfirmDelete(event) {
+    console.log("authToken: " + this.state.authToken);
     $.ajax({
       method: "POST",
       url: this.props.apiUrl + "/delete",
