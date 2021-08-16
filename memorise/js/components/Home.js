@@ -139,6 +139,7 @@ class Home extends React.Component{
         console.error('Error deleting list: ', textStatus, ', Details: ', errorThrown);
         console.error('Response: ', jqXHR.responseText);
         alert('An error occured when deleting this list:\n' + jqXHR.responseText);
+        window.location.href = 'index.html';
       }
     });
   }
