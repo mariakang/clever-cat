@@ -40,8 +40,8 @@
 }
 .modal {
   position: relative;
-  width: 80%;
-  max-width: 600px;
+  width: auto;
+  max-width: 500px;
   margin-top: calc(20px + 5rem);
   display: flex;
   flex-direction: column;
@@ -150,6 +150,7 @@ button {
   background-color: #990033;
   color: #fffffc;
   min-width: 1.5rem;
+  margin: 0.1rem;
 }
 .delete-wide {
   min-width: 12rem;
