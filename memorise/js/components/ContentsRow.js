@@ -17,7 +17,7 @@ class ContentsRow extends React.Component {
         <div>{this.props.record.title}</div>
         <div className="headerSection-right">
           <button type="button" className="go" onClick={this.handleGo}>Go <i className="fa fa-arrow-right"></i></button>
-          <button type="button" className="delete delete-wide" tabIndex="-1" onClick={this.handleDelete} disabled={this.props.username != this.props.record.username}>Delete <i className="fa fa-trash"></i></button>
+          <button type="button" className="delete delete-medium" tabIndex="-1" onClick={this.handleDelete} disabled={this.props.username != this.props.record.username}>Delete <i className="fa fa-trash"></i></button>
         </div>
       </div>
      );
