@@ -31,7 +31,6 @@ class DeleteList extends React.Component{
       error: (jqXHR, textStatus, errorThrown) => {
         console.error('Error deleting list: ', textStatus, ', Details: ', errorThrown);
         console.error('Response: ', jqXHR.responseText);
-        alert('An error occured when deleting this list:\n' + jqXHR.responseText);
         this.setState({
           isDeleting: false,
           errorMessage: 'An error occured when deleting this list:\n' + jqXHR.responseText
