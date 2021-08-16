@@ -118,6 +118,11 @@ class Home extends React.Component{
     console.log("mode changed to " + this.state.mode);
   }
   handleConfirmDelete(event) {
+    this.setState({
+      mode: "loading"
+    });
+    console.log("mode changed to " + this.state.mode);
+
     let cognitoUser = this.props.userPool.getCurrentUser();
 
     if (cognitoUser) {
