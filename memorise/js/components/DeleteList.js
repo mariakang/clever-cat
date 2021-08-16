@@ -60,7 +60,7 @@ class DeleteList extends React.Component{
       : (<button onClick={this.handleAcknowledgeError}>OK</button>);
     return (
       <div className="modal">
-        <h2>{message}</h2>
+        <div>{message}</div>
         {buttons}
       </div>
     );
