@@ -50,14 +50,15 @@
 .modal {
   position: relative;
   margin: auto;
+  margin-top: calc(20px + 5rem);
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 50px;
   z-index: 3;
-  background-color: fffffc;
+  background-color: #fffffc;
   color: #36486b;
   opacity: 1;
   font-size: 1.3rem;
