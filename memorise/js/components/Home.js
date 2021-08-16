@@ -175,22 +175,18 @@ class Home extends React.Component{
   render() {
     let heading = this.state.mode == "loading"
         ? "Loading..."
-        : this.state.mode == "error"
-          ? "Whoops!"
-          : this.state.mode == "home"
-            ? "Hello " + this.state.name
-            : this.state.mode == "public"
-              ? "Public lists"
-              : "";
+        : this.state.mode == "home"
+          ? "Hello " + this.state.name
+          : this.state.mode == "public"
+            ? "Public lists"
+            : "";
     let message = this.state.mode == "loading"
         ? "Loading lists..."
-        : this.state.mode == "error"
-          ? "An error occurred"
-          : this.state.mode == "home"
-            ? "You haven't created any lists yet"
-            : this.state.mode == "public"
-              ? "There aren't any public lists yet"
-              : "";
+        : this.state.mode == "home"
+          ? "You haven't created any lists yet"
+          : this.state.mode == "public"
+            ? "There aren't any public lists yet"
+            : "";
     let lists = (<div className="description">{message}</div>);
     const array = this.state.mode == "home"
         ? this.state.userLists
