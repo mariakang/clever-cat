@@ -58,9 +58,10 @@ class DeleteList extends React.Component{
           </div>
         )
       : (<button onClick={this.handleAcknowledgeError}>OK</button>);
+    let textClass = this.state.errorMessage == "" ? "modalText" : "modalText red";
     return (
       <div className="modal">
-        <div>{message}<br/></div>
+        <div className={textClass}>{message}</div>
         {buttons}
       </div>
     );
