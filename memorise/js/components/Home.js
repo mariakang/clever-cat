@@ -8,20 +8,22 @@ class Home extends React.Component{
       authToken: "",
       userLists: [],
       publicLists: [],
-      activeList: {}
+      activeList: {},
+      deleteClicked: false,
+      errorMessage: ""
     };
     this.handleNewList = this.handleNewList.bind(this);
     this.handleViewList = this.handleViewList.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDeleteList = this.handleDeleteList.bind(this);
     this.handleCancelDelete = this.handleCancelDelete.bind(this);
-    this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
     this.handleHome = this.handleHome.bind(this);
     this.handleCancelEdit = this.handleCancelEdit.bind(this);
     this.handleCancelCreate = this.handleCancelCreate.bind(this);
     this.handleLaunchTest = this.handleLaunchTest.bind(this);
     this.handlePublic = this.handlePublic.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleAcknowledgeError = this.handleAcknowledgeError.bind(this);
   }
   componentDidMount() {
     let cognitoUser = this.props.userPool.getCurrentUser();
@@ -72,12 +74,11 @@ class Home extends React.Component{
               },
               error: (jqXHR, textStatus, errorThrown) => {
                 this.setState({
-                  mode: "error",
+                  errorMessage: 'An error occured when fetching your lists:\n' + jqXHR.responseText
                 });
-                console.log("mode changed to " + this.state.mode);
+                console.log("errorMessage changed to " + this.state.errorMessage);
                 console.error('Error fetching lists: ', textStatus, ', Details: ', errorThrown);
                 console.error('Response: ', jqXHR.responseText);
-                alert('An error occured when fetching your lists:\n' + jqXHR.responseText);
               }
             });
           });
@@ -106,42 +107,16 @@ class Home extends React.Component{
   }
   handleDeleteList(event, record) {
     this.setState({
-      mode: "delete",
+      deleteClicked: true,
       activeList: record
     });
-    console.log("mode changed to " + this.state.mode + ", activeList changed to " + this.state.activeList);
+    console.log("deleteClicked changed to " + this.state.deleteClicked + ", activeList changed to " + this.state.activeList);
   }
   handleCancelDelete(event) {
     this.setState({
-      mode: "home"
+      deleteClicked: false
     });
-    console.log("mode changed to " + this.state.mode);
-  }
-  handleConfirmDelete(event) {
-    this.setState({
-      mode: "loading"
-    });
-    console.log("mode changed to " + this.state.mode);
-
-    $.ajax({
-      method: "POST",
-      url: this.props.apiUrl + "/delete",
-      data: JSON.stringify({
-        listId: this.state.activeList.id
-      }),
-      contentType: 'application/json',
-      success: (response) => {
-        console.log(response);
-        console.log('Successfully deleted list');
-        window.location.href = 'index.html';
-      },
-      error: (jqXHR, textStatus, errorThrown) => {
-        console.error('Error deleting list: ', textStatus, ', Details: ', errorThrown);
-        console.error('Response: ', jqXHR.responseText);
-        alert('An error occured when deleting this list:\n' + jqXHR.responseText);
-        window.location.href = 'index.html';
-      }
-    });
+    console.log("deleteClicked changed to " + this.state.deleteClicked);
   }
   handleEdit(event) {
     this.setState({
@@ -189,6 +164,12 @@ class Home extends React.Component{
       console.log("User logged out");
       window.location.href = 'index.html'
     }
+  }
+  handleAcknowledgeError(event) {
+    this.setState({
+      errorMessage: ""
+    });
+    console.log("errorMessage changed to " + this.state.errorMessage);
   }
 
   render() {
@@ -303,17 +284,25 @@ class Home extends React.Component{
           <button onClick={this.handleCancelEdit}>Cancel</button>
         </div>
       );
-    } else if (this.state.mode == "delete") {
-      let message = "Are you sure you want to delete \"" + this.state.activeList.title + "\"?";
-      let disallowed = this.state.username != this.state.activeList.username;
-      if (disallowed) {
-        message = "You cannot delete \"" + this.state.activeList.title + "\", as you didn't create it";
-      }
-      content = (
-        <div className="container">
-          <h2>{message}</h2>
-          <button onClick={this.handleConfirmDelete} disabled={disallowed} tabIndex="-1">Delete <i className="fa fa-trash"></i></button>
-          <button onClick={this.handleCancelDelete}>Cancel</button>
+    }
+    let modal = null;
+    if (this.state.errorMessage != "") {
+      modal = (
+        <div className="modalContainer">
+          <div className="modal">
+            <h2>{this.state.errorMessage}</h2>
+            <button onClick={this.handleAcknowledgeError}>OK</button>
+          </div>
+        </div>
+      );
+    } else if (this.state.deleteClicked) {
+      modal = (
+        <div className="modalContainer">
+          <DeleteList listId={this.state.activeList.id}
+            allowed={this.state.username == this.state.activeList.username}
+            authToken={this.state.authToken}
+            apiUrl={this.props.apiUrl}
+            onCancelDelete={this.handleCancelDelete} />
         </div>
       );
     }
@@ -338,6 +327,7 @@ class Home extends React.Component{
           </div>
         </div>
         {content}
+        {modal}
       </div>
     );
   }
