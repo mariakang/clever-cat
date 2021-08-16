@@ -7,7 +7,7 @@ class ListForm extends React.Component{
       column2: this.props.record.column2,
       items: this.props.record.items,
       public: this.props.record.publicOrPrivate == "public",
-      rowsToAdd: 1
+      rowsToAdd: 1,
       isSaving: false
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
