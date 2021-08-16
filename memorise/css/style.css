@@ -332,7 +332,7 @@ h3 {
   align-items: center;
   grid-template-columns: 6% 47% 47%;
   width: 90%;
-  min-height: 1rem;
+  min-height: 1.2rem;
   margin: 1px;
 }
 .tableRow-4 {
