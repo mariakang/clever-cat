@@ -61,7 +61,7 @@
 }
 .modalText {
   min-width: 80%;
-  max-width: 80%;
+  max-width: 580px;
   color: #36486b;
   font-size: 1.2rem;
   margin-bottom: 1rem;
