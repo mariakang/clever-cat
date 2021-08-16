@@ -290,7 +290,7 @@ class Home extends React.Component{
       modal = (
         <div className="modalContainer">
           <div className="modal">
-            <div className="red">{this.state.errorMessage}</div>
+            <div className="red">{this.state.errorMessage}<br/></div>
             <button onClick={this.handleAcknowledgeError}>OK</button>
           </div>
         </div>
