@@ -8,6 +8,7 @@ class ListForm extends React.Component{
       items: this.props.record.items,
       public: this.props.record.publicOrPrivate == "public",
       rowsToAdd: 1
+      isSaving: false
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
     this.handleChangeColumn1 = this.handleChangeColumn1.bind(this);
@@ -81,6 +82,10 @@ class ListForm extends React.Component{
   }
 
   handleSave(event) {
+    this.setState({
+      isSaving: true
+    });
+    console.log("isSaving set to " + this.state.isSaving);
     $.ajax({
       method: "POST",
       url: this.props.apiUrl + "/save",
@@ -123,7 +128,7 @@ class ListForm extends React.Component{
         onDelete={this.handleDeleteItem} />
     ));
     const unpopulatedItems = this.state.items.filter(x => x[0] == "" && x[1] == "");
-    const disabled = title == "" || column1 == "" || column2 == "" || unpopulatedItems.length > 0;
+    const disabled = this.state.isSaving || title == "" || column1 == "" || column2 == "" || unpopulatedItems.length > 0;
     const publicOrPrivate = this.state.public ? "Public" : "Private";
     const makePublicOrPrivate = this.state.public ? "Make private" : "Make public";
     return (
