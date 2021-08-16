@@ -234,8 +234,8 @@ class Home extends React.Component{
           {lists}
         </div>
         <div className="tableEnding"></div>
-        <button onClick={this.handleNewList}>New list</button>
-        <button onClick={this.handlePublic}>See public lists</button>
+        <button onClick={this.handleNewList} disabled={this.state.mode == "loading"}>New list</button>
+        <button onClick={this.handlePublic} disabled={this.state.mode == "loading"}>See public lists</button>
       </div>
     );
     if (this.state.mode == "login") {
