@@ -152,9 +152,11 @@ button {
 }
 .delete-medium {
   min-width: 4.5rem;
+  margin: 0.5rem;
 }
 .delete-wide {
   min-width: 12rem;
+  margin: 0.5rem;
 }
 .add {
   width: 3.6rem;
