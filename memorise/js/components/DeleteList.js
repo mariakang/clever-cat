@@ -54,7 +54,7 @@ class DeleteList extends React.Component{
       ? (
           <div className="row">
             <button onClick={this.props.onCancelDelete} disabled={this.state.isDeleting}>Cancel</button>
-            <button onClick={this.handleConfirmDelete} disabled={!this.props.allowed || this.state.isDeleting}>Delete</button>
+            <button className="delete delete-wide" onClick={this.handleConfirmDelete} disabled={!this.props.allowed || this.state.isDeleting}>Delete</button>
           </div>
         )
       : (<button onClick={this.handleAcknowledgeError}>OK</button>);
