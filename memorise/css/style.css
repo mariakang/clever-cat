@@ -58,8 +58,11 @@
   padding: 50px;
   z-index: 3;
   background: #fffffc;
+}
+.modalText {
   color: #36486b;
   font-size: 1.3rem;
+  margin-bottom: 1rem;
 }
 .row {
   display: flex;
