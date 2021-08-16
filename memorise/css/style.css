@@ -63,6 +63,7 @@
   color: #36486b;
   font-size: 1.3rem;
   margin-bottom: 1rem;
+  word-wrap: break-word;
 }
 .row {
   display: flex;
