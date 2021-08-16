@@ -118,27 +118,63 @@ class Home extends React.Component{
     console.log("mode changed to " + this.state.mode);
   }
   handleConfirmDelete(event) {
-    $.ajax({
-      method: "POST",
-      url: this.props.apiUrl + "/delete",
-      headers: {
-        Authorization: this.state.authToken,
-      },
-      data: JSON.stringify({
-        listId: this.state.activeList.id
-      }),
-      contentType: 'application/json',
-      success: (response) => {
-        console.log(response);
-        console.log('Successfully deleted list');
-        window.location.href = 'index.html';
-      },
-      error: (jqXHR, textStatus, errorThrown) => {
-        console.error('Error deleting list: ', textStatus, ', Details: ', errorThrown);
-        console.error('Response: ', jqXHR.responseText);
-        alert('An error occured when deleting this list:\n' + jqXHR.responseText);
-      }
-    });
+    let cognitoUser = this.props.userPool.getCurrentUser();
+
+    if (cognitoUser) {
+      cognitoUser.getSession((err, session) => {
+        if (err) {
+          console.log("Error getting user session");
+          this.setState({
+            mode: "login"
+          });
+          console.log("mode changed to " + this.state.mode);
+        } else if (!session.isValid()) {
+          console.log("User session is not valid");
+          this.setState({
+            mode: "login"
+          });
+          console.log("mode changed to " + this.state.mode);
+        } else {
+          let username = cognitoUser.getUsername();
+          console.log("Username: " + username);
+          cognitoUser.getUserAttributes((err, attributes) => {
+            this.setState({
+              name: attributes.find(x => x.Name == "name").Value,
+              username: username,
+              authToken: session.getIdToken().getJwtToken()
+            });
+            console.log("name changed to " + this.state.name + ", username changed to " + this.state.username + ", authToken changed to " + this.state.authToken);
+            $.ajax({
+              method: "POST",
+              url: this.props.apiUrl + "/delete",
+              headers: {
+                Authorization: this.state.authToken,
+              },
+              data: JSON.stringify({
+                listId: this.state.activeList.id
+              }),
+              contentType: 'application/json',
+              success: (response) => {
+                console.log(response);
+                console.log('Successfully deleted list');
+                window.location.href = 'index.html';
+              },
+              error: (jqXHR, textStatus, errorThrown) => {
+                console.error('Error deleting list: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured when deleting this list:\n' + jqXHR.responseText);
+              }
+            });
+          });
+        }
+      });
+    } else {
+      console.log("No user found");
+      this.setState({
+        mode: "login"
+      });
+      console.log("mode changed to " + this.state.mode);
+    }
   }
   handleEdit(event) {
     this.setState({
