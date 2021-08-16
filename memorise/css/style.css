@@ -61,11 +61,11 @@
 }
 .modalText {
   color: #36486b;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   word-wrap: break-word;
   height: auto;
-  padding: 2px;
+  overflow: auto;
 }
 .row {
   display: flex;
