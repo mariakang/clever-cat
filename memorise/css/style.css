@@ -38,23 +38,6 @@
   justify-content: flex-start;
   align-items: center;
 }
-.modal {
-  position: relative;
-  width: auto;
-  max-width: 500px;
-  margin-top: calc(20px + 5rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 50px;
-  z-index: 3;
-  background-color: fffffc;
-  text
-  color: #36486b;
-  opacity: 1;
-  font-size: 1.3rem;
-}
 .modalContainer {
   position: absolute;
   top: 0;
@@ -63,6 +46,21 @@
   height: 100%;
   background-color: #36486b;
   opacity: 0.8;
+}
+.modal {
+  position: relative;
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 50px;
+  z-index: 3;
+  background-color: fffffc;
+  color: #36486b;
+  opacity: 1;
+  font-size: 1.3rem;
 }
 .row {
   display: flex;
@@ -153,7 +151,7 @@ button {
   margin: 0.1rem;
 }
 .delete-medium {
-  min-width: 4.3rem;
+  min-width: 4.5rem;
 }
 .delete-wide {
   min-width: 12rem;
