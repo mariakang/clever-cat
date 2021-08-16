@@ -7,7 +7,7 @@ class DeleteList extends React.Component{
     };
     this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
     this.handleAcknowledgeError = this.handleAcknowledgeError.bind(this);
-
+  }
   handleConfirmDelete(event) {
     this.setState({
       isDeleting: true
