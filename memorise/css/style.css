@@ -152,6 +152,9 @@ button {
   min-width: 1.5rem;
   margin: 0.1rem;
 }
+.delete-medium {
+  min-width: 4.3rem;
+}
 .delete-wide {
   min-width: 12rem;
 }
