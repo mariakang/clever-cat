@@ -2,9 +2,11 @@ class DeleteList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      isDeleting: false
+      isDeleting: false,
+      errorMessage: ""
     };
     this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
+    this.handleAcknowledgeError = this.handleAcknowledgeError.bind(this);
 
   handleConfirmDelete(event) {
     this.setState({
@@ -31,13 +33,36 @@ class DeleteList extends React.Component{
         console.error('Response: ', jqXHR.responseText);
         alert('An error occured when deleting this list:\n' + jqXHR.responseText);
         this.setState({
-          isDeleting: false
+          isDeleting: false,
+          errorMessage: 'An error occured when deleting this list:\n' + jqXHR.responseText
         });
-        console.log("isDeleting set to " + this.state.isDeleting);
+        console.log("isDeleting set to " + this.state.isDeleting + ", errorMessage set to " + this.state.errorMessage);
       }
     });
   }
+  handleAcknowledgeError(event) {
+    window.location.href = 'index.html';
+  }
 
   render() {
+    let message = this.state.errorMessage != ""
+      ? this.state.errorMessage
+      : this.props.allowed
+        ? "Are you sure you want to delete this list?"
+        : "You didn't create this list, so you can't delete it";
+    let buttons = this.state.errorMessage == ""
+      ? (
+          <div className="row">
+            <button onClick={this.props.onCancelDelete} disabled={this.state.isDeleting}>Cancel</button>
+            <button onClick={this.handleConfirmDelete} disabled={!this.props.allowed || this.state.isDeleting}>Delete</button>
+          </div>
+        )
+      : (<button onClick={this.handleAcknowledgeError}>OK</button>);
+    return (
+      <div className="modal">
+        <h2>{message}</h2>
+        {buttons}
+      </div>
+    );
   }
 }
