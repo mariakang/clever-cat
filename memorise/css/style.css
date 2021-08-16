@@ -38,13 +38,28 @@
   justify-content: flex-start;
   align-items: center;
 }
-
-.form {
+.modal {
+  width: 80%;
+  max-width: 600px;
+  margin-top: calc(20px + 5rem);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding: 20px;
+  z-index: 3;
+  background-colour: fffffc;
+  color: #36486b;
+  opacity: 1;
+}
+.modalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background-color: #36486b;
+  opacity: 0.8;
 }
 .row {
   display: flex;
