@@ -114,7 +114,7 @@ class ListForm extends React.Component{
       }
     });
   }
-
+  
   render() {
     const title = this.state.title;
     const heading = title == "" ? "New list" : title;
